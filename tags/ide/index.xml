@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IDE on 时聆心语</title>
+    <link>https://edward852.github.io/tags/ide/</link>
+    <description>Recent content in IDE on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 23 Dec 2018 21:31:37 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/ide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IDE基本功能checklist</title>
+      <link>https://edward852.github.io/post/ide%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BDchecklist/</link>
+      <pubDate>Sun, 23 Dec 2018 21:31:37 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/ide%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BDchecklist/</guid>
+      <description>&lt;p&gt;本文主要记录IDE基本功能的checklist，方便判断各种IDE的水平。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

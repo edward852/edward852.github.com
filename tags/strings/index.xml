@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>strings on 时聆心语</title>
+    <link>https://edward852.github.io/tags/strings/</link>
+    <description>Recent content in strings on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 03 Oct 2017 14:32:58 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/strings/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GNU Binutils使用简介</title>
+      <link>https://edward852.github.io/post/binutils%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Tue, 03 Oct 2017 14:32:58 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/binutils%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/</guid>
+      <description>&lt;p&gt;本文主要记录GNU Binutils的日常使用。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>memory on 时聆心语</title>
+    <link>https://edward852.github.io/tags/memory/</link>
+    <description>Recent content in memory on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 12 Dec 2020 15:27:37 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/memory/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;中的memory order</title>
+      <link>https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/</link>
+      <pubDate>Sat, 12 Dec 2020 15:27:37 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/</guid>
+      <description>&lt;p&gt;本文主要记录个人对C++中memory order的一点理解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AddressSanitizer定位内存问题</title>
+      <link>https://edward852.github.io/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 16 Apr 2020 23:51:59 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;本文主要介绍如何通过&lt;code&gt;AddressSanitizer&lt;/code&gt;定位各类内存问题(溢出、泄露&amp;hellip;)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>内存管理</title>
+      <link>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Thu, 09 Apr 2020 23:28:47 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;本文主要记录内存管理相关的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>共享内存的使用</title>
+      <link>https://edward852.github.io/post/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sun, 15 Dec 2019 20:00:03 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;本文主要介绍共享内存的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>内存泄露定位</title>
+      <link>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%AE%9A%E4%BD%8D/</link>
+      <pubDate>Sun, 02 Jun 2019 22:17:15 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%AE%9A%E4%BD%8D/</guid>
+      <description>&lt;p&gt;本文主要介绍如何定位内存泄露。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

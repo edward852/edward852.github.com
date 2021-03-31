@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>chrome on 时聆心语</title>
+    <link>https://edward852.github.io/tags/chrome/</link>
+    <description>Recent content in chrome on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 19 Sep 2017 23:57:28 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Node.js调试</title>
+      <link>https://edward852.github.io/post/node.js%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Tue, 19 Sep 2017 23:57:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/node.js%E8%B0%83%E8%AF%95/</guid>
+      <description>&lt;p&gt;Node.js版本更新快，调试的方法也在不断的改进，本文主要记录几个较新的调试手段。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

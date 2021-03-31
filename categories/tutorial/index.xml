@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tutorial on 时聆心语</title>
+    <link>https://edward852.github.io/categories/tutorial/</link>
+    <description>Recent content in tutorial on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 23 Feb 2020 15:32:13 +0800</lastBuildDate><atom:link href="https://edward852.github.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo添加Algolia搜索支持</title>
+      <link>https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Sun, 23 Feb 2020 15:32:13 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/</guid>
+      <description>&lt;p&gt;本文主要介绍如何在 &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; 中添加 &lt;a href=&#34;https://www.algolia.com&#34;&gt;Algolia&lt;/a&gt; 搜索支持。&lt;br&gt;
+主要以 &lt;a href=&#34;https://themes.gohugo.io/hugo-theme-even&#34;&gt;Even主题&lt;/a&gt; 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SSH免密登录</title>
+      <link>https://edward852.github.io/post/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Sat, 21 Apr 2018 17:27:20 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/</guid>
+      <description>&lt;p&gt;本文主要介绍SSH免密登录服务器的配置步骤。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Golang程序性能分析 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要介绍如何使用golang自带的工具剖析程序性能瓶颈。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/golang%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Golang程序性能分析" />
+<meta property="og:description" content="本文主要介绍如何使用golang自带的工具剖析程序性能瓶颈。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/golang%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" />
+<meta property="article:published_time" content="2021-03-18T18:31:32+08:00" />
+<meta property="article:modified_time" content="2021-03-18T18:31:32+08:00" />
+<meta itemprop="name" content="Golang程序性能分析">
+<meta itemprop="description" content="本文主要介绍如何使用golang自带的工具剖析程序性能瓶颈。">
+<meta itemprop="datePublished" content="2021-03-18T18:31:32+08:00" />
+<meta itemprop="dateModified" content="2021-03-18T18:31:32+08:00" />
+<meta itemprop="wordCount" content="1780">
+
+
+
+<meta itemprop="keywords" content="golang,profile," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang程序性能分析"/>
+<meta name="twitter:description" content="本文主要介绍如何使用golang自带的工具剖析程序性能瓶颈。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Golang程序性能分析</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-18 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> language </a>
+            </div>
+          <span class="more-meta"> 约 1780 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#声明">声明</a></li>
+    <li><a href="#示例代码">示例代码</a></li>
+    <li><a href="#前置准备">前置准备</a></li>
+    <li><a href="#benchmark">benchmark</a></li>
+    <li><a href="#pprof">pprof</a>
+      <ul>
+        <li><a href="#cpu">cpu</a></li>
+        <li><a href="#memory">memory</a></li>
+      </ul>
+    </li>
+    <li><a href="#trace">trace</a></li>
+    <li><a href="#http-pprof--trace">http pprof &amp;&amp; trace</a>
+      <ul>
+        <li><a href="#方法一">方法一</a></li>
+        <li><a href="#方法二">方法二</a></li>
+      </ul>
+    </li>
+    <li><a href="#后记">后记</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要介绍如何使用golang自带的工具剖析程序性能瓶颈。</p>
+<h1 id="声明">声明</h1>
+<p>主要代码来自<a href="https://dave.cheney.net">Dave Cheney</a>，原博文<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>对应的代码在<a href="https://github.com/davecheney/high-performance-go-workshop/tree/master/examples/words">这里</a>。</p>
+<h1 id="示例代码">示例代码</h1>
+<p>本文为了展示方便，对部分代码作了一点调整，统一放在<a href="https://github.com/edward852/language/tree/master/go/profiling/words">这里</a>。</p>
+<h1 id="前置准备">前置准备</h1>
+<ul>
+<li>安装新版本go</li>
+<li>安装chrome</li>
+<li>安装graphviz</li>
+</ul>
+<h1 id="benchmark">benchmark</h1>
+<p>用<code>testing</code>包测试程序的benchmark，比较简单不多说。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">BenchmarkFib20</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">n</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nf">Fib</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="c1">// run the Fib function b.N times
+</span><span class="c1"></span>	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>执行benchmark测试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">go <span class="nb">test</span> -bench<span class="o">=</span>.
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="pprof">pprof</h1>
+<h2 id="cpu">cpu</h2>
+<p>使用<code>profile.CPUProfile</code>收集cpu使用情况：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/pkg/profile&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">profile</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="nx">profile</span><span class="p">.</span><span class="nx">CPUProfile</span><span class="p">,</span> <span class="nx">profile</span><span class="p">.</span><span class="nf">ProfilePath</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)).</span><span class="nf">Stop</span><span class="p">()</span>
+    
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>编译、运行后会在当前目录下生成cpu.pprof，用自带的pprof工具查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">go build
+
+<span class="c1"># 统计moby.txt有多少单词</span>
+./words ../books/moby.txt
+
+go tool pprof -http<span class="o">=</span>:8080 cpu.pprof
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到<code>syscall read</code>占据了绝大部分时间：</p>
+<p align="center">
+    <img src="/images/syscall_read.png" width="200" />
+</p>
+<p>查看源码就知道，readbyte每次只读1个字节，每次都触发<code>syscall read</code>。<br>
+比较自然的优化方案就是每次syscall多读一些并且缓存起来，使用<code>bufio.NewReader</code>即可实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">b</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="c1">// ...
+</span><span class="c1"></span><span class="k">for</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">readbyte</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>改完再继续分析，发现修改有效，大部分时间耗费在了<code>mallocgc</code>。</p>
+<p align="center">
+    <img src="/images/mallocgc.png" width="250" />
+</p>
+这个表明时间耗费在了创建新对象时的内存分配，我们继续使用pprof分析内存(见下一小节)。
+<h2 id="memory">memory</h2>
+<p>使用profile.MemProfile收集内存使用情况：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/pkg/profile&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">profile</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="nx">profile</span><span class="p">.</span><span class="nx">MemProfile</span><span class="p">,</span> <span class="nx">profile</span><span class="p">.</span><span class="nf">ProfilePath</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)).</span><span class="nf">Stop</span><span class="p">()</span>
+    
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>编译、运行后会在当前目录下生成mem.pprof，继续使用pprof工具查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">go build
+
+<span class="c1"># 统计moby.txt有多少单词</span>
+./words ../books/moby.txt
+
+go tool pprof -http<span class="o">=</span>:8080 mem.pprof
+</code></pre></td></tr></table>
+</div>
+</div><p>很明显<code>readbyte</code>又是罪魁祸首：</p>
+<p align="center">
+    <img src="/images/readbyte_heap_escape.png" width="200" />
+</p>
+<p>这里涉及到golang的逃逸分析，感兴趣的看<a href="/post/golang%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96">这里</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">./main.go:15:6: buf escapes to heap:
+./main.go:15:6:   flow: {heap} = &amp;buf:
+./main.go:15:6:     from buf (address-of) at ./main.go:16:22
+./main.go:15:6:     from buf[:] (slice) at ./main.go:16:22
+./main.go:15:6:     from r.Read(buf[:]) (call parameter) at ./main.go:16:18
+./main.go:14:15: parameter r leaks to {heap} with derefs=0:
+./main.go:14:15:   flow: {heap} = r:
+./main.go:14:15:     from r.Read(buf[:]) (call parameter) at ./main.go:16:18
+./main.go:14:15: leaking param: r
+./main.go:15:6: moved to heap: buf
+</code></pre></td></tr></table>
+</div>
+</div><p>简单来说就是接口方法调用引用了<code>buf</code>变量，导致<code>buf</code>改为在堆上分配内存。<br>
+这里不讨论为什么不能分配在栈上，集中注意力在如何优化上面。<br>
+既然分配耗费时间，是否可以减少分配操作？<br>
+其实readbyte使用的<code>buf</code>分配一次即可，后续可以复用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">bytereader</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">buf</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="kt">byte</span>
+	<span class="nx">r</span>   <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">bytereader</span><span class="p">)</span> <span class="nf">next</span><span class="p">()</span> <span class="p">(</span><span class="kt">rune</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">r</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">buf</span><span class="p">[:])</span>
+	<span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nx">err</span>
+<span class="p">}</span>
+
+<span class="c1">// 分配一次
+</span><span class="c1"></span><span class="nx">br</span> <span class="o">:=</span> <span class="nx">bytereader</span><span class="p">{</span>
+	<span class="nx">r</span><span class="p">:</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">f</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">br</span><span class="p">.</span><span class="nf">next</span><span class="p">()</span>
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>修改完之后通过<code>time</code>测量发现，程序已经跟<code>wc -w</code>速度差不多了🎉。</p>
+<h1 id="trace">trace</h1>
+<p>统计单个文件已经满足不了<code>words</code>了，火速加上统计指定文件夹内txt文件单词数的功能。<br>
+速度一般般，cpu和内存剖析看了也符合预期。不过可以更快一点吗？<br>
+这个时候就轮到大杀器trace上场了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/pkg/profile&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">profile</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="nx">profile</span><span class="p">.</span><span class="nx">TraceProfile</span><span class="p">,</span> <span class="nx">profile</span><span class="p">.</span><span class="nf">ProfilePath</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)).</span><span class="nf">Stop</span><span class="p">()</span>
+    
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>编译、运行后会在当前目录下生成trace.out，这次使用trace工具查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="nx">build</span>
+
+<span class="p">.</span><span class="o">/</span><span class="nx">words</span> <span class="p">..</span><span class="o">/</span><span class="nx">books</span>
+
+<span class="k">go</span> <span class="nx">tool</span> <span class="nx">trace</span> <span class="o">-</span><span class="nx">http</span><span class="p">=:</span><span class="mi">8080</span> <span class="nx">trace</span><span class="p">.</span><span class="nx">out</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>不同于pprof基于采样，trace集成在runtime中，提供毫秒级别的时序执行记录。<br>
+trace记录的信息更多(对程序性能影响也更大)，基本上每个时间点程序发生了什么都能准确知道。</p>
+<p align="center">
+    <img src="/images/trace_single_co.png" width="600" />
+</p>
+<p>从图中可以看到，程序一直在忙着执行代码，但是只有一个协程在忙！<br>
+竟然忘记了golang最有力的武器goroutine，赶紧加上~ <code>go countWords</code>~</p>
+<h1 id="http-pprof--trace">http pprof &amp;&amp; trace</h1>
+<p>在开发多协程版<code>words</code>同时，另外一名同事已经上线了<code>words</code>服务(天知道谁会使用~)。<br>
+同样的，<code>words</code>也有性能问题，但是应该怎么分析？<br>
+对于线上运行的服务，我们可以通过<code>net/http/pprof</code>包来pprof和trace程序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="nx">_</span> <span class="s">&#34;net/http/pprof&#34;</span>
+
+<span class="kd">func</span> <span class="nf">startTrace</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">&#34;trace.out&#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Failed to create trace file&#34;</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+
+	<span class="nx">err</span> <span class="p">=</span> <span class="nx">trace</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Failed to start trace:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Trace started&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">stopTrace</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">trace</span><span class="p">.</span><span class="nf">Stop</span><span class="p">()</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Trace stopped&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">serveDebug</span><span class="p">(</span><span class="nx">stop</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="nx">mux</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">DefaultServeMux</span>
+
+	<span class="c1">// 方法一：
+</span><span class="c1"></span>	<span class="c1">// http://127.0.0.1:8081/start
+</span><span class="c1"></span>	<span class="c1">// http://127.0.0.1:8081/stop
+</span><span class="c1"></span>	<span class="nx">mux</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/start&#34;</span><span class="p">,</span> <span class="nx">startTrace</span><span class="p">)</span>
+	<span class="nx">mux</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/stop&#34;</span><span class="p">,</span> <span class="nx">stopTrace</span><span class="p">)</span>
+	<span class="c1">// 方法二：
+</span><span class="c1"></span>	<span class="c1">// curl -o trace.out http://127.0.0.1:8081/debug/pprof/trace?seconds=5
+</span><span class="c1"></span>
+	<span class="k">return</span> <span class="nf">serve</span><span class="p">(</span><span class="s">&#34;127.0.0.1:8081&#34;</span><span class="p">,</span> <span class="nx">mux</span><span class="p">,</span> <span class="nx">stop</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>import完、启动监听服务之后就可以了：</p>
+<h2 id="方法一">方法一</h2>
+<p>手动访问<code>127.0.0.1:8081/start</code>和<code>127.0.0.1:8081/stop</code>开始和停止trace，生成<code>trace.out</code>文件。</p>
+<h2 id="方法二">方法二</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">curl -o trace.out http://127.0.0.1:8081/debug/pprof/trace?seconds<span class="o">=</span><span class="m">10</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>拿到<code>trace.out</code>之后就可以按照之前的步骤分析了。</p>
+<h1 id="后记">后记</h1>
+<blockquote>
+<p>There are only three optimizations: Do less. Do it less often. Do it faster.<br>
+The largest gains come from 1, but we spend all our time on 3. &ndash; Michael Fromberger</p>
+</blockquote>
+<p>其实官方的Profiling Go Programs<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>也是不错的，不过示例代码比较复杂，注意力更多集中在了代码逻辑。</p>
+<h1 id="参考资料">参考资料</h1>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://dave.cheney.net/high-performance-go-workshop/gophercon-2019.html">GopherCon 2019 Dave Cheney</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://blog.golang.org/pprof">Profiling Go Programs</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-18
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/golang/">golang</a>
+          <a href="/tags/profile/">profile</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/stellar_dex_trading_bot/">
+            <span class="next-text nav-default">Stellar DEX交易机器人</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>time on 时聆心语</title>
+    <link>https://edward852.github.io/tags/time/</link>
+    <description>Recent content in time on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 14 Apr 2018 16:56:48 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang时间转换</title>
+      <link>https://edward852.github.io/post/golang%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</link>
+      <pubDate>Sat, 14 Apr 2018 16:56:48 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何转换时间以及需要注意的地方。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>essay on 时聆心语</title>
+    <link>https://edward852.github.io/categories/essay/</link>
+    <description>Recent content in essay on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 02 Feb 2021 16:39:09 +0800</lastBuildDate><atom:link href="https://edward852.github.io/categories/essay/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博客自动部署从Travis CI迁移到GitHub Actions</title>
+      <link>https://edward852.github.io/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BB%8Etravis%E8%BF%81%E7%A7%BB%E5%88%B0github_actions/</link>
+      <pubDate>Tue, 02 Feb 2021 16:39:09 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BB%8Etravis%E8%BF%81%E7%A7%BB%E5%88%B0github_actions/</guid>
+      <description>&lt;p&gt;由于 &lt;a href=&#34;https://www.travis-ci.org&#34;&gt;Travis CI&lt;/a&gt; 部署排队时间长达一个小时，所以迁移到 &lt;a href=&#34;https://docs.github.com/en/actions&#34;&gt;GitHub Actions&lt;/a&gt; ，顺便更新下Hugo和Even主题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>迁移博客到Hugo</title>
+      <link>https://edward852.github.io/post/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/</link>
+      <pubDate>Fri, 21 Feb 2020 11:58:18 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/</guid>
+      <description>&lt;p&gt;有段时间没折腾博客了 😂，之前很多都是纯手撸的，现在忘的差不多了 😂。&lt;br&gt;
+虽然可以重新温习一下再加点功能，但是感觉还是太折腾、太浪费时间了。&lt;br&gt;
+网上又调查了一下 &lt;strong&gt;SSG&lt;/strong&gt; 的新动态，经过一番对比最后敲定用 &lt;a href=&#34;https://zilongshanren.com/post/move-from-hexo-to-hugo/&#34;&gt;Hugo&lt;/a&gt;  + &lt;a href=&#34;https://themes.gohugo.io/hugo-theme-even/&#34;&gt;Even主题&lt;/a&gt; 。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>新博客启用</title>
+      <link>https://edward852.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8/</link>
+      <pubDate>Wed, 06 Sep 2017 23:34:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8/</guid>
+      <description>辗转在好多地方开过博客，比如说CSDN、博客园、简书等，给我的感受是基本够用不过可定制性有所欠缺，最后还是决定在Github搭建自己的个人博</description>
+    </item>
+    
+  </channel>
+</rss>

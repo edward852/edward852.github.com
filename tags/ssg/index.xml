@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSG on 时聆心语</title>
+    <link>https://edward852.github.io/tags/ssg/</link>
+    <description>Recent content in SSG on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 06 Sep 2017 23:34:28 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/ssg/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新博客启用</title>
+      <link>https://edward852.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8/</link>
+      <pubDate>Wed, 06 Sep 2017 23:34:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8/</guid>
+      <description>辗转在好多地方开过博客，比如说CSDN、博客园、简书等，给我的感受是基本够用不过可定制性有所欠缺，最后还是决定在Github搭建自己的个人博</description>
+    </item>
+    
+  </channel>
+</rss>

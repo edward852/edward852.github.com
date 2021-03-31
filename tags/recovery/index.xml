@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>recovery on 时聆心语</title>
+    <link>https://edward852.github.io/tags/recovery/</link>
+    <description>Recent content in recovery on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 07 Nov 2020 14:14:23 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/recovery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用hashcat恢复密码</title>
+      <link>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/</link>
+      <pubDate>Sat, 07 Nov 2020 14:14:23 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/</guid>
+      <description>&lt;p&gt;本文主要记录如何使用hashcat和John the Ripper恢复密码。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

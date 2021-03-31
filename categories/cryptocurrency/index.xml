@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cryptocurrency on 时聆心语</title>
+    <link>https://edward852.github.io/categories/cryptocurrency/</link>
+    <description>Recent content in cryptocurrency on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 03 Mar 2021 21:20:08 +0800</lastBuildDate><atom:link href="https://edward852.github.io/categories/cryptocurrency/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stellar DEX交易机器人</title>
+      <link>https://edward852.github.io/post/stellar_dex_trading_bot/</link>
+      <pubDate>Wed, 03 Mar 2021 21:20:08 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/stellar_dex_trading_bot/</guid>
+      <description>&lt;p&gt;本文主要讲述一个玩具性质的Stellar DEX交易机器人的实现思路。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

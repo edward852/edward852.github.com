@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ccls on 时聆心语</title>
+    <link>https://edward852.github.io/tags/ccls/</link>
+    <description>Recent content in ccls on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 01 Jul 2018 16:25:53 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/ccls/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译安装ccls</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85ccls/</link>
+      <pubDate>Sun, 01 Jul 2018 16:25:53 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85ccls/</guid>
+      <description>&lt;p&gt;本文主要介绍如何编译、安装 &lt;a href=&#34;https://github.com/MaskRay/ccls&#34;&gt;ccls&lt;/a&gt; 。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>protobuf on 时聆心语</title>
+    <link>https://edward852.github.io/tags/protobuf/</link>
+    <description>Recent content in protobuf on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 18 Aug 2019 23:21:41 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/protobuf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang操作protobuf</title>
+      <link>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cprotobuf/</link>
+      <pubDate>Sun, 18 Aug 2019 23:21:41 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cprotobuf/</guid>
+      <description>&lt;p&gt;本文记录golang如何操作protobuf。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

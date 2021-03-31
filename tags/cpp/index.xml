@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cpp on 时聆心语</title>
+    <link>https://edward852.github.io/tags/cpp/</link>
+    <description>Recent content in cpp on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 12 Dec 2020 15:27:37 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;中的memory order</title>
+      <link>https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/</link>
+      <pubDate>Sat, 12 Dec 2020 15:27:37 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/</guid>
+      <description>&lt;p&gt;本文主要记录个人对C++中memory order的一点理解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;智能指针</title>
+      <link>https://edward852.github.io/post/c&#43;&#43;%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <pubDate>Sun, 25 Mar 2018 00:13:42 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/c&#43;&#43;%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <description>&lt;p&gt;本文主要记录C++智能指针的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>STL算法</title>
+      <link>https://edward852.github.io/post/stl%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 18 Mar 2018 22:21:23 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/stl%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;本文主要记录STL算法的使用笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>STL容器</title>
+      <link>https://edward852.github.io/post/stl%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sat, 17 Mar 2018 22:21:16 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/stl%E5%AE%B9%E5%99%A8/</guid>
+      <description>&lt;p&gt;本文主要记录STL容器的使用笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11笔记</title>
+      <link>https://edward852.github.io/post/c&#43;&#43;11%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 10 Mar 2018 22:21:44 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/c&#43;&#43;11%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录C++11标准的学习笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;基础</title>
+      <link>https://edward852.github.io/post/cpp%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 06 Mar 2018 16:19:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/cpp%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;本文主要参考 &lt;a href=&#34;https://learnxinyminutes.com/docs/c%2B%2B/&#34;&gt;Learn X in Y minutes&lt;/a&gt;上的教程介绍C++相关的基础知识。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

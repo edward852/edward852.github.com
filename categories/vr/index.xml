@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vr on 时聆心语</title>
+    <link>https://edward852.github.io/categories/vr/</link>
+    <description>Recent content in vr on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 01 Sep 2019 22:50:08 +0800</lastBuildDate><atom:link href="https://edward852.github.io/categories/vr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oculus Quest上手指南</title>
+      <link>https://edward852.github.io/post/oculus_quest%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sun, 01 Sep 2019 22:50:08 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/oculus_quest%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;p&gt;本文主要介绍如何上手 &lt;a href=&#34;https://www.oculus.com/quest&#34;&gt;Oculus Quest&lt;/a&gt; 并提供一些共性问题的解决方法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

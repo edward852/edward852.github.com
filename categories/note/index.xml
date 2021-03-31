@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>note on 时聆心语</title>
+    <link>https://edward852.github.io/categories/note/</link>
+    <description>Recent content in note on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 11 Feb 2021 11:42:43 +0800</lastBuildDate><atom:link href="https://edward852.github.io/categories/note/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>投资理财笔记</title>
+      <link>https://edward852.github.io/post/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 11 Feb 2021 11:42:43 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录博主投资理财的一些经验教训，涉及定期、基金、股票、P2P借贷、比特币等方面。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>内存管理</title>
+      <link>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Thu, 09 Apr 2020 23:28:47 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;本文主要记录内存管理相关的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>位操作笔记</title>
+      <link>https://edward852.github.io/post/%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 19 Mar 2020 22:46:35 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录位操作相关的笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker使用笔记</title>
+      <link>https://edward852.github.io/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 09 Jan 2020 11:05:00 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录docker使用过程中一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>共享内存的使用</title>
+      <link>https://edward852.github.io/post/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sun, 15 Dec 2019 20:00:03 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;本文主要介绍共享内存的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git使用笔记</title>
+      <link>https://edward852.github.io/post/git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 09 Nov 2019 15:15:51 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录git使用的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>字节序与对齐</title>
+      <link>https://edward852.github.io/post/%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E5%AF%B9%E9%BD%90/</link>
+      <pubDate>Fri, 22 Dec 2017 17:12:26 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E5%AF%B9%E9%BD%90/</guid>
+      <description>&lt;p&gt;本文主要介绍C/C++中的字节序(含位域)和对齐。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

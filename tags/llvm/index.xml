@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>llvm on 时聆心语</title>
+    <link>https://edward852.github.io/tags/llvm/</link>
+    <description>Recent content in llvm on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 28 Apr 2018 11:00:27 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/llvm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译安装clang&#43;llvm</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91clang&#43;llvm/</link>
+      <pubDate>Sat, 28 Apr 2018 11:00:27 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91clang&#43;llvm/</guid>
+      <description>&lt;p&gt;本文主要介绍如何编译安装clang+llvm。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
