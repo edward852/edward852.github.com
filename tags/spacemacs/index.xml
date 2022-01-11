@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spacemacs on 时聆心语</title>
+    <link>https://edward852.github.io/tags/spacemacs/</link>
+    <description>Recent content in spacemacs on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 12 Jan 2019 15:10:44 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/spacemacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spacemacs离线安装</title>
+      <link>https://edward852.github.io/post/spacemacs%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 12 Jan 2019 15:10:44 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/spacemacs%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</guid>
+      <description>&lt;p&gt;本文主要介绍如何离线安装spacemacs。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>通用代码编辑器spacemacs</title>
+      <link>https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/</link>
+      <pubDate>Sat, 24 Mar 2018 22:15:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/</guid>
+      <description>&lt;p&gt;自从 &lt;a href=&#34;http://spacemacs.org/&#34;&gt;spacemacs&lt;/a&gt; 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

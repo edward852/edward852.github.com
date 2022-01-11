@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>markdown on 时聆心语</title>
+    <link>https://edward852.github.io/tags/markdown/</link>
+    <description>Recent content in markdown on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 21 Feb 2020 15:00:28 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo对Markdown支持情况测试</title>
+      <link>https://edward852.github.io/post/markdown%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Fri, 21 Feb 2020 15:00:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/markdown%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5%E6%B5%8B%E8%AF%95/</guid>
+      <description>&lt;p&gt;本文主要内容是测试Hugo对Markdown的支持情况，方便后续写作时查阅。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>迁移博客到Hugo</title>
+      <link>https://edward852.github.io/post/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/</link>
+      <pubDate>Fri, 21 Feb 2020 11:58:18 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/</guid>
+      <description>&lt;p&gt;有段时间没折腾博客了 😂，之前很多都是纯手撸的，现在忘的差不多了 😂。&lt;br&gt;
+虽然可以重新温习一下再加点功能，但是感觉还是太折腾、太浪费时间了。&lt;br&gt;
+网上又调查了一下 &lt;strong&gt;SSG&lt;/strong&gt; 的新动态，经过一番对比最后敲定用 &lt;a href=&#34;https://zilongshanren.com/post/move-from-hexo-to-hugo/&#34;&gt;Hugo&lt;/a&gt;  + &lt;a href=&#34;https://themes.gohugo.io/hugo-theme-even/&#34;&gt;Even主题&lt;/a&gt; 。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

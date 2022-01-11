@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hugo添加Algolia搜索支持 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要介绍如何在 Hugo 中添加 Algolia 搜索支持。
+主要以 Even主题 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Hugo添加Algolia搜索支持" />
+<meta property="og:description" content="本文主要介绍如何在 Hugo 中添加 Algolia 搜索支持。
+主要以 Even主题 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/" />
+<meta property="article:published_time" content="2020-02-23T15:32:13+08:00" />
+<meta property="article:modified_time" content="2021-03-19T15:32:13+08:00" />
+<meta itemprop="name" content="Hugo添加Algolia搜索支持">
+<meta itemprop="description" content="本文主要介绍如何在 Hugo 中添加 Algolia 搜索支持。
+主要以 Even主题 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。">
+<meta itemprop="datePublished" content="2020-02-23T15:32:13+08:00" />
+<meta itemprop="dateModified" content="2021-03-19T15:32:13+08:00" />
+<meta itemprop="wordCount" content="2372">
+
+
+
+<meta itemprop="keywords" content="Algolia,Searching,Hugo," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo添加Algolia搜索支持"/>
+<meta name="twitter:description" content="本文主要介绍如何在 Hugo 中添加 Algolia 搜索支持。
+主要以 Even主题 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hugo添加Algolia搜索支持</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-23 </span>
+        <div class="post-category">
+            <a href="/categories/tutorial/"> tutorial </a>
+            </div>
+          <span class="more-meta"> 约 2372 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#生成索引文件">生成索引文件</a>
+      <ul>
+        <li><a href="#algolia创建空索引">Algolia创建空索引</a></li>
+        <li><a href="#hugo生成索引文件">Hugo生成索引文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#上传索引文件">上传索引文件</a>
+      <ul>
+        <li><a href="#手动上传">手动上传</a></li>
+        <li><a href="#自动上传">自动上传</a></li>
+      </ul>
+    </li>
+    <li><a href="#添加前端ui">添加前端UI</a>
+      <ul>
+        <li><a href="#适配pc端">适配PC端</a></li>
+        <li><a href="#适配移动端-可选">适配移动端 (可选)</a></li>
+      </ul>
+    </li>
+    <li><a href="#其它主题">其它主题</a></li>
+    <li><a href="#补充说明">补充说明</a></li>
+    <li><a href="#参考教程">参考教程</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要介绍如何在 <a href="https://gohugo.io">Hugo</a> 中添加 <a href="https://www.algolia.com">Algolia</a> 搜索支持。<br>
+主要以 <a href="https://themes.gohugo.io/hugo-theme-even">Even主题</a> 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。</p>
+<p>添加Algolia搜索支持主要有3大步骤：</p>
+<ul>
+<li>生成索引文件</li>
+<li>上传索引文件</li>
+<li>添加前端UI</li>
+</ul>
+<p>下面会详细介绍每个步骤的操作，而且每一步都可以马上看到效果，确认是否操作正确。</p>
+<h1 id="生成索引文件">生成索引文件</h1>
+<h2 id="algolia创建空索引">Algolia创建空索引</h2>
+<ul>
+<li>创建应用，自取名字(比如说blog)<br>
+<img src="https://i.loli.net/2020/02/23/FpQDbZuhBNn671q.png" alt=""></li>
+<li>创建索引，自取名字(比如说blog)<br>
+<img src="https://i.loli.net/2020/02/23/ubxvpWh8wXYnIKd.png" alt=""></li>
+<li>点击侧栏 <code>API Keys</code>，记录信息(Application ID, Search-Only API Key, Admin API Key)<br>
+<img src="https://i.loli.net/2020/02/23/RoMfLZOBc8Dv3Fr.png" alt=""></li>
+</ul>
+<h2 id="hugo生成索引文件">Hugo生成索引文件</h2>
+<ul>
+<li>
+<p>修改 <code>config.toml</code> 文件声明需要生成Algolia索引文件以及相关信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
+    <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">,</span> <span class="s2">&#34;Algolia&#34;</span><span class="p">]</span>
+  
+<span class="p">...</span><span class="nx">中间省略</span>
+
+<span class="p">[</span><span class="nx">outputFormats</span><span class="p">.</span><span class="nx">Algolia</span><span class="p">]</span>
+  <span class="nx">baseName</span> <span class="p">=</span> <span class="s2">&#34;algolia&#34;</span>
+  <span class="nx">isPlainText</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">mediaType</span> <span class="p">=</span> <span class="s2">&#34;application/json&#34;</span>
+  <span class="nx">notAlternative</span> <span class="p">=</span> <span class="kc">true</span>
+  
+<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">]</span>
+  <span class="nx">appId</span> <span class="p">=</span> <span class="s2">&#34;你的Application ID&#34;</span>
+  <span class="nx">indexName</span> <span class="p">=</span> <span class="s2">&#34;你的索引名字&#34;</span>
+  <span class="nx">searchOnlyKey</span> <span class="p">=</span> <span class="s2">&#34;你的Search-Only API Key&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意outputs下面home的末尾有<code>&quot;Algolia&quot;</code>，漏了就不会生成了。<br>
+<code>appId</code>, <code>indexName</code>, <code>searchOnlyKey</code> 填写刚才记录的Algolia信息。</p>
+</li>
+<li>
+<p>根目录下 <code>layouts/_default</code> (没有就新建) 文件夹中新建 <code>list.algolia.json</code> 文件，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="cm">/* 生成Algolia搜索索引文件 */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="o">-</span> <span class="err">$</span><span class="p">.</span><span class="nx">Scratch</span><span class="p">.</span><span class="nx">Add</span> <span class="s">&#34;index&#34;</span> <span class="nx">slice</span> <span class="o">-</span><span class="p">}}</span>
+<span class="p">{{</span><span class="cm">/* content/posts或content/post目录下的博文才生成索引 */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="o">-</span> <span class="k">range</span> <span class="nf">where</span> <span class="p">(</span><span class="nx">where</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Pages</span> <span class="s">&#34;Type&#34;</span> <span class="s">&#34;in&#34;</span> <span class="p">(</span><span class="nx">slice</span> <span class="s">&#34;posts&#34;</span> <span class="s">&#34;post&#34;</span><span class="p">))</span> <span class="s">&#34;IsPage&#34;</span> <span class="kc">true</span> <span class="o">-</span><span class="p">}}</span>
+  <span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="nf">and</span> <span class="p">(</span><span class="nx">not</span> <span class="p">.</span><span class="nx">Draft</span><span class="p">)</span> <span class="p">(</span><span class="nx">not</span> <span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">private</span><span class="p">)</span> <span class="o">-</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="o">-</span> <span class="err">$</span><span class="p">.</span><span class="nx">Scratch</span><span class="p">.</span><span class="nx">Add</span> <span class="s">&#34;index&#34;</span> <span class="p">(</span><span class="nx">dict</span> <span class="s">&#34;objectID&#34;</span> <span class="p">.</span><span class="nx">File</span><span class="p">.</span><span class="nx">UniqueID</span> <span class="s">&#34;url&#34;</span> <span class="p">.</span><span class="nx">Permalink</span> <span class="s">&#34;content&#34;</span> <span class="p">(.</span><span class="nx">Summary</span> <span class="p">|</span> <span class="nx">plainify</span><span class="p">)</span> <span class="s">&#34;tags&#34;</span> <span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">Tags</span> <span class="s">&#34;lvl0&#34;</span> <span class="p">.</span><span class="nx">Title</span> <span class="s">&#34;lvl1&#34;</span> <span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">Categories</span> <span class="s">&#34;lvl2&#34;</span> <span class="s">&#34;摘要&#34;</span><span class="p">)</span> <span class="o">-</span><span class="p">}}</span>
+  <span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+<span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+<span class="p">{{</span><span class="o">-</span> <span class="err">$</span><span class="p">.</span><span class="nx">Scratch</span><span class="p">.</span><span class="nx">Get</span> <span class="s">&#34;index&#34;</span> <span class="p">|</span> <span class="nx">jsonify</span> <span class="o">-</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果你的博文没有categories，那么 <code>&quot;lvl1&quot;</code> 后面的 <code>.Params.Categories</code> 可以换成其他内容。<br>
+搜索文章内容<code>&quot;content&quot;</code>后面改用变量<code>.Plain</code>。免费版algolia记录大小有限制，不推荐这么做。</p>
+</li>
+<li>
+<p>执行 <code>hugo</code> 命令(不用带参数)之后，在 <code>public</code> 目录下就会生成 <code>algolia.json</code> 文件</p>
+</li>
+</ul>
+<p>至此，如果生成了 <code>algolia.json</code> 文件且内容正常，那么就可以继续下一步。<br>
+如果有问题，可以回头再仔细看看有没有什么地方漏了，也可以在下面评论反馈问题。</p>
+<h1 id="上传索引文件">上传索引文件</h1>
+<p>生成索引文件之后，我们需要上传到Algolia的服务器。</p>
+<h2 id="手动上传">手动上传</h2>
+<p>这一步是可选的，不过还是建议跟着做一下。<br>
+点击侧栏 <code>Indices</code> ，点击 <code>Upload record(s)</code> 按钮上传上一步生成的 <code>algolia.json</code> 文件。<br>
+<img src="https://i.loli.net/2020/02/23/ywmXf1G9idcrTK3.png" alt=""><br>
+<img src="https://i.loli.net/2020/02/23/jeihUXDxBuwmpf9.png" alt=""></p>
+<p>上传成功之后，我们就可以马上尝试搜索了：
+<img src="https://i.loli.net/2020/02/23/yGsPjqCQBeZVA8U.png" alt=""></p>
+<p>可以看到搜索的关键词有相应的匹配结果，说明我们生成的索引文件是正确的。</p>
+<h2 id="自动上传">自动上传</h2>
+<p>每次写完博文都手动上传索引文件无疑是痛苦的、无意义的重复劳动。<br>
+因此我们需要把上传索引文件的操作自动化，在自动部署的时候顺便完成即可。<br>
+这里我们采用npm包 <a href="https://www.npmjs.com/package/atomic-algolia">atomic-algolia</a> 来完成上传操作。</p>
+<ul>
+<li>
+<p>安装 atomic-algolia 包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">npm init  // 不懂的就回车好了
+npm install atomic-algolia --save
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改目录下的 <code>package.json</code> 文件，在 <code>scripts</code> 下添加 <code>&quot;algolia&quot;: &quot;atomic-algolia&quot;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;algolia&#34;</span><span class="p">:</span> <span class="s2">&#34;atomic-algolia&#34;</span>
+<span class="p">}</span><span class="err">,</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意 <code>&quot;test&quot;</code> 那一行末尾有个英文逗号，不要漏了。</p>
+</li>
+<li>
+<p>根目录下新建 <code>.env</code> 文件，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ALGOLIA_APP_ID=你的Application ID
+ALGOLIA_INDEX_NAME=你的索引名字
+ALGOLIA_INDEX_FILE=public/algolia.json
+ALGOLIA_ADMIN_KEY=你的Admin API Key
+</code></pre></td></tr></table>
+</div>
+</div><p>注意替换你自己Algolia索引的信息。<br>
+另外特别注意 <code>ALGOLIA_ADMIN_KEY</code> 可以用来管理你的索引，所以尽量不要提交到公共仓库。<br>
+一般的做法是在你的自动化部署工具中设置环境变量，比如说本站就是在 <a href="https://travis-ci.org">Travis CI</a> 中设置环境变量。</p>
+</li>
+<li>
+<p>上传索引的命令<br>
+你可以本地执行 <code>npm run algolia</code> 查看运行效果：<br>
+<img src="https://i.loli.net/2020/02/23/C6u38blAWG7Xnke.png" alt=""><br>
+可以看到我们成功添加了记录。<br>
+后续就是把下面的命令加到你的部署脚本即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">npm install
+npm run algolia // 在hugo命令后面执行
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>至此，如果你运行 <code>npm run algolia</code> 没有报错的话，就可以继续下一步了。<br>
+同样的，如果有问题欢迎在下面留言。</p>
+<h1 id="添加前端ui">添加前端UI</h1>
+<p>剩下的工作就是添加搜索框了，这一步是跟主题相关的，不过其他主题应该只需要小的调整就可以了。</p>
+<h2 id="适配pc端">适配PC端</h2>
+<ul>
+<li>
+<p>引入CSS文件<br>
+在主题 <code>layouts/partials</code> 目录下的 <code>head.html</code> 中引入docsearch的CSS文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="o">-</span><span class="p">}}</span>
+<span class="p">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="p">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="nx">href</span><span class="p">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css&#34;</span> <span class="o">/</span><span class="p">&gt;</span>
+<span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>引入JS文件并初始化<br>
+在主题 <code>layouts/partials</code> 目录下的 <code>scripts.html</code> 中引入docsearch的JS文件并初始化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="o">-</span><span class="p">}}</span>
+<span class="p">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js&#34;</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nx">script</span><span class="p">&gt;</span>
+<span class="nf">docsearch</span><span class="p">({</span>
+    <span class="nx">apiKey</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">searchOnlyKey</span> <span class="p">}},</span>
+    <span class="nx">indexName</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">indexName</span> <span class="p">}},</span>
+    <span class="nx">appId</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="p">}},</span>
+    <span class="nx">inputSelector</span><span class="p">:</span> <span class="err">&#39;</span><span class="p">.</span><span class="nx">docsearch</span><span class="o">-</span><span class="nx">input</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="nx">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="p">&lt;</span><span class="o">/</span><span class="nx">script</span><span class="p">&gt;</span>
+<span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>添加搜索框入口<br>
+在主题 <code>layouts/partials</code> 目录下的 <code>header.html</code> 中导航栏合适的位置添加搜索框</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="o">-</span><span class="p">}}</span>
+  <span class="p">&lt;</span><span class="nx">li</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;display:inline-block;margin-right:10px;&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="p">=</span><span class="s">&#34;search&#34;</span> <span class="nx">class</span><span class="p">=</span><span class="s">&#34;docsearch-input&#34;</span> <span class="nx">placeholder</span><span class="p">=</span><span class="s">&#34;Search&#34;</span> <span class="o">/</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="o">/</span><span class="nx">li</span><span class="p">&gt;</span>
+<span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>主要是添加 <code>&lt;input&gt;</code> 元素，<code>&lt;li&gt;</code> 元素根据各自主题的情况确定是否添加。<br>
+另外注意外层如果有 <code>overflow:hidden</code> 的CSS样式，可能会导致搜索结果框显示不了。😅</p>
+</li>
+</ul>
+<h2 id="适配移动端-可选">适配移动端 (可选)</h2>
+<ul>
+<li>
+<p>引入CSS文件<br>
+docsearch的CSS文件PC端那里引入了就可以，注意加在main.scss之前。<br>
+另外改动<code>assets/sass/_partial/_slideout.scss</code>文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">slideout-menu</span> <span class="p">{</span>
+    <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+    <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+    <span class="k">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">180</span><span class="kt">px</span><span class="p">;</span>
+    <span class="k">min-height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">vh</span><span class="p">;</span>
+    <span class="k">overflow</span><span class="p">:</span> <span class="kc">visible</span><span class="p">;</span>                   <span class="err">//</span> <span class="err">这里改为visible</span>
+    <span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span> <span class="n">touch</span><span class="p">;</span>
+    <span class="k">z-index</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>                          <span class="err">//</span> <span class="err">这里改为2</span>
+    <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+    <span class="err">.language-selector</span> <span class="err">{</span>
+      <span class="k">padding-left</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="err">}</span>
+
+<span class="o">//</span> <span class="nt">这里新增</span>
+<span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">500px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">algolia-autocomplete</span> <span class="p">.</span><span class="nc">ds-dropdown-menu</span> <span class="p">{</span>
+        <span class="k">min-width</span><span class="p">:</span> <span class="mi">99</span><span class="kt">vw</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>引入JS文件并初始化<br>
+加入到PC端的改动就可以了，注意<code>inputSelector</code>是<code>.mob-docsearch-input</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="o">-</span><span class="p">}}</span>
+<span class="p">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js&#34;</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nx">script</span><span class="p">&gt;</span>
+<span class="nf">docsearch</span><span class="p">({</span>
+    <span class="nx">apiKey</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">searchOnlyKey</span> <span class="p">}},</span>
+    <span class="nx">indexName</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">indexName</span> <span class="p">}},</span>
+    <span class="nx">appId</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="p">}},</span>
+    <span class="nx">inputSelector</span><span class="p">:</span> <span class="err">&#39;</span><span class="p">.</span><span class="nx">docsearch</span><span class="o">-</span><span class="nx">input</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="nx">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="nf">docsearch</span><span class="p">({</span>
+    <span class="nx">apiKey</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">searchOnlyKey</span> <span class="p">}},</span>
+    <span class="nx">indexName</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">indexName</span> <span class="p">}},</span>
+    <span class="nx">appId</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="p">}},</span>
+    <span class="nx">inputSelector</span><span class="p">:</span> <span class="err">&#39;</span><span class="p">.</span><span class="nx">mob</span><span class="o">-</span><span class="nx">docsearch</span><span class="o">-</span><span class="nx">input</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="nx">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="p">&lt;</span><span class="o">/</span><span class="nx">script</span><span class="p">&gt;</span>
+<span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>添加搜索框入口<br>
+在<code>layouts/partials/slideout.html</code>加入搜索框，注意class是<code>mob-docsearch-input</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">algolia</span><span class="p">.</span><span class="nx">appId</span> <span class="o">-</span><span class="p">}}</span>
+    <span class="p">&lt;</span><span class="nx">li</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;display:inline-block;margin-right:10px;&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="p">=</span><span class="s">&#34;search&#34;</span> <span class="nx">class</span><span class="p">=</span><span class="s">&#34;mob-docsearch-input&#34;</span> <span class="nx">placeholder</span><span class="p">=</span><span class="s">&#34;Search&#34;</span> <span class="o">/</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="o">/</span><span class="nx">li</span><span class="p">&gt;</span>
+<span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>你使用的主题不一定有上面的 <code>head.html</code>, <code>scripts.html</code>, <code>header.html</code> 文件。<br>
+不过没关系，主题布局是类似的，肯定可以找到对应的文件(可能分散在2个文件，甚至在同一个文件)。<br>
+如果实在找不到，可以在下面留言具体的Hugo主题，我后面有空可以帮忙找下。</p>
+<p>好了，话不多说，完成上述步骤之后，千呼万唤的Algolia搜索来了！👏 👏 👏<br>
+<img src="https://i.loli.net/2020/02/23/QVpFEs7Bg8PZYic.gif" alt=""></p>
+<h1 id="其它主题">其它主题</h1>
+<ul>
+<li>maupassant<br>
+改动<code>layouts/partials/footer.html</code>文件。</li>
+</ul>
+<h1 id="补充说明">补充说明</h1>
+<p>其实添加前端UI也可以通过Algolia的 <a href="https://github.com/algolia/autocomplete.js">autocomplete.js</a> ，定制性更强，适合前端高手使用。</p>
+<h1 id="参考教程">参考教程</h1>
+<ul>
+<li><a href="https://10101.io/2018/11/23/search-with-algolia-in-hugo">采用 Algolia 作为 Hugo 搜索方案</a></li>
+<li><a href="https://code.luasoftware.com/tutorials/algolia/add-algolia-search-to-hugo-static-website/">Add Algolia Search To Hugo Static Website</a></li>
+<li><a href="https://forestry.io/blog/search-with-algolia-in-hugo/">Static site search with Hugo + Algolia</a></li>
+<li><a href="https://snipcart.com/blog/static-site-search">Static Site Search Made Easy (with Hugo Tutorial)</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-19
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/algolia/">Algolia</a>
+          <a href="/tags/searching/">Searching</a>
+          <a href="/tags/hugo/">Hugo</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85emacs/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">CentOS 8编译安装emacs 26.3</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/markdown%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5%E6%B5%8B%E8%AF%95/">
+            <span class="next-text nav-default">Hugo对Markdown支持情况测试</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

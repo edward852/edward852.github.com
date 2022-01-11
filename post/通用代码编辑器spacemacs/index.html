@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>通用代码编辑器spacemacs - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="自从 spacemacs 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="通用代码编辑器spacemacs" />
+<meta property="og:description" content="自从 spacemacs 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/" />
+<meta property="article:published_time" content="2018-03-24T22:15:28+08:00" />
+<meta property="article:modified_time" content="2020-03-04T22:15:28+08:00" />
+<meta itemprop="name" content="通用代码编辑器spacemacs">
+<meta itemprop="description" content="自从 spacemacs 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！">
+<meta itemprop="datePublished" content="2018-03-24T22:15:28+08:00" />
+<meta itemprop="dateModified" content="2020-03-04T22:15:28+08:00" />
+<meta itemprop="wordCount" content="7574">
+
+
+
+<meta itemprop="keywords" content="spacemacs,emacs,vim," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="通用代码编辑器spacemacs"/>
+<meta name="twitter:description" content="自从 spacemacs 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">通用代码编辑器spacemacs</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-24 </span>
+        <div class="post-category">
+            <a href="/categories/ide/"> ide </a>
+            <a href="/categories/coding/"> coding </a>
+            </div>
+          <span class="more-meta"> 约 7574 字 </span>
+          <span class="more-meta"> 预计阅读 16 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#emacs">Emacs</a></li>
+        <li><a href="#默认安装">默认安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#新手指引">新手指引</a>
+      <ul>
+        <li><a href="#模式">模式</a></li>
+        <li><a href="#按键快捷键">按键/快捷键</a></li>
+        <li><a href="#命令">命令</a></li>
+        <li><a href="#配置文件">配置文件</a></li>
+        <li><a href="#帮助">帮助</a></li>
+      </ul>
+    </li>
+    <li><a href="#操作与配置">操作与配置</a>
+      <ul>
+        <li><a href="#导航">导航</a></li>
+        <li><a href="#跳转">跳转</a>
+          <ul>
+            <li><a href="#goto-char">跳到指定字符</a></li>
+            <li><a href="#跳到指定行">跳到指定行</a></li>
+            <li><a href="#跳到定义引用">跳到定义/引用</a></li>
+            <li><a href="#局部变量定义使用位置间跳转">局部变量定义、使用位置间跳转</a></li>
+            <li><a href="#跳到函数开头">跳到函数开头</a></li>
+            <li><a href="#跳到书签">跳到书签</a></li>
+            <li><a href="#回到跳转前">回到跳转前</a></li>
+          </ul>
+        </li>
+        <li><a href="#搜索">搜索</a>
+          <ul>
+            <li><a href="#搜索字符串">搜索字符串</a></li>
+            <li><a href="#搜索文件">搜索文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#替换">替换</a>
+          <ul>
+            <li><a href="#当前文件内替换">当前文件内替换</a></li>
+            <li><a href="#工程内全局替换">工程内全局替换</a></li>
+          </ul>
+        </li>
+        <li><a href="#选择区域复制粘贴">选择区域/复制粘贴</a>
+          <ul>
+            <li><a href="#通用方法">通用方法</a></li>
+            <li><a href="#选中单词">选中单词</a></li>
+            <li><a href="#选中行">选中行</a></li>
+            <li><a href="#选中当前函数">选中当前函数</a></li>
+            <li><a href="#选中配对内容">选中配对内容</a></li>
+            <li><a href="#全选">全选</a></li>
+          </ul>
+        </li>
+        <li><a href="#文件操作">文件操作</a>
+          <ul>
+            <li><a href="#打开文件">打开文件</a></li>
+            <li><a href="#保存文件">保存文件</a></li>
+            <li><a href="#文件导航树">文件导航树</a></li>
+          </ul>
+        </li>
+        <li><a href="#删除">删除</a>
+          <ul>
+            <li><a href="#删除字符">删除字符</a></li>
+            <li><a href="#删除单词">删除单词</a></li>
+            <li><a href="#删除行">删除行</a></li>
+          </ul>
+        </li>
+        <li><a href="#标签页">标签页</a></li>
+        <li><a href="#多窗口">多窗口</a>
+          <ul>
+            <li><a href="#新建窗口">新建窗口</a></li>
+            <li><a href="#窗口导航">窗口导航</a></li>
+            <li><a href="#最大化窗口">最大化窗口</a></li>
+            <li><a href="#关闭窗口">关闭窗口</a></li>
+          </ul>
+        </li>
+        <li><a href="#注释">注释</a>
+          <ul>
+            <li><a href="#添加注释">添加注释</a></li>
+            <li><a href="#注释掉当前行">注释掉当前行</a></li>
+            <li><a href="#注释掉区域">注释掉区域</a></li>
+          </ul>
+        </li>
+        <li><a href="#代码片段生成">代码片段生成</a></li>
+        <li><a href="#文档生成">文档生成</a></li>
+        <li><a href="#代码折叠">代码折叠</a></li>
+        <li><a href="#自动补全">自动补全</a></li>
+        <li><a href="#自动对齐格式化">自动对齐/格式化</a></li>
+        <li><a href="#project">工程</a>
+          <ul>
+            <li><a href="#新建工程">新建工程</a></li>
+            <li><a href="#project-find">搜索文件</a></li>
+            <li><a href="#project-search">搜索字符串</a></li>
+            <li><a href="#project-replace">替换</a></li>
+            <li><a href="#文件导航树-1">文件导航树</a></li>
+          </ul>
+        </li>
+        <li><a href="#man手册">man手册</a></li>
+        <li><a href="#shell">shell</a></li>
+        <li><a href="#语法检查">语法检查</a></li>
+        <li><a href="#撤消undo重做redo">撤消undo/重做redo</a></li>
+        <li><a href="#highlight">高亮</a></li>
+        <li><a href="#smart-rename重构">smart rename/重构</a>
+          <ul>
+            <li><a href="#smart-rename">smart rename</a></li>
+            <li><a href="#重构">重构</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#tagging">代码标记系统GNU GLOBAL(gtags)</a>
+      <ul>
+        <li><a href="#安装globalgtags">安装GLOBAL(gtags)</a></li>
+        <li><a href="#gtags-layer">gtags layer</a></li>
+        <li><a href="#创建tags文件">创建tags文件</a></li>
+        <li><a href="#跳转到定义引用">跳转到定义/引用</a></li>
+        <li><a href="#前后跳转">前后跳转</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>自从 <a href="http://spacemacs.org/">spacemacs</a> 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！</p>
+<blockquote>
+<p>The best editor is neither Emacs nor Vim, it's Emacs and Vim!</p>
+</blockquote>
+<p>虽然说Source
+Insight对于广大人群来讲更加简单、好用，但是熟悉spacemacs后你会更加爱不释手。<br>
+简单来说，使用spacemacs只要键盘即可，无需鼠标，可以极大提高效率。</p>
+<h1 id="安装">安装</h1>
+<h2 id="emacs">Emacs</h2>
+<p>spacemacs是对Emacs的扩展，所以要求先安装24.4版本以上的Emacs。<br>
+可以参考 <a href="/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85emacs/">安装emacs</a> 的说明操作。</p>
+<h2 id="默认安装">默认安装</h2>
+<p>按照 <a href="https://github.com/syl20bnr/spacemacs#install">官方说明</a> 安装即可，基本上只要把代码clone下来后重新打开Emacs就可以自动完成后续操作。<br>
+如果有离线安装需求的话，可以参考 <a href="/post/spacemacs%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/">spacemacs离线安装</a> 的说明操作。</p>
+<h1 id="新手指引">新手指引</h1>
+<h2 id="模式">模式</h2>
+<p>由于采用Emacs+Vim，所以存在Emacs模式和Vim模式。<br>
+怎么区分呢？很简单，通过左下角和光标的颜色即可区分。<br>
+黄色代表Vim模式：<br>
+<img src="/images/180324_vim_mode.jpg" alt=""></p>
+<p>蓝色代表Emacs模式：<br>
+<img src="/images/180324_emacs_mode.jpg" alt=""></p>
+<p>通过 <code>ESC</code> 按键进入Vim模式，通过 <code>a</code> 或 <code>i</code>
+(Vim下能进入编辑模式的按键皆可)进入Emacs模式。<br>
+简单来说，Vim的编辑模式对应Emacs模式。</p>
+<h2 id="按键快捷键">按键/快捷键</h2>
+<p>为了下文说明的方便，约定如下按键缩写：</p>
+<table>
+<thead>
+<tr>
+<th>按键缩写</th>
+<th>实际按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC</td>
+<td>space</td>
+</tr>
+<tr>
+<td>C</td>
+<td>ctrl</td>
+</tr>
+<tr>
+<td>M</td>
+<td>alt</td>
+</tr>
+<tr>
+<td>S</td>
+<td>shift</td>
+</tr>
+<tr>
+<td>DEL</td>
+<td>backspace</td>
+</tr>
+</tbody>
+</table>
+<p>Spacemacs许多命令的快捷键都是以空格键 <code>SPC</code>
+开始的，所以才叫spacemacs。^_^<br>
+举例来说，按键序列 <code>SPC j j</code> 表示先按空格键，然后按两下 <code>j</code> 。<br>
+当你按下空格键后，后续可选的按键就会在下方弹出提示。</p>
+<p><img src="/images/180324_spc_leader_key.jpg" alt=""></p>
+<p>当你发现按错(或者操作错误)的时候，一般都可以通过按几次 <code>ESC</code> (或者
+<code>C-g</code>)取消操作。<br>
+此时你可能在担心按键太多记不住怎么办，别担心，快捷键是有规律的。<br>
+大家都知道，记住有规律的、有含义的东西是容易的，而spacemacs的快捷键就是按照操作分类的。<br>
+比如说，以 <code>SPC f</code> 开始的快捷键表示文件相关的命令，其中 <code>f</code>
+代表的是file。<br>
+相关的命令包括：打开文件 <code>SPC f f</code> 、保存文件 <code>SPC f s</code>
+等等，是不是很好记？</p>
+<p><img src="/images/180324_file_shortcut.jpg" alt=""></p>
+<p>以 <code>SPC m</code> (或者更简短的 <code>,</code>)开始的快捷键表示主模式相关的命令，其中 <code>m</code>
+代表的是mode。<br>
+主模式(Major
+Mode)随着当前代码语言的改变而改变，比如说C/C++对应主模式为CC Mode。<br>
+如果大家对于Emacs或者Vim基本按键不熟的话，请先自学再继续阅读下文。<br>
+通过按键 <code>C-h t</code> 也就是ctrl+h再按t键即可打开Emacs自带的教程。</p>
+<h2 id="命令">命令</h2>
+<p>虽然说spacemacs的常用快捷键好记，但是还有许多快捷键我们不知道或者忘记了。<br>
+好消息是我们完全没有必要记住，记住常用的即可，其它可以通过输入命令执行。<br>
+当然我们也没必要记住命令的精确名字，因为我们可以通过模糊匹配的方式找到命令并执行。<br>
+比如说我们想选中当前函数，但是不知道快捷键是什么，怎么办呢？<br>
+在spacemacs选中的命令一般都含有mark，而函数的英文是function。<br>
+执行命令的快捷键是 <code>SPC SPC</code> (Linux)或者 <code>SPC :</code> (Mac)。<br>
+于是我们尝试输入mark func，输入过程中(mark fun)可以看到只有两个匹配了。
+<img src="/images/180324_mark_func.gif" alt=""></p>
+<p>实际上这两个命令都可以满足我们的需求，所以任选一个执行即可。<br>
+另外我们还看到选中当前函数的快捷键是 <code>C-M-h</code> ，也就是ctrl+alt+h。<br>
+如果对你来说这个操作很常用，那么就可以趁这个机会顺便记住了。<br>
+正是因为查找命令支持模糊匹配，所以我们只需记住几个关键字即可。<br>
+查找命令还会记住你的使用频率，按照使用频率和匹配程度自动排序。<br>
+也就是说，经常使用的话，你甚至可以只输入 <code>mf</code>
+选中当前函数的命令就会自动排第一。<br>
+下文的操作将会尽量同时提供快捷键和命令，大家根据自己的习惯和记忆力选取适合自己的进行记忆即可。</p>
+<h2 id="配置文件">配置文件</h2>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC f e d</td>
+<td>file emacs dotfile</td>
+<td>find dotfile</td>
+<td>打开配置文件</td>
+</tr>
+<tr>
+<td>SPC f e R</td>
+<td>file emacs reload</td>
+<td>sync config</td>
+<td>重新加载配置</td>
+</tr>
+<tr>
+<td>SPC f s</td>
+<td>file save</td>
+<td>save buffer</td>
+<td>保存文件</td>
+</tr>
+</tbody>
+</table>
+<p>Spacemacs的配置基本都在 <code>.spacemacs</code>
+文件，所以通常我们修改配置文件并保存，然后重新加载。<br>
+另外配置文件采用Elisp(Emacs
+Lisp)语言，注意符合语法，特别不要出现括号不匹配的情况。</p>
+<h2 id="帮助">帮助</h2>
+<p>Spacemacs带有许多帮助功能，所以在寻求外部帮助之前，我们可以先看看是否可以通过帮助功能解决。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC h d f</td>
+<td>help describe function</td>
+<td>describe function</td>
+<td>查询函数(命令)</td>
+</tr>
+<tr>
+<td>SPC h d k</td>
+<td>help describe key</td>
+<td>describe key</td>
+<td>查询按键</td>
+</tr>
+<tr>
+<td>SPC h d m</td>
+<td>help describe mode</td>
+<td>describe mode</td>
+<td>查询模式</td>
+</tr>
+<tr>
+<td>SPC h d v</td>
+<td>help describe variable</td>
+<td>describe variable</td>
+<td>查询变量</td>
+</tr>
+<tr>
+<td>SPC h SPC</td>
+<td>help spacemacs</td>
+<td>spacemacs help</td>
+<td>spacemacs帮助</td>
+</tr>
+<tr>
+<td>SPC h l</td>
+<td>help layer</td>
+<td>spacemacs layer help</td>
+<td>layer帮助</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="操作与配置">操作与配置</h1>
+<p>下面介绍代码编辑、浏览的操作，部分操作可能需要配置以达到最佳效果。<br>
+另外后面默认使用Emacs和Vim混合风格，需要在 <code>.spacemacs</code>
+文件设置好(快捷键 <code>SPC f e d</code> )。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">setq-default</span>
+ <span class="c1">;;</span>
+ <span class="nv">dotspacemacs-editing-style</span> <span class="ss">&#39;hybrid</span>
+ <span class="c1">;;</span>
+ <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="导航">导航</h2>
+<p>通常我们会通过鼠标滚轮来上下浏览代码，在spacemacs我们只需要一两个按键即可。<br>
+首先我们需要配置开启全局居中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">dotspacemacs/user-config</span> <span class="p">()</span>
+ <span class="c1">;;</span>
+ <span class="p">(</span><span class="nv">spacemacs/toggle-centered-point-globally-on</span><span class="p">)</span>
+ <span class="c1">;;</span>
+ <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>P.S. 对于大文件开启全局居中可能会卡，可以关闭或者通过 <code>zz</code> 手动居中。</p>
+<p>然后通过Vim风格由hjkl控制移动，也就是通过按 <code>j</code> 往下滚动一行，按 <code>k</code>
+往上滚动一行。<br>
+需要滚动多行怎么办？前面加数字即可，比如说往下滚动11行，按 <code>11 j</code>
+即可，简单吧？</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>j</td>
+<td>next line</td>
+<td>往下滚动一行</td>
+</tr>
+<tr>
+<td>k</td>
+<td>prev line</td>
+<td>往上滚动一行</td>
+</tr>
+<tr>
+<td>{数字} j</td>
+<td></td>
+<td>往下滚动N行</td>
+</tr>
+<tr>
+<td>{数字} k</td>
+<td></td>
+<td>往上滚动N行</td>
+</tr>
+<tr>
+<td>C-d</td>
+<td>scroll down</td>
+<td>往下翻屏</td>
+</tr>
+<tr>
+<td>C-u</td>
+<td>scroll up</td>
+<td>往上翻屏</td>
+</tr>
+<tr>
+<td>{</td>
+<td>backward paragraph</td>
+<td>上一段落</td>
+</tr>
+<tr>
+<td>}</td>
+<td>forward paragraph</td>
+<td>下一段落</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/180324_scrolling.gif" alt=""></p>
+<h2 id="跳转">跳转</h2>
+<h3 id="goto-char">跳到指定字符</h3>
+<p>还在用鼠标移动光标？来试试spacemacs简单、快速、精准的跳转吧。<br>
+<code>SPC j j</code>
+可以通过两三下按键即可跳转到视线范围内任意字符(支持中文，通过拼音首字母)。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC j j</td>
+<td>jump jump</td>
+<td>goto char</td>
+<td>跳到视线范围内字符</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/180324_jump_char.gif" alt=""></p>
+<p>如上图所示，假设我们想跳到tcp_timer中timer的t字符。<br>
+首先输入 <code>SPC j j</code> 以及 <code>t</code> ，然后依次输入timer位置提示的字符 <code>h d</code>
+即可。</p>
+<h3 id="跳到指定行">跳到指定行</h3>
+<p><code>SPC j l</code> 可以通过一两下按键即可跳转到指定行。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC j l</td>
+<td>jump line</td>
+<td>goto line</td>
+<td>跳到指定行</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/180324_jump_line.gif" alt=""></p>
+<p>当然 <code>SPC j l</code> 可以指定具体的行号，比如说100。<br>
+所以跳转到文件开头和结尾也可以通过跳转到第1行、第9999行实现。</p>
+<h3 id="跳到定义引用">跳到定义/引用</h3>
+<p>跟具体代码语言有关，通常需要代码tagging系统的支持才行。<br>
+推荐安装 <a href="http://www.gnu.org/software/global/">GNU GLOBAL</a>
+，支持大部分主流编程语言解析，具体使用参见在后面 <a href="#tagging">GNU GLOBAL</a>
+章节。<br>
+以C/C++为例，安装完GLOBAL之后再加载gtags layer即可通过 <code>SPC m g d</code>
+跳转到定义。</p>
+<h3 id="局部变量定义使用位置间跳转">局部变量定义、使用位置间跳转</h3>
+<p>详见后面 <a href="#highlight">高亮</a> 章节。</p>
+<h3 id="跳到函数开头">跳到函数开头</h3>
+<p>命令实际上是beginning-of-defun，不过我们模糊输入 <code>bof</code> 就可以了。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-M-a</td>
+<td>begin of func</td>
+<td>跳到函数开头</td>
+</tr>
+</tbody>
+</table>
+<h3 id="跳到书签">跳到书签</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m {a-zA-Z}</td>
+<td>mark</td>
+<td>set marker</td>
+<td>设置书签</td>
+</tr>
+<tr>
+<td><code>`</code> {a-zA-Z}</td>
+<td></td>
+<td>goto mark</td>
+<td>跳到书签</td>
+</tr>
+<tr>
+<td><code>``</code></td>
+<td></td>
+<td>goto mark</td>
+<td>跳回最近设置的书签</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>show marks</td>
+<td>显示所有书签</td>
+</tr>
+</tbody>
+</table>
+<p><code>m</code> +小写字母设置当前文件有效的书签，只能在当前文件内跳转。<br>
+<code>m</code> +大写字母设置全局有效的书签，支持跨文件跳转。<br>
+<code>`</code> +之前设置的字母即可跳到对应的书签。<br>
+<code>``</code> 跳回最近设置的书签。<br>
+<code>evil-show-marks</code> 命令可以显示所有书签，通过show
+mark关键字即可搜索到该命令。</p>
+<h3 id="回到跳转前">回到跳转前</h3>
+<p>方法一就是跳转前设置书签(见上一小节)，推荐设置全局书签。该方法有些麻烦，不过比较通用。<br>
+方法二主要是针对跳转定义/引用这种情况，以GLOBAL(gtags)来说会保存跳转历史，支持前后跳转。</p>
+<h2 id="搜索">搜索</h2>
+<h3 id="搜索字符串">搜索字符串</h3>
+<p>通过 <code>SPC s s</code> 快捷键即可在当前文件中搜索。<br>
+该搜索命令还有个好处就是，在搜索结果中上下切换时会自动跳转到对应行，方便确认是否所需结果。<br>
+另外Vim的按键 <code>*</code> <code>#</code> <code>/</code> <code>?</code> 依然好使哦。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC s s</td>
+<td>search swoop</td>
+<td>swoop</td>
+<td>搜索字符串</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/180324_search_swoop.gif" alt=""></p>
+<p>比如说我们想在当前文件搜索 <code>tcp_tmr</code>
+(跳转定义有其它快捷键，这里只是举例)。<br>
+随着我们输入，匹配的行越来越少，当我们确定234行就是想要的搜索结果时可以加上行号进行搜索。<br>
+在工程范围内搜索，请参见后面的 <a href="#project-search">工程</a> 章节。</p>
+<h3 id="搜索文件">搜索文件</h3>
+<p>在工程范围内搜索文件，请参见后面的 <a href="#project-find">工程</a> 章节。</p>
+<h2 id="替换">替换</h2>
+<h3 id="当前文件内替换">当前文件内替换</h3>
+<p>通过 <code>M-%</code> 或者 <code>C-M-%</code>
+快捷键可以替换当前文件的字符串，采用逐一询问的方式(<code>y</code> 替换 <code>n</code> 跳过 <code>q</code>
+结束)。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M-%</td>
+<td>query replace</td>
+<td>逐一询问替换字符串</td>
+</tr>
+<tr>
+<td>C-M-%</td>
+<td>query repalce regex</td>
+<td>逐一询问替换匹配正则表达式的字符串</td>
+</tr>
+</tbody>
+</table>
+<h3 id="工程内全局替换">工程内全局替换</h3>
+<p>在工程范围内搜索，请参见后面的 <a href="#project-replace">工程</a> 章节。</p>
+<h2 id="选择区域复制粘贴">选择区域/复制粘贴</h2>
+<p>不用鼠标完成选中区域操作？对于spacemacs来说只是小菜一碟。</p>
+<h3 id="通用方法">通用方法</h3>
+<p>首先介绍通用的方法，方便那些不想记太多快捷键的人。<br>
+选中操作其实包括起始点和结束点的指定，所以选中的步骤如下：</p>
+<ul>
+<li>设置起始点</li>
+<li>跳转到结束点</li>
+</ul>
+<p>是不是很简单？好，那么怎么设置起始点呢？<br>
+可以通过 <code>C-@</code> (也就是ctrl+@)快捷键或者 set-mark-command命令，又或者 <code>v</code>
+进入选择模式。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-@ 或者 v</td>
+<td>set mark</td>
+<td>设置标记起始点</td>
+</tr>
+</tbody>
+</table>
+<p>怎么跳到结束点？还记得前面 <a href="#goto-char">跳转到指定字符</a>
+吗？想跳哪就跳哪，就是这么任性。</p>
+<p><img src="/images/180324_selection.gif" alt=""></p>
+<p>上图展示了如何选中注释内容，其中跳转到 <code>/</code> 通过 <code>%</code>
+键会更高效，不过为了展示通用方法没有采用而已。</p>
+<h3 id="选中单词">选中单词</h3>
+<p>选中单词大同小异，如果起始点设置在单词开头，那么可以通过 <code>M-f</code> (alt+f)
+往前选中一个单词。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M-f</td>
+<td>forward word</td>
+<td>前进一个单词</td>
+</tr>
+<tr>
+<td>M-b</td>
+<td>backward word</td>
+<td>回退一个单词</td>
+</tr>
+<tr>
+<td>yw</td>
+<td>yank word</td>
+<td>复制单词</td>
+</tr>
+<tr>
+<td>yW</td>
+<td>yank WORD</td>
+<td>复制单词(含符号)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="选中行">选中行</h3>
+<p>选中行大同小异，如果起始点设置在行首，那么可以通过 <code>$</code> (Vim模式) 或者
+<code>C-e</code> (Emacs模式)跳转行尾。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$ 或 C-e</td>
+<td>line end</td>
+<td>跳到行尾</td>
+</tr>
+<tr>
+<td>^ 或 C-a</td>
+<td>line begin</td>
+<td>跳到行首</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>yank line</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>V进入行选择模式 + <code>SPC j l</code></td>
+<td></td>
+<td>复制多行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="选中当前函数">选中当前函数</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-M-h</td>
+<td>mark fun</td>
+<td>选中当前函数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="选中配对内容">选中配对内容</h3>
+<p>Vim模式下通过 <code>%</code> 键可以跳到配对的内容，比如说括号 <code>(){}[]</code> ，甚至包括
+<code>#ifdef</code> 。<br>
+用来选中代码块真是再合适不过了。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>jump item</td>
+<td>跳到配对的内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="全选">全选</h3>
+<p>全选快捷键不是 <code>ctrl+a</code> 。。。推荐记住makr buffer关键字即可。<br>
+另外也可以通过跳到第一行设置起始点后再跳转到文件末尾的方式，略麻烦。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-x h</td>
+<td>mark whole buffer</td>
+<td>全选</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文件操作">文件操作</h2>
+<h3 id="打开文件">打开文件</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC f f</td>
+<td>file find</td>
+<td>打开文件</td>
+</tr>
+<tr>
+<td>SPC f r</td>
+<td>file recent</td>
+<td>打开最近的文件</td>
+</tr>
+</tbody>
+</table>
+<p>在工程范围内搜索文件，请参见后面的 <a href="#project-find">工程</a> 章节。</p>
+<h3 id="保存文件">保存文件</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC f s</td>
+<td>file save</td>
+<td>保存文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="文件导航树">文件导航树</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC f t</td>
+<td>file tree</td>
+<td>打开文件导航树</td>
+</tr>
+</tbody>
+</table>
+<h2 id="删除">删除</h2>
+<h3 id="删除字符">删除字符</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>模式</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>Vim</td>
+<td>delete char</td>
+<td>删除字符(光标后)</td>
+</tr>
+<tr>
+<td>C-d</td>
+<td>Emacs</td>
+<td>delete char</td>
+<td>删除字符(光标后)</td>
+</tr>
+<tr>
+<td>DEL</td>
+<td>Emacs</td>
+<td>delete backward char</td>
+<td>删除字符(光标前)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="删除单词">删除单词</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>模式</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dw</td>
+<td>Vim</td>
+<td>delete word</td>
+<td>删除单词(光标后)</td>
+</tr>
+<tr>
+<td>M-d</td>
+<td>Emacs</td>
+<td>kill word</td>
+<td>删除单词(光标后)</td>
+</tr>
+<tr>
+<td>M-DEL</td>
+<td>Emacs</td>
+<td>kill backward word</td>
+<td>删除单词(光标前)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="删除行">删除行</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>模式</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dd</td>
+<td>Vim</td>
+<td>delete line</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>C-S-DEL</td>
+<td>Emacs</td>
+<td>kill whole line</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>C-k</td>
+<td>Emacs</td>
+<td>kill line</td>
+<td>删除光标到行尾内容</td>
+</tr>
+</tbody>
+</table>
+<h2 id="标签页">标签页</h2>
+<p>通常我们通过点击标签页来切换不同的文件。虽然有ctrl+tab快捷键，但是文件打开多了之后，又聊胜于无。<br>
+实际上切换可以更简单，就是我们指定文件名然后切换。当然文件名支持模糊匹配，只需要几个关键字即可。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC tab</td>
+<td>tab</td>
+<td>alternate buffer</td>
+<td>切换到上一文件</td>
+</tr>
+<tr>
+<td>SPC b b</td>
+<td>buffer buffer</td>
+<td>helm-mini</td>
+<td>切换到指定文件</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/180324_buffer_switch.gif" alt=""></p>
+<p>上图展示了如何在打开多个文件(ip.c ip4.c ip6.c等)的情况下切换到tcp.c。</p>
+<h2 id="多窗口">多窗口</h2>
+<p>有时候我们希望同时打开多个窗口，以便对比、参考。<br>
+Spacemacs定义了一系列以 <code>SPC w</code> 开头的快捷键，表示window相关的操作。</p>
+<h3 id="新建窗口">新建窗口</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC w - 或者 SPC w s</td>
+<td>window split below</td>
+<td>下方新建窗口</td>
+</tr>
+<tr>
+<td>SPC w / 或者 SPC w v</td>
+<td>window split vertically</td>
+<td>右侧新建窗口</td>
+</tr>
+</tbody>
+</table>
+<p>创建两个以上窗口只需要重复上述操作即可。</p>
+<h3 id="窗口导航">窗口导航</h3>
+<p><img src="/images/180324_window_num.jpg" alt=""></p>
+<p>每个窗口都会有一个数字编号，显示在左下角。当我们想跳转到某个窗口时，只要
+<code>SPC</code> 加上对应编号即可。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC {0-9}</td>
+<td>select window</td>
+<td>选择/跳转到对应数字编号的窗口</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/180324_window_nav.gif" alt=""></p>
+<h3 id="最大化窗口">最大化窗口</h3>
+<p>当我们想集中注意到某个窗口时，一般我们会选择最大化该窗口。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC w m</td>
+<td>window(buffer) maximize</td>
+<td>最大化当前窗口</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关闭窗口">关闭窗口</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC w d</td>
+<td>window delete</td>
+<td>关闭窗口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="注释">注释</h2>
+<h3 id="添加注释">添加注释</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M-;</td>
+<td>comment dwim</td>
+<td>添加注释</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注释掉当前行">注释掉当前行</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-x C-;</td>
+<td>comment line</td>
+<td>注释掉当前行，再次执行取消注释</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注释掉区域">注释掉区域</h3>
+<table>
+<thead>
+<tr>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comment region</td>
+<td>注释掉区域</td>
+</tr>
+<tr>
+<td>SPC u + comment-region</td>
+<td>取消注释区域</td>
+</tr>
+</tbody>
+</table>
+<p>或者按上文说明选中区域后按 <code>M-;</code> 。</p>
+<h2 id="代码片段生成">代码片段生成</h2>
+<p>通过yasnippet可以很方便地生成代码片段，比如说include、if、for等语句。<br>
+虽然auto-complete中有变量 <code>auto-completion-enable-snippets-in-popup</code>
+开启提示，不过比较卡。<br>
+建议还是通过 <code>SPC i s</code> 手动插入。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC i s</td>
+<td>insert snippet</td>
+<td>插入代码片段</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文档生成">文档生成</h2>
+<p>既然snippet能够生成代码片段，生成文档也不在话下。<br>
+比如说通过 <code>brief</code> snippet可以给函数添加文档说明哦。</p>
+<h2 id="代码折叠">代码折叠</h2>
+<p>虽然对我来说代码折叠不是太常用，但是这里也记录一下吧。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>z a</td>
+<td>fold toggle</td>
+<td>折叠代码块，再次执行展开代码块</td>
+</tr>
+</tbody>
+</table>
+<h2 id="自动补全">自动补全</h2>
+<p>自动补全是通过启用auto-complete layer实现的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">dotspacemacs-configuration-layers</span>
+  <span class="o">&#39;</span><span class="p">(</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nv">auto-completion</span> <span class="ss">:variables</span>
+                   <span class="nv">auto-completion-enable-sort-by-usage</span> <span class="no">t</span>
+                   <span class="nv">auto-completion-enable-snippets-in-popup</span> <span class="no">t</span><span class="p">)</span>
+  <span class="c1">;;</span>
+  <span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果是C/C++的话，建议开启Clang支持，能够提供更精确的补全。该功能需要先安装Clang。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">dotspacemacs-configuration-layers</span>
+  <span class="o">&#39;</span><span class="p">((</span><span class="nv">c-c++</span> <span class="ss">:variables</span> <span class="nv">c-c++-enable-clang-support</span> <span class="no">t</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/180324_auto_complete.gif" alt=""></p>
+<p><code>.clang_complet</code> 文件。</p>
+<h2 id="自动对齐格式化">自动对齐/格式化</h2>
+<p>自动对齐涉及编码风格，比如说tab长度是2还是4。<br>
+自动对齐主要操作就是按tab键，可以选中区域也可以不选中。虽然操作简单，但是背后的配置就不是那么简单。<br>
+这里主要说明如何配置C/C++的对齐。可以先参考 <a href="https://www.emacswiki.org/emacs/IndentingC">Indenting
+C</a> 的说明。<br>
+Emacs自带 <code>c-guess-buffer-no-install</code>
+命令可以根据当前文件的内容推断出一些对齐规则。<br>
+通过 <code>c-guess-view</code>
+命令可以查看推断出来的对齐规则，然后根据我们自己的需要酌情修改。<br>
+另外还可以通过
+<a href="http://clang.llvm.org/docs/ClangFormat.html">clang-format</a>
+对代码进行格式化，当然需要先安装clang-format。<br>
+clang-format可以根据 <code>.clang-format</code> 文件进行格式化，创建
+<code>.clang-format</code> 文件最简单的方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">clang-format -style=WebKit -dump-config &gt; .clang-format
+</code></pre></td></tr></table>
+</div>
+</div><p>然后根据 <a href="http://clang.llvm.org/docs/ClangFormatStyleOptions.html">Style
+Options</a>
+以及我们的需求进行修改。<br>
+配置完成后可以通过 <code>clang-format-region</code> 或者 <code>clang-format-buffer</code>
+选择性地格式化代码。<br>
+当然你还可以绑定快捷键到tab：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="c1">;; Bind clang-format-region to C-M-tab in all modes:</span>
+<span class="p">(</span><span class="nv">global-set-key</span> <span class="nv">[C-M-tab]</span> <span class="ss">&#39;clang-format-region</span><span class="p">)</span>
+<span class="c1">;; Bind clang-format-buffer to tab on the c++-mode only:</span>
+<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;c++-mode-hook</span> <span class="ss">&#39;clang-format-bindings</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">clang-format-bindings</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nv">define-key</span> <span class="nv">c++-mode-map</span> <span class="nv">[tab]</span> <span class="ss">&#39;clang-format-buffer</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/180324_auto_indent.gif" alt=""></p>
+<h2 id="project">工程</h2>
+<p>工程主要是通过 <a href="https://github.com/bbatsov/projectile">Projectile</a>
+实现的，Projectile定义的工程很简单，就是含有特殊文件的目录。</p>
+<h3 id="新建工程">新建工程</h3>
+<p>你可以手动创建新的工程，需要做的只是在工程根目录下新建一个空的
+<code>.projectile</code> 文件即可，so easy。<br>
+另外如果你的工程是通过Git管理的，那么无需额外的操作你的工程就会自动识别为工程。</p>
+<h3 id="project-find">搜索文件</h3>
+<p>通过 <code>SPC p f</code> 快捷键可以搜索并打开工程内的文件。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC p f</td>
+<td>project find</td>
+<td>project find file</td>
+<td>搜索工程内的文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="project-search">搜索字符串</h3>
+<p>通过 <code>SPC s p</code> 或者 <code>SPC /</code> 以正则表达式搜索工程内的字符串。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC s p</td>
+<td>search project</td>
+<td>project search</td>
+<td>搜索工程内的字符串</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/180324_project_search.gif" alt=""></p>
+<p>上图展示了如何搜索slow start实现的代码。</p>
+<h3 id="project-replace">替换</h3>
+<p>通过 <code>SPC p R</code> 或者 <code>SPC p %</code>
+快捷键可以替换工程内的字符串，后者支持正则表达式。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC p R</td>
+<td>project replace</td>
+<td>project replace</td>
+<td>替换工程内字符串</td>
+</tr>
+<tr>
+<td>SPC p %</td>
+<td></td>
+<td>project regex replace</td>
+<td>替换工程内匹配正则表达式的字符串</td>
+</tr>
+</tbody>
+</table>
+<h3 id="文件导航树-1">文件导航树</h3>
+<p>通过 <code>SPC p t</code> 快捷键可以打开工程的文件导航树，与Source
+Insight的工程文件列表类似。<br>
+可以偶尔看看工程的目录结构，平时还是关闭了吧，节约空间。</p>
+<p><img src="/images/180324_project_neotree.gif" alt=""></p>
+<h2 id="man手册">man手册</h2>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC h m</td>
+<td>help manual</td>
+</tr>
+</tbody>
+</table>
+<p>通过 <code>SPC h m</code>
+快捷键可以在spacemacs上浏览manual手册，复用spacemacs强大而又通用的搜索、跳转。<br>
+再也不用另外记住man的快捷键，一套通用的快捷键足以。</p>
+<p><img src="/images/180324_man.gif" alt=""></p>
+<p>上图展示了如何查看epoll的man手册，并且搜索trigger关键字定位到ET和LT的说明。<br>
+另外由于spacemacs实际上也是通过man命令打开，所以某些系统的man命令可能不支持
+<code>-l</code> 选项。<br>
+上述问题可以通过设置 <code>helm-man-format-switches</code>
+变量解决(去除不支持的选项)。</p>
+<h2 id="shell">shell</h2>
+<p>执行shell命令可以通过快捷键 <code>SPC !</code> 。执行多条shell命令的话建议通过
+<code>eshell</code> 操作，可以跨平台使用。 使用 <code>eshell</code>
+还可以复用spacemacs的快捷键，不用再额外打开终端。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC !</td>
+<td>shell command</td>
+<td>执行shell命令</td>
+</tr>
+<tr>
+<td></td>
+<td>eshell</td>
+<td>打开Elisp实现的类unix命令行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="语法检查">语法检查</h2>
+<p>通过flycheck以及Clang可以支持即时语法检查。在安装好Clang后，启用syntax-checking即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">dotspacemacs-configuration-layers</span>
+  <span class="o">&#39;</span><span class="p">(</span>
+  <span class="c1">;;</span>
+  <span class="nv">syntax-checking</span>
+  <span class="c1">;;</span>
+  <span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/180324_syntax_check.gif" alt=""></p>
+<p>上图展示了我们未引入queue头文件就使用队列时会出现的状况。<br>
+可以看到语法检查能够即时通过红点提示我们有语法错误。<br>
+通过 <code>SPC e l</code> 快捷键可以查看具体的错误以及位置。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC e l</td>
+<td>error list</td>
+<td>列举错误信息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="撤消undo重做redo">撤消undo/重做redo</h2>
+<p>当我们需要撤消或者重做时，通过undo-tree能够以可视化的方式进行选择操作。<br>
+通过 <code>SPC a u</code> 快捷键可以执行 <code>undo-tree-visualize</code>
+命令，然后选择撤消或者重做。<br>
+在undo-tree中导航，可通过方向键或Emacs模式的上下左右按键(<code>C-p C-n C-b C-f</code>)，确定OK后按
+<code>q</code> 退出。</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC a u</td>
+<td>application undo</td>
+<td>撤消或重做</td>
+</tr>
+</tbody>
+</table>
+<h2 id="highlight">高亮</h2>
+<p>通过 <code>SPC s h</code> 快捷键可以高亮变量。<br>
+在高亮模式下， <code>n</code> 键可以跳到下一使用位置， <code>p</code> 键可以跳到上一使用位置，
+<code>d</code> 可以跳到定义位置。<br>
+通过 <code>SPC s c</code> 快捷键可以取消高亮。<br>
+需要注意的是当文件比较大的时候或者匹配比较多的时候可能造成卡顿。<br>
+建议把default
+range设置成display，然后在实际中使用时切换成function或buffer。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">ahs-default-range</span> <span class="ss">&#39;ahs-range-display</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/180324_highlight.gif" alt=""></p>
+<h2 id="smart-rename重构">smart rename/重构</h2>
+<h3 id="smart-rename">smart rename</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>助记</th>
+<th>命令(支持模糊匹配)</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC s e</td>
+<td>symbol edit</td>
+<td>iedit</td>
+<td>同步编辑当前区域(变量)</td>
+</tr>
+</tbody>
+</table>
+<p>通过 <code>iedit mode</code> 可以实现&quot;智能&quot;重命名变量的效果。<br>
+可以通过 <code>SPC s e</code> 直接进入编辑模式，也可以通过 <code>SPC s h</code>
+进入高亮模式后再按 <code>e</code> 进入。<br>
+先进入高亮模式的话，可以通过 <code>r</code>
+键切换作用范围(文档内、可视范围内、函数内)。<br>
+同步编辑完成后，可以通过 <code>ESC</code> 或者 <code>C-g</code> 退出。</p>
+<p><img src="/images/180324_smart_rename.gif" alt=""></p>
+<h3 id="重构">重构</h3>
+<p>通过 <a href="https://github.com/tuhdo/semantic-refactor">semantic-refactor</a>
+可以重构代码，包括自动生成代码(函数实现、Getter和Setters等)、重命名局部变量。<br>
+该功能需要启用semantic layer才能正常使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">dotspacemacs-configuration-layers</span>
+  <span class="o">&#39;</span><span class="p">(</span>
+  <span class="c1">;;</span>
+  <span class="nv">semantic</span>
+  <span class="c1">;;</span>
+  <span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="tagging">代码标记系统GNU GLOBAL(gtags)</h1>
+<h2 id="安装globalgtags">安装GLOBAL(gtags)</h2>
+<p>在官方 <a href="http://www.gnu.org/software/global/download.html">下载页面</a>
+根据自己的系统下载安装即可。</p>
+<h2 id="gtags-layer">gtags layer</h2>
+<p>把gtags添加到dotspacemacs-configuration-layers以启用gtags layer。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="nv">dotspacemacs-configuration-layers</span>
+   <span class="o">&#39;</span><span class="p">(</span>
+     <span class="c1">;;</span>
+     <span class="nv">c-c++</span>
+     <span class="nv">gtags</span>
+     <span class="c1">;;</span>
+     <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="创建tags文件">创建tags文件</h2>
+<p>为了能够正常使用gtags提供的功能(比如说跳转)，需要先生成tags文件(一个工程一次即可)。<br>
+通过 <code>SPC m g c</code>
+快捷键可以给当前工程创建tags文件，注意要在工程根目录下执行该命令。<br>
+通过 <code>SPC m g u</code> 快捷键可以增量更新当前工程的tags文件。</p>
+<h2 id="跳转到定义引用">跳转到定义/引用</h2>
+<p>通过 <code>SPC m g d</code> 快捷键可以跳转到定义。<br>
+通过 <code>SPC m g r</code> 快捷键可以跳转到引用。<br>
+引用的地方一般比较多，如果跳到其中一处引用之后想跳到下一处怎么办？<br>
+可以通过 <code>SPC m g R</code> 恢复上次gtags命令，然后通过 <code>↓</code> 或者 <code>C-n</code>
+选择下一处引用跳转。</p>
+<p><img src="/images/180324_gtags_goto.gif" alt=""></p>
+<h2 id="前后跳转">前后跳转</h2>
+<p>通过 <code>SPC m g p</code> 快捷键可以跳到跳转历史中上一处跳转。<br>
+通过 <code>SPC m g n</code> 快捷键可以跳到跳转历史中下一处跳转。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-04
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spacemacs/">spacemacs</a>
+          <a href="/tags/emacs/">emacs</a>
+          <a href="/tags/vim/">vim</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/c&#43;&#43;%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">C&#43;&#43;智能指针</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/stl%E7%AE%97%E6%B3%95/">
+            <span class="next-text nav-default">STL算法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43;中的memory order - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录个人对C&#43;&#43;中memory order的一点理解。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="C&#43;&#43;中的memory order" />
+<meta property="og:description" content="本文主要记录个人对C&#43;&#43;中memory order的一点理解。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/" />
+<meta property="article:published_time" content="2020-12-12T15:27:37+08:00" />
+<meta property="article:modified_time" content="2021-03-15T15:27:37+08:00" />
+<meta itemprop="name" content="C&#43;&#43;中的memory order">
+<meta itemprop="description" content="本文主要记录个人对C&#43;&#43;中memory order的一点理解。">
+<meta itemprop="datePublished" content="2020-12-12T15:27:37+08:00" />
+<meta itemprop="dateModified" content="2021-03-15T15:27:37+08:00" />
+<meta itemprop="wordCount" content="2124">
+
+
+
+<meta itemprop="keywords" content="cpp,memory," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;中的memory order"/>
+<meta name="twitter:description" content="本文主要记录个人对C&#43;&#43;中memory order的一点理解。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C&#43;&#43;中的memory order</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-12-12 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> language </a>
+            </div>
+          <span class="more-meta"> 约 2124 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what">what</a></li>
+    <li><a href="#why">why</a></li>
+    <li><a href="#类型">类型</a>
+      <ul>
+        <li><a href="#relaxed-ordering">Relaxed ordering</a></li>
+        <li><a href="#release-acquire-ordering">Release-Acquire ordering</a></li>
+        <li><a href="#release-consume-ordering">Release-Consume ordering</a></li>
+        <li><a href="#sequentially-consistent-ordering">Sequentially-consistent ordering</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#与volatile的关系">与volatile的关系</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录个人对C++中memory order的一点理解。</p>
+<h1 id="what">what</h1>
+<p>memory order指定(编译器和CPU)如何安排(当前线程)原子操作附近内存访问指令，以达到预期的同步效果。</p>
+<blockquote>
+<p>memory order specifies how memory accesses, including regular, non-atomic memory accesses, are to be ordered around an atomic operation.</p>
+</blockquote>
+<h1 id="why">why</h1>
+<p>为什么需要指定memory order？</p>
+<ul>
+<li>一般语句并不是原子操作</li>
+<li>多线程访问共享变量没有限制则结果不确定</li>
+<li>编译器或CPU可能出于优化目的调整指令执行顺序 (<strong>重要！</strong>)</li>
+<li>CPU cache导致不同核心不一定得到一致的内存数据 (<strong>重要！</strong>)</li>
+</ul>
+<p>后面两条是理解不同memory order的关键。<br>
+<img src="/images/store_buffer_global_mem.png" alt="sb_gmem"></p>
+<h1 id="类型">类型</h1>
+<h2 id="relaxed-ordering">Relaxed ordering</h2>
+<p>这种排序比较宽松，主要确保是原子操作(简单理解为一条指令)，不要求同步、其它读写没限制。<br>
+典型使用场景是计数器，比如说<code>shared_ptr</code>引用计数器的自增操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp">
+</span><span class="cp"></span> 
+<span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cnt</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+ 
+<span class="kt">void</span> <span class="nf">inc_counter</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cnt</span><span class="p">.</span><span class="n">fetch_add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">v</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">inc_counter</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">t</span> <span class="p">:</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Final counter value is &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="release-acquire-ordering">Release-Acquire ordering</h2>
+<table>
+<thead>
+<tr>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>memory_order_release</td>
+<td>no reads or writes in the current thread can be reordered after this store. All writes in the current thread are visible in other threads that acquire the same atomic variable.</td>
+</tr>
+<tr>
+<td>memory_order_acquire</td>
+<td>no reads or writes in the current thread can be reordered before this load. All writes in other threads that release the same atomic variable are visible in the current thread</td>
+</tr>
+<tr>
+<td>memory_order_acq_rel</td>
+<td>read-modify-write操作: acquire + release</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/acquire_release.png" alt="acq_rel"></p>
+<p>memory_order_release限制当前线程store操作之前的读写(指令)不能重排到store后面执行。<br>
+memory_order_acquire限制当前线程load操作之后的读写(指令)不能重排到load前面执行。</p>
+<p>副作用是线程A的store操作之前的所有写对于<strong>load到该值</strong>的线程B是可见的。<br>
+也就是说线程B和线程A之间(不保证其它线程同步！重要！)同步了内存(线程A在store前的写入)。<br>
+该内存模型下的原子操作就好比内存同步点，写入和读取到同一原子变量值的两个线程间进行了内存同步。</p>
+<p><code>shared_ptr</code>引用计数器自减需要<code>memory_order_acq_rel</code>，这样多线程同时析构才会知道最新值。<br>
+常见的互斥锁、自旋锁就是这种释放、获取的内存访问同步模式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span> 
+<span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*&gt;</span> <span class="n">ptr</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+ 
+<span class="kt">void</span> <span class="nf">producer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="n">p</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span> <span class="c1">// 写入p不能重排到store后面
+</span><span class="c1"></span>    <span class="n">data</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>                                  <span class="c1">// 写入data不能重排到store后面
+</span><span class="c1"></span>    <span class="n">ptr</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="kt">void</span> <span class="nf">consumer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="n">p2</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">p2</span> <span class="o">=</span> <span class="n">ptr</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">)))</span>
+        <span class="p">;</span>
+    <span class="c1">// 读取到producer写入值，两线程间内存同步完成
+</span><span class="c1"></span>    <span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">p2</span> <span class="o">==</span> <span class="s">&#34;Hello&#34;</span><span class="p">);</span> <span class="c1">// 断言绝不会失败; 读取p2不能重排到load前面
+</span><span class="c1"></span>    <span class="n">assert</span><span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="mi">42</span><span class="p">);</span>     <span class="c1">// 断言绝不会失败；读取data不能重排到load前面
+</span><span class="c1"></span><span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t1</span><span class="p">(</span><span class="n">producer</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t2</span><span class="p">(</span><span class="n">consumer</span><span class="p">);</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span> <span class="n">t2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="release-consume-ordering">Release-Consume ordering</h2>
+<table>
+<thead>
+<tr>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>memory_order_release</td>
+<td>no reads or writes in the current thread can be reordered after this store. Writes that carry a dependency into the atomic variable become visible in other threads that consume the same atomic.</td>
+</tr>
+<tr>
+<td>memory_order_consume</td>
+<td>no reads or writes in the current thread dependent on the value currently loaded can be reordered before this load. Writes to data-dependent variables in other threads that release the same atomic variable are visible in the current thread.</td>
+</tr>
+</tbody>
+</table>
+<p>memory_order_release限制当前线程store操作之前<strong>原子变量依赖</strong>的读写(指令)不能重排到store后面执行。<br>
+memory_order_consume限制当前线程load操作之后<strong>依赖原子变量</strong>的读写(指令)不能重排到load前面执行。</p>
+<p>与Release-Acquire ordering类似，不过副作用没那么大。<br>
+线程A中只有<strong>原子变量依赖的前置写</strong>才对给<strong>load到值</strong>的线程B中<strong>依赖原子变量的后置读</strong>可见。<br>
+不过目前规范不推荐使用，了解即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span> 
+<span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*&gt;</span> <span class="n">ptr</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+ 
+<span class="kt">void</span> <span class="nf">producer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="n">p</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span> <span class="c1">// ptr依赖p
+</span><span class="c1"></span>    <span class="n">data</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>                                  <span class="c1">// ptr不依赖data
+</span><span class="c1"></span>    <span class="n">ptr</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="kt">void</span> <span class="nf">consumer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="n">p2</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">p2</span> <span class="o">=</span> <span class="n">ptr</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_consume</span><span class="p">)))</span>
+        <span class="p">;</span>
+    <span class="c1">// 读取到producer写入值，两线程间ptr依赖的前置写同步完成
+</span><span class="c1"></span>    <span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">p2</span> <span class="o">==</span> <span class="s">&#34;Hello&#34;</span><span class="p">);</span> <span class="c1">// 断言绝不会失败，p2依赖ptr
+</span><span class="c1"></span>    <span class="n">assert</span><span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="mi">42</span><span class="p">);</span>     <span class="c1">// 断言可能会失败，data不依赖ptr
+</span><span class="c1"></span><span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t1</span><span class="p">(</span><span class="n">producer</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t2</span><span class="p">(</span><span class="n">consumer</span><span class="p">);</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span> <span class="n">t2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="sequentially-consistent-ordering">Sequentially-consistent ordering</h2>
+<table>
+<thead>
+<tr>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>memory_order_seq_cst</td>
+<td>不允许重排+所有seq_cst原子变量写入顺序对于相关线程来说都是一致的</td>
+</tr>
+</tbody>
+</table>
+<p>限制性最强、对性能有些影响、标准库默认使用的memory order。<br>
+可以认为是代码顺序+原子变量运行时的写入顺序(唯一，就像所有线程以某种顺序依次运行)。<br>
+所有seq_cst原子操作就好比内存同步点，<strong>所有线程</strong>保持内存一致。一般需要用到<a href="https://en.wikipedia.org/wiki/Memory_barrier">内存屏障</a>指令。</p>
+<p>下面的例子只有使用memory_order_seq_cst才能保证线程c和d观察到一致的原子变量x和y的修改顺序。<br>
+要么都是x先改y后改，要么都是y先改x后改，不可能线程c观察到x先改y后改、线程d观察到y先改x后改。</p>
+<blockquote>
+<p>Any other ordering may trigger the assert because it would be possible for the threads c and d to observe changes to the atomics x and y in opposite order.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp">
+</span><span class="cp"></span> 
+<span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+ 
+<span class="kt">void</span> <span class="nf">write_x</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">x</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">memory_order_seq_cst</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="kt">void</span> <span class="nf">write_y</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">y</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">memory_order_seq_cst</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="kt">void</span> <span class="nf">read_x_then_y</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_seq_cst</span><span class="p">))</span>
+        <span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_seq_cst</span><span class="p">))</span> <span class="p">{</span>
+        <span class="o">++</span><span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="kt">void</span> <span class="nf">read_y_then_x</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">y</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_seq_cst</span><span class="p">))</span>
+        <span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_seq_cst</span><span class="p">))</span> <span class="p">{</span>
+        <span class="o">++</span><span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">a</span><span class="p">(</span><span class="n">write_x</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">b</span><span class="p">(</span><span class="n">write_y</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">c</span><span class="p">(</span><span class="n">read_x_then_y</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">d</span><span class="p">(</span><span class="n">read_y_then_x</span><span class="p">);</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">join</span><span class="p">();</span> <span class="n">b</span><span class="p">.</span><span class="n">join</span><span class="p">();</span> <span class="n">c</span><span class="p">.</span><span class="n">join</span><span class="p">();</span> <span class="n">d</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">z</span><span class="p">.</span><span class="n">load</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">// 断言绝不会失败，z只有1或2两种取值
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="总结">总结</h1>
+<p>原子操作就好比内存同步点，只是不同的memory order同步数据的多少和范围不一样。<br>
+有的根本不(需要)同步，有的两线程间同步前置写，有的两线程间同步依赖写，有的所有线程间同步写入。</p>
+<h1 id="与volatile的关系">与volatile的关系</h1>
+<p>volatile只是对当前线程有效，对多线程无效(无限制)，而且不是原子操作。</p>
+<h1 id="参考资料">参考资料</h1>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/atomic/memory_order">memory order</a></li>
+<li><a href="https://gcc.gnu.org/wiki/Atomic/GCCMM/AtomicSync">Memory model synchronization modes</a></li>
+<li><a href="https://www.codedump.info/post/20191214-cxx11-memory-model-1">C++11中的内存模型</a></li>
+<li><a href="https://herbsutter.com/2013/02/11/atomic-weapons-the-c-memory-model-and-modern-hardware">atomic Weapons: The C++ Memory Model and Modern Hardware</a></li>
+<li><a href="https://www.zhihu.com/question/24301047">如何理解 C++11 的六种 memory order？</a></li>
+<li><a href="http://senlinzhan.github.io/2017/12/04/cpp-memory-order">理解 C++ 的 Memory Order</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-15
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cpp/">cpp</a>
+          <a href="/tags/memory/">memory</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/golang%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E4%B8%8E%E6%98%93%E7%8A%AF%E9%94%99%E8%AF%AF/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Golang常见陷阱与易犯错误</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/">
+            <span class="next-text nav-default">使用hashcat恢复密码</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

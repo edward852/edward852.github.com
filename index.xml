@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>时聆心语</title>
+    <link>https://edward852.github.io/</link>
+    <description>Recent content on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 03 Apr 2021 16:09:39 +0800</lastBuildDate><atom:link href="https://edward852.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《如何阅读一本书》英文原版读书笔记</title>
+      <link>https://edward852.github.io/post/%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 03 Apr 2021 16:09:39 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;h1 id=&#34;主题&#34;&gt;主题&lt;/h1&gt;
+&lt;p&gt;为了提高理解力，你需要带着问题阅读好书，并借助更高阅读层次的成套规则来完成解答。&lt;br&gt;
+简要思路：good reading -&amp;gt; mental activity -&amp;gt; read actively -&amp;gt; self Q&amp;amp;A 。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang程序性能分析</title>
+      <link>https://edward852.github.io/post/golang%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/</link>
+      <pubDate>Thu, 18 Mar 2021 18:31:32 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;p&gt;本文主要介绍如何使用golang自带的工具剖析程序性能瓶颈。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Stellar DEX交易机器人</title>
+      <link>https://edward852.github.io/post/stellar_dex_trading_bot/</link>
+      <pubDate>Wed, 03 Mar 2021 21:20:08 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/stellar_dex_trading_bot/</guid>
+      <description>&lt;p&gt;本文主要讲述一个玩具性质的Stellar DEX交易机器人的实现思路。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>投资理财笔记</title>
+      <link>https://edward852.github.io/post/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 11 Feb 2021 11:42:43 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录博主投资理财的一些经验教训，涉及定期、基金、股票、P2P借贷、比特币等方面。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>博客自动部署从Travis CI迁移到GitHub Actions</title>
+      <link>https://edward852.github.io/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BB%8Etravis%E8%BF%81%E7%A7%BB%E5%88%B0github_actions/</link>
+      <pubDate>Tue, 02 Feb 2021 16:39:09 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BB%8Etravis%E8%BF%81%E7%A7%BB%E5%88%B0github_actions/</guid>
+      <description>&lt;p&gt;由于 &lt;a href=&#34;https://www.travis-ci.org&#34;&gt;Travis CI&lt;/a&gt; 部署排队时间长达一个小时，所以迁移到 &lt;a href=&#34;https://docs.github.com/en/actions&#34;&gt;GitHub Actions&lt;/a&gt; ，顺便更新下Hugo和Even主题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang常见陷阱与易犯错误</title>
+      <link>https://edward852.github.io/post/golang%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E4%B8%8E%E6%98%93%E7%8A%AF%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Thu, 14 Jan 2021 13:02:10 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E4%B8%8E%E6%98%93%E7%8A%AF%E9%94%99%E8%AF%AF/</guid>
+      <description>&lt;p&gt;本文介绍golang中常见陷阱和易犯错误。&lt;br&gt;
+主要内容是翻译&lt;a href=&#34;http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang&#34;&gt;Traps, Gotchas, and Common Mistakes for New Golang Devs&lt;/a&gt;博文。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;中的memory order</title>
+      <link>https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/</link>
+      <pubDate>Sat, 12 Dec 2020 15:27:37 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/cpp%E4%B8%AD%E7%9A%84memory_order/</guid>
+      <description>&lt;p&gt;本文主要记录个人对C++中memory order的一点理解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用hashcat恢复密码</title>
+      <link>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/</link>
+      <pubDate>Sat, 07 Nov 2020 14:14:23 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/</guid>
+      <description>&lt;p&gt;本文主要记录如何使用hashcat和John the Ripper恢复密码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>资源下载与备份以及相关工具使用小技巧</title>
+      <link>https://edward852.github.io/post/%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%A4%87%E4%BB%BD%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Thu, 08 Oct 2020 23:08:45 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%A4%87%E4%BB%BD%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;p&gt;本文主要记录如何更快地下载我们需要的资源并做好备份。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang错误处理</title>
+      <link>https://edward852.github.io/post/golang_error_handling/</link>
+      <pubDate>Sat, 05 Sep 2020 16:04:21 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang_error_handling/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何处理错误。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自用VPS使用备忘录</title>
+      <link>https://edward852.github.io/post/%E8%87%AA%E7%94%A8vps%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+      <pubDate>Mon, 03 Aug 2020 20:07:54 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E8%87%AA%E7%94%A8vps%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+      <description>&lt;p&gt;本文主要记录自用VPS的购买与日常使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数据库之etcd</title>
+      <link>https://edward852.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Betcd/</link>
+      <pubDate>Fri, 24 Jul 2020 20:20:31 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Betcd/</guid>
+      <description>&lt;p&gt;本文主要介绍分布式键值数据库 &lt;a href=&#34;https://etcd.io&#34;&gt;etcd&lt;/a&gt;。etcd主要用于共享配置和服务发现。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang逃逸分析与优化</title>
+      <link>https://edward852.github.io/post/golang%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Sat, 20 Jun 2020 15:41:24 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96/</guid>
+      <description>&lt;p&gt;本文主要介绍如何分析Golang的逃逸以及优化方向。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数据库之redis</title>
+      <link>https://edward852.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Bredis/</link>
+      <pubDate>Sat, 23 May 2020 13:22:50 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Bredis/</guid>
+      <description>&lt;p&gt;本文主要介绍工作项目中经常使用的数据库—— &lt;a href=&#34;https://redis.io/&#34;&gt;redis&lt;/a&gt; 。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用perf分析性能瓶颈</title>
+      <link>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8perf%E5%88%86%E6%9E%90%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88/</link>
+      <pubDate>Sun, 26 Apr 2020 20:07:34 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8perf%E5%88%86%E6%9E%90%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88/</guid>
+      <description>&lt;p&gt;本文主要记录如何使用perf分析性能瓶颈。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Google Test单元测试</title>
+      <link>https://edward852.github.io/post/googletest%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 21 Apr 2020 21:45:56 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/googletest%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
+      <description>&lt;p&gt;本文主要记录如何使用GTest(google test)对cmake工程进行单元测试。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AddressSanitizer定位内存问题</title>
+      <link>https://edward852.github.io/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 16 Apr 2020 23:51:59 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;本文主要介绍如何通过&lt;code&gt;AddressSanitizer&lt;/code&gt;定位各类内存问题(溢出、泄露&amp;hellip;)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>内存管理</title>
+      <link>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Thu, 09 Apr 2020 23:28:47 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;本文主要记录内存管理相关的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>常用数据结构</title>
+      <link>https://edward852.github.io/post/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Tue, 31 Mar 2020 15:42:12 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description>&lt;p&gt;本文主要记录常用的一些数据结构。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>常见算法</title>
+      <link>https://edward852.github.io/post/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 20 Mar 2020 00:18:19 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;本文主要记录一些常见算法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>位操作笔记</title>
+      <link>https://edward852.github.io/post/%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 19 Mar 2020 22:46:35 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录位操作相关的笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rust学习笔记</title>
+      <link>https://edward852.github.io/post/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 12 Mar 2020 20:08:38 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录Rust学习过程中的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS 8编译安装emacs 26.3</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85emacs/</link>
+      <pubDate>Tue, 03 Mar 2020 23:34:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85emacs/</guid>
+      <description>&lt;p&gt;本文主要介绍如何编译、安装Emacs 26.3，以CentOS 8为例。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo添加Algolia搜索支持</title>
+      <link>https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Sun, 23 Feb 2020 15:32:13 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/</guid>
+      <description>&lt;p&gt;本文主要介绍如何在 &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; 中添加 &lt;a href=&#34;https://www.algolia.com&#34;&gt;Algolia&lt;/a&gt; 搜索支持。&lt;br&gt;
+主要以 &lt;a href=&#34;https://themes.gohugo.io/hugo-theme-even&#34;&gt;Even主题&lt;/a&gt; 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo对Markdown支持情况测试</title>
+      <link>https://edward852.github.io/post/markdown%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Fri, 21 Feb 2020 15:00:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/markdown%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5%E6%B5%8B%E8%AF%95/</guid>
+      <description>&lt;p&gt;本文主要内容是测试Hugo对Markdown的支持情况，方便后续写作时查阅。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>迁移博客到Hugo</title>
+      <link>https://edward852.github.io/post/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/</link>
+      <pubDate>Fri, 21 Feb 2020 11:58:18 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/</guid>
+      <description>&lt;p&gt;有段时间没折腾博客了 😂，之前很多都是纯手撸的，现在忘的差不多了 😂。&lt;br&gt;
+虽然可以重新温习一下再加点功能，但是感觉还是太折腾、太浪费时间了。&lt;br&gt;
+网上又调查了一下 &lt;strong&gt;SSG&lt;/strong&gt; 的新动态，经过一番对比最后敲定用 &lt;a href=&#34;https://zilongshanren.com/post/move-from-hexo-to-hugo/&#34;&gt;Hugo&lt;/a&gt;  + &lt;a href=&#34;https://themes.gohugo.io/hugo-theme-even/&#34;&gt;Even主题&lt;/a&gt; 。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker使用笔记</title>
+      <link>https://edward852.github.io/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 09 Jan 2020 11:05:00 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录docker使用过程中一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>共享内存的使用</title>
+      <link>https://edward852.github.io/post/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sun, 15 Dec 2019 20:00:03 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;本文主要介绍共享内存的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>进程间通信</title>
+      <link>https://edward852.github.io/post/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</link>
+      <pubDate>Sat, 07 Dec 2019 23:11:45 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</guid>
+      <description>&lt;p&gt;本文主要记录一些进程间通信方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git使用笔记</title>
+      <link>https://edward852.github.io/post/git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 09 Nov 2019 15:15:51 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录git使用的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>svn迁移git</title>
+      <link>https://edward852.github.io/post/svn%E8%BF%81%E7%A7%BBgit/</link>
+      <pubDate>Sun, 20 Oct 2019 13:59:15 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/svn%E8%BF%81%E7%A7%BBgit/</guid>
+      <description>&lt;p&gt;本文主要介绍如何把项目从svn迁移到git。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Oculus Quest上手指南</title>
+      <link>https://edward852.github.io/post/oculus_quest%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sun, 01 Sep 2019 22:50:08 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/oculus_quest%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;p&gt;本文主要介绍如何上手 &lt;a href=&#34;https://www.oculus.com/quest&#34;&gt;Oculus Quest&lt;/a&gt; 并提供一些共性问题的解决方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang操作protobuf</title>
+      <link>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cprotobuf/</link>
+      <pubDate>Sun, 18 Aug 2019 23:21:41 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cprotobuf/</guid>
+      <description>&lt;p&gt;本文记录golang如何操作protobuf。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang反射的使用</title>
+      <link>https://edward852.github.io/post/golang%E5%8F%8D%E5%B0%84%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 10 Aug 2019 19:37:35 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E5%8F%8D%E5%B0%84%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;本文主要参考 &lt;code&gt;The Laws of Reflection&lt;/code&gt; &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 介绍反射的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang使用笔记</title>
+      <link>https://edward852.github.io/post/golang%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 21 Jul 2019 11:13:04 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录golang使用的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>报文抓取</title>
+      <link>https://edward852.github.io/post/%E6%8A%A5%E6%96%87%E6%8A%93%E5%8F%96/</link>
+      <pubDate>Sat, 13 Jul 2019 22:52:13 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%8A%A5%E6%96%87%E6%8A%93%E5%8F%96/</guid>
+      <description>&lt;p&gt;本文主要介绍抓取报文的工具。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>内存泄露定位</title>
+      <link>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%AE%9A%E4%BD%8D/</link>
+      <pubDate>Sun, 02 Jun 2019 22:17:15 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%AE%9A%E4%BD%8D/</guid>
+      <description>&lt;p&gt;本文主要介绍如何定位内存泄露。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一种Git分支管理方式</title>
+      <link>https://edward852.github.io/post/git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sat, 25 May 2019 21:06:51 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;本文主要介绍一种Git分支管理方法(非GitFlow, GitHub Flow)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CPU使用率高问题定位</title>
+      <link>https://edward852.github.io/post/cpu%E4%BD%BF%E7%94%A8%E7%8E%87%E9%AB%98%E5%AE%9A%E4%BD%8D/</link>
+      <pubDate>Sun, 28 Apr 2019 16:52:32 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/cpu%E4%BD%BF%E7%94%A8%E7%8E%87%E9%AB%98%E5%AE%9A%E4%BD%8D/</guid>
+      <description>&lt;p&gt;本文介绍如果利用工具定位CPU使用率高的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS配置samba</title>
+      <link>https://edward852.github.io/post/centos%E9%85%8D%E7%BD%AEsamba/</link>
+      <pubDate>Sat, 09 Mar 2019 14:37:46 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/centos%E9%85%8D%E7%BD%AEsamba/</guid>
+      <description>&lt;p&gt;本文主要介绍CentOS如何配置samba服务。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>本地日志搜索</title>
+      <link>https://edward852.github.io/post/%E6%9C%AC%E5%9C%B0%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/</link>
+      <pubDate>Sun, 24 Feb 2019 14:33:26 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%9C%AC%E5%9C%B0%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/</guid>
+      <description>&lt;p&gt;本文主要介绍在服务出现问题时如何通过日志快速判断是否具有某种聚集性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>spacemacs离线安装</title>
+      <link>https://edward852.github.io/post/spacemacs%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 12 Jan 2019 15:10:44 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/spacemacs%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</guid>
+      <description>&lt;p&gt;本文主要介绍如何离线安装spacemacs。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>IDE基本功能checklist</title>
+      <link>https://edward852.github.io/post/ide%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BDchecklist/</link>
+      <pubDate>Sun, 23 Dec 2018 21:31:37 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/ide%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BDchecklist/</guid>
+      <description>&lt;p&gt;本文主要记录IDE基本功能的checklist，方便判断各种IDE的水平。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>开发机环境搭建记录</title>
+      <link>https://edward852.github.io/post/%E5%BC%80%E5%8F%91%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Sat, 10 Nov 2018 20:20:41 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%BC%80%E5%8F%91%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;本文主要记录开发机环境搭建的流水。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>通过vnc控制linux开发机</title>
+      <link>https://edward852.github.io/post/%E9%80%9A%E8%BF%87vnc%E6%8E%A7%E5%88%B6linux%E5%BC%80%E5%8F%91%E6%9C%BA/</link>
+      <pubDate>Sat, 20 Oct 2018 16:32:58 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E9%80%9A%E8%BF%87vnc%E6%8E%A7%E5%88%B6linux%E5%BC%80%E5%8F%91%E6%9C%BA/</guid>
+      <description>&lt;p&gt;本文主要介绍如何通过 &lt;code&gt;vnc&lt;/code&gt; 控制linux开发机。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>信息安全基础</title>
+      <link>https://edward852.github.io/post/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Sat, 15 Sep 2018 22:50:45 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;本文主要介绍信息安全的基础知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>常见网络攻击</title>
+      <link>https://edward852.github.io/post/%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/</link>
+      <pubDate>Sun, 12 Aug 2018 22:50:35 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/</guid>
+      <description>&lt;p&gt;本文主要介绍常见的网络攻击手段及其防护。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang context包</title>
+      <link>https://edward852.github.io/post/golang_context%E5%8C%85/</link>
+      <pubDate>Sun, 05 Aug 2018 15:14:19 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang_context%E5%8C%85/</guid>
+      <description>&lt;p&gt;本文主要介绍golang context包的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>编译安装ccls</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85ccls/</link>
+      <pubDate>Sun, 01 Jul 2018 16:25:53 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85ccls/</guid>
+      <description>&lt;p&gt;本文主要介绍如何编译、安装 &lt;a href=&#34;https://github.com/MaskRay/ccls&#34;&gt;ccls&lt;/a&gt; 。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>问题响应</title>
+      <link>https://edward852.github.io/post/%E9%97%AE%E9%A2%98%E5%93%8D%E5%BA%94/</link>
+      <pubDate>Sat, 09 Jun 2018 15:35:07 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E9%97%AE%E9%A2%98%E5%93%8D%E5%BA%94/</guid>
+      <description>&lt;p&gt;出现问题不可怕，可怕的是没人在跟进、谁也不知道进展。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>批量创建screen会话</title>
+      <link>https://edward852.github.io/post/%E6%89%B9%E9%87%8F%E5%88%9B%E5%BB%BAscreen%E4%BC%9A%E8%AF%9D/</link>
+      <pubDate>Sun, 13 May 2018 22:54:13 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%89%B9%E9%87%8F%E5%88%9B%E5%BB%BAscreen%E4%BC%9A%E8%AF%9D/</guid>
+      <description>&lt;p&gt;对于跳板机登录和执行耗时任务的情况，我们希望能够快速恢复会话并且不受办公电脑断电影响。&lt;br&gt;
+这个时候 &lt;a href=&#34;https://www.gnu.org/software/screen&#34;&gt;screen&lt;/a&gt; 就派上用场了，我们可以创建screen会话。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>DoubleBuffer</title>
+      <link>https://edward852.github.io/post/doublebuffer/</link>
+      <pubDate>Sat, 12 May 2018 22:30:39 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/doublebuffer/</guid>
+      <description>&lt;p&gt;DoubleBuffer是一种以空间换取并发安全的数据结构。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang限时执行外部命令</title>
+      <link>https://edward852.github.io/post/golang%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sun, 06 May 2018 20:46:12 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何限时执行外部命令。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang操作JSON</title>
+      <link>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cjson/</link>
+      <pubDate>Sat, 05 May 2018 18:57:46 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cjson/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何操作JSON。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>生成compile_commands.json文件</title>
+      <link>https://edward852.github.io/post/%E7%94%9F%E6%88%90compile_commands.json%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sun, 29 Apr 2018 12:01:24 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%94%9F%E6%88%90compile_commands.json%E6%96%87%E4%BB%B6/</guid>
+      <description>&lt;p&gt;&lt;code&gt;compile_commands.json&lt;/code&gt; 文件能够有效提高一些工具(比如说ccls&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, vscode&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;)的代码跳转、补全等功能。&lt;br&gt;
+因此，本文将会说明如何生成 &lt;code&gt;compile_commands.json&lt;/code&gt; 文件，特别是使用 &lt;code&gt;makefile&lt;/code&gt; 的老工程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>编译安装clang&#43;llvm</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91clang&#43;llvm/</link>
+      <pubDate>Sat, 28 Apr 2018 11:00:27 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91clang&#43;llvm/</guid>
+      <description>&lt;p&gt;本文主要介绍如何编译安装clang+llvm。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>编译安装GCC 7.2.0</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85gcc7.2.0/</link>
+      <pubDate>Sun, 22 Apr 2018 22:41:39 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85gcc7.2.0/</guid>
+      <description>&lt;p&gt;服务器默认安装的GCC版本一般都比较低，而一些开源库已经开始依赖高版本GCC才有的特性。&lt;br&gt;
+因此我们需要编译安装新版本的GCC，本文以7.2.0为例进行说明。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SSH免密登录</title>
+      <link>https://edward852.github.io/post/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Sat, 21 Apr 2018 17:27:20 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/</guid>
+      <description>&lt;p&gt;本文主要介绍SSH免密登录服务器的配置步骤。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang临时文件操作</title>
+      <link>https://edward852.github.io/post/golang%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sun, 15 Apr 2018 18:52:32 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+      <description>&lt;p&gt;本文主要介绍golang中临时文件的操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang时间转换</title>
+      <link>https://edward852.github.io/post/golang%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</link>
+      <pubDate>Sat, 14 Apr 2018 16:56:48 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何转换时间以及需要注意的地方。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>二叉树笔记</title>
+      <link>https://edward852.github.io/post/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 07 Apr 2018 22:19:44 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录二叉树相关的笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>后端开发面试题总结</title>
+      <link>https://edward852.github.io/post/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Mon, 26 Mar 2018 16:26:58 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;本文总结后端开发面试常见的一些题型。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;智能指针</title>
+      <link>https://edward852.github.io/post/c&#43;&#43;%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <pubDate>Sun, 25 Mar 2018 00:13:42 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/c&#43;&#43;%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <description>&lt;p&gt;本文主要记录C++智能指针的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>通用代码编辑器spacemacs</title>
+      <link>https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/</link>
+      <pubDate>Sat, 24 Mar 2018 22:15:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/</guid>
+      <description>&lt;p&gt;自从 &lt;a href=&#34;http://spacemacs.org/&#34;&gt;spacemacs&lt;/a&gt; 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>STL算法</title>
+      <link>https://edward852.github.io/post/stl%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 18 Mar 2018 22:21:23 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/stl%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;本文主要记录STL算法的使用笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>STL容器</title>
+      <link>https://edward852.github.io/post/stl%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sat, 17 Mar 2018 22:21:16 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/stl%E5%AE%B9%E5%99%A8/</guid>
+      <description>&lt;p&gt;本文主要记录STL容器的使用笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11笔记</title>
+      <link>https://edward852.github.io/post/c&#43;&#43;11%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 10 Mar 2018 22:21:44 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/c&#43;&#43;11%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录C++11标准的学习笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;基础</title>
+      <link>https://edward852.github.io/post/cpp%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 06 Mar 2018 16:19:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/cpp%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;本文主要参考 &lt;a href=&#34;https://learnxinyminutes.com/docs/c%2B%2B/&#34;&gt;Learn X in Y minutes&lt;/a&gt;上的教程介绍C++相关的基础知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>常见排序算法</title>
+      <link>https://edward852.github.io/post/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Thu, 08 Feb 2018 18:02:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;本文参考&lt;a href=&#34;http://download.csdn.net/download/morewindows/4443208&#34;&gt;白话经典算法之七大排序&lt;/a&gt;，介绍常见的排序算法，包括原理和实现。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>全排列算法</title>
+      <link>https://edward852.github.io/post/%E5%85%A8%E6%8E%92%E5%88%97%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 09 Jan 2018 13:32:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%85%A8%E6%8E%92%E5%88%97%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;给定含有N个互不相同元素的序列，输出这N个元素的所有排列（全排列）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>字节序与对齐</title>
+      <link>https://edward852.github.io/post/%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E5%AF%B9%E9%BD%90/</link>
+      <pubDate>Fri, 22 Dec 2017 17:12:26 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E5%AF%B9%E9%BD%90/</guid>
+      <description>&lt;p&gt;本文主要介绍C/C++中的字节序(含位域)和对齐。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用gdb定位死锁、coredump</title>
+      <link>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8gdb%E5%AE%9A%E4%BD%8D%E6%AD%BB%E9%94%81coredump%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 28 Nov 2017 22:32:34 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BD%BF%E7%94%A8gdb%E5%AE%9A%E4%BD%8D%E6%AD%BB%E9%94%81coredump%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;本文主要记录如何通过gdb定位死锁、coredump问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>通过iframe在博客园cnblogs转载博文</title>
+      <link>https://edward852.github.io/post/%E9%80%9A%E8%BF%87iframe%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9B%ADcnblogs%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/</link>
+      <pubDate>Thu, 16 Nov 2017 15:26:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E9%80%9A%E8%BF%87iframe%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9B%ADcnblogs%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/</guid>
+      <description>&lt;p&gt;本文主要介绍如何通过iframe在 &lt;a href=&#34;https://www.cnblogs.com/&#34;&gt;博客园&lt;/a&gt; 转载博文。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL基础</title>
+      <link>https://edward852.github.io/post/mysql%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 13 Oct 2017 14:54:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/mysql%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;MySQL是最流行的关系型数据库管理系统，本文主要介绍MySQL的基本知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GNU Binutils使用简介</title>
+      <link>https://edward852.github.io/post/binutils%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Tue, 03 Oct 2017 14:32:58 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/binutils%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/</guid>
+      <description>&lt;p&gt;本文主要记录GNU Binutils的日常使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js异步流程控制</title>
+      <link>https://edward852.github.io/post/node.js%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Wed, 20 Sep 2017 11:09:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/node.js%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</guid>
+      <description>&lt;p&gt;Node.js使用事件驱动、非阻塞I/O模型，写出来的应用响应迅速、扩展性好。虽然异步调用在Node.js中是一把利器，但是需要我们合理的使用才能事半功倍。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js调试</title>
+      <link>https://edward852.github.io/post/node.js%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Tue, 19 Sep 2017 23:57:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/node.js%E8%B0%83%E8%AF%95/</guid>
+      <description>&lt;p&gt;Node.js版本更新快，调试的方法也在不断的改进，本文主要记录几个较新的调试手段。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js基础</title>
+      <link>https://edward852.github.io/post/node.js%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/</link>
+      <pubDate>Mon, 18 Sep 2017 14:16:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/node.js%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/</guid>
+      <description>&lt;p&gt;认识 &lt;a href=&#34;https://nodejs.org&#34;&gt;Node.js&lt;/a&gt; 是在一个偶然的机会，当时搭建页面框架需要压缩页面，用到了Node.js模块
+&lt;a href=&#34;https://www.npmjs.com/package/html-minifier&#34;&gt;html-minifier&lt;/a&gt; 。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Foxmail&#43;DavMail访问Exchange邮箱</title>
+      <link>https://edward852.github.io/post/foxmail%E5%8A%A0davmail%E8%AE%BF%E9%97%AEexchange%E9%82%AE%E7%AE%B1/</link>
+      <pubDate>Thu, 07 Sep 2017 21:17:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/foxmail%E5%8A%A0davmail%E8%AE%BF%E9%97%AEexchange%E9%82%AE%E7%AE%B1/</guid>
+      <description>&lt;p&gt;由于公司邮箱服务器改用Exchange，而Outlook实在太卡、Foxmail报RPC错误，所以只能寻找替代方案。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>新博客启用</title>
+      <link>https://edward852.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8/</link>
+      <pubDate>Wed, 06 Sep 2017 23:34:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8/</guid>
+      <description>辗转在好多地方开过博客，比如说CSDN、博客园、简书等，给我的感受是基本够用不过可定制性有所欠缺，最后还是决定在Github搭建自己的个人博</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://edward852.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://edward852.github.io/about/</guid>
+      <description>关于本站 本站当前版本(v3)由 Hugo, Even主题, Github Pages等生成。 关于我 互联网后端开发 ←now 嵌入式软件开发 打赏 如果觉得博文写得不错或者对您</description>
+    </item>
+    
+  </channel>
+</rss>

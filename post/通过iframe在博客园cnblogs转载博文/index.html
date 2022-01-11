@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>通过iframe在博客园cnblogs转载博文 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要介绍如何通过iframe在 博客园 转载博文。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E9%80%9A%E8%BF%87iframe%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9B%ADcnblogs%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="通过iframe在博客园cnblogs转载博文" />
+<meta property="og:description" content="本文主要介绍如何通过iframe在 博客园 转载博文。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E9%80%9A%E8%BF%87iframe%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9B%ADcnblogs%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/" />
+<meta property="article:published_time" content="2017-11-16T15:26:28+08:00" />
+<meta property="article:modified_time" content="2020-03-19T15:26:28+08:00" />
+<meta itemprop="name" content="通过iframe在博客园cnblogs转载博文">
+<meta itemprop="description" content="本文主要介绍如何通过iframe在 博客园 转载博文。">
+<meta itemprop="datePublished" content="2017-11-16T15:26:28+08:00" />
+<meta itemprop="dateModified" content="2020-03-19T15:26:28+08:00" />
+<meta itemprop="wordCount" content="871">
+
+
+
+<meta itemprop="keywords" content="blog," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="通过iframe在博客园cnblogs转载博文"/>
+<meta name="twitter:description" content="本文主要介绍如何通过iframe在 博客园 转载博文。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">通过iframe在博客园cnblogs转载博文</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-11-16 </span>
+        <div class="post-category">
+            <a href="/categories/trick/"> trick </a>
+            </div>
+          <span class="more-meta"> 约 871 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#原理">原理</a></li>
+    <li><a href="#步骤">步骤</a>
+      <ul>
+        <li><a href="#申请开通js权限">申请开通js权限</a></li>
+        <li><a href="#拼接出iframe元素并插入">拼接出iframe元素并插入</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要介绍如何通过iframe在 <a href="https://www.cnblogs.com/">博客园</a> 转载博文。</p>
+<p><strong>需要注意的是，该方法如果广泛使用可能会被博客园封堵，请低调地使用。</strong></p>
+<h1 id="背景">背景</h1>
+<p>博客园目前只能通过手动复制粘贴的方式转载博文，那么有没有更方便的方法？<br>
+通过iframe转载博文是否可以?</p>
+<p>处于草稿状态的博文可以，但是一旦发布就会发现iframe不见了 😂 。<br>
+由此猜测博客园后台有自动删除iframe元素的机制。</p>
+<h1 id="原理">原理</h1>
+<p>怎么绕过博客园删除iframe元素的机制？<br>
+通过js插入iframe元素是否可以？</p>
+<p>测试发现，正常情况下js插入iframe元素的代码会被过滤掉。<br>
+接着测试发现，含有<code>&lt;iframe</code>和<code>iframe&gt;</code>的部分会被过滤掉。</p>
+<p>那么拼接出来的iframe元素是否可以插入？ 幸运的是，答案是肯定的。<br>
+于是解决方法出来了：通过js拼接出iframe元素来转载博文。</p>
+<h1 id="步骤">步骤</h1>
+<h2 id="申请开通js权限">申请开通js权限</h2>
+<p>默认情况下博文页面并不能执行js，需要在 <code>设置</code> 里面申请开通js权限。</p>
+<h2 id="拼接出iframe元素并插入">拼接出iframe元素并插入</h2>
+<p>可以 <code>'&lt;' + 'iframe'</code> ，也可以 <code>'&lt;i' + 'frame'</code>，甚至可以通过编码、解码得到完整的<code>&lt;iframe</code>。<br>
+而iframe的src属性从博文中元素提取，比如说 <code>&lt;div id=&quot;blog-main-div&quot; src=&quot;转载博文链接&quot; &gt;</code> 。</p>
+<p>参考代码如下，大家可以根据自己的情况调整：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.bootcss.com/iframe-resizer/4.2.10/iframeResizer.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
+<span class="k">try</span>
+<span class="p">{</span>
+
+    <span class="kd">let</span> <span class="nx">trick</span> <span class="o">=</span> <span class="s1">&#39;iframe style=&#34;width: 100%;&#34; src=&#34;xxxx&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34;&gt;&lt;/iframe&#39;</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">content</span> <span class="o">=</span> <span class="s1">&#39;&lt;&#39;</span><span class="o">+</span><span class="nx">trick</span><span class="o">+</span><span class="s1">&#39;&gt;&#39;</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#blog-main-div&#39;</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">srcUrl</span> <span class="o">=</span> <span class="nx">elem</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">);</span>
+
+    <span class="nx">content</span> <span class="o">=</span> <span class="nx">content</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;xxxx&#39;</span><span class="p">,</span> <span class="nx">srcUrl</span><span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;src url:&#39;</span><span class="p">,</span> <span class="nx">srcUrl</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Try to append&#39;</span><span class="p">,</span> <span class="nx">content</span><span class="p">);</span>
+    <span class="nx">elem</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+    <span class="nx">iFrameResize</span><span class="p">({</span>
+        <span class="nx">log</span><span class="o">:</span><span class="kc">true</span>
+    <span class="p">});</span>		
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Failed to add iframe&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>iframe-resizer不是必要的，主要用于根据转载博文的长度自动调整iframe大小。<br>
+iframe-resizer需要嵌入方和被嵌入方网站的支持才行(需要添加js代码)，适合转载个人博客的情况使用。<br>
+转载其他网站博文的话，iframe可以固定一个大小，scrolling改为auto。</p>
+<p>上面弄好之后，后面转载博文参考下面模板使用即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;blog-main-div&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;转载博文链接&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+原文地址：<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;转载博文链接&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果有什么疑问的话，欢迎在下面留言。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-19
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/blog/">blog</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E4%BD%BF%E7%94%A8gdb%E5%AE%9A%E4%BD%8D%E6%AD%BB%E9%94%81coredump%E9%97%AE%E9%A2%98/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用gdb定位死锁、coredump</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/mysql%E5%9F%BA%E7%A1%80/">
+            <span class="next-text nav-default">MySQL基础</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

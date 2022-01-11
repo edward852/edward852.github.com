@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用hashcat恢复密码 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录如何使用hashcat和John the Ripper恢复密码。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用hashcat恢复密码" />
+<meta property="og:description" content="本文主要记录如何使用hashcat和John the Ripper恢复密码。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/" />
+<meta property="article:published_time" content="2020-11-07T14:14:23+08:00" />
+<meta property="article:modified_time" content="2021-03-07T14:14:23+08:00" />
+<meta itemprop="name" content="使用hashcat恢复密码">
+<meta itemprop="description" content="本文主要记录如何使用hashcat和John the Ripper恢复密码。">
+<meta itemprop="datePublished" content="2020-11-07T14:14:23+08:00" />
+<meta itemprop="dateModified" content="2021-03-07T14:14:23+08:00" />
+<meta itemprop="wordCount" content="829">
+
+
+
+<meta itemprop="keywords" content="hashcat,password,recovery,rar," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用hashcat恢复密码"/>
+<meta name="twitter:description" content="本文主要记录如何使用hashcat和John the Ripper恢复密码。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用hashcat恢复密码</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-07 </span>
+        <div class="post-category">
+            <a href="/categories/security/"> security </a>
+            <a href="/categories/tool/"> tool </a>
+            </div>
+          <span class="more-meta"> 约 829 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前提条件">前提条件</a></li>
+    <li><a href="#工具">工具</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#提取特征码">提取特征码</a></li>
+        <li><a href="#恢复密码">恢复密码</a></li>
+      </ul>
+    </li>
+    <li><a href="#耗时">耗时</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录如何使用hashcat和John the Ripper恢复密码。</p>
+<h1 id="前提条件">前提条件</h1>
+<p>满足以下其中一个条件就有很大可能恢复密码：</p>
+<ul>
+<li>弱密码</li>
+<li>密码有规律</li>
+</ul>
+<p>hashcat支持恢复密码的情况很多(具体参考<a href="https://hashcat.net/hashcat/#features-algos">这里</a>)，常见的rar、zip、7z和office文件都是支持的。</p>
+<h1 id="工具">工具</h1>
+<ul>
+<li>hashcat<br>
+下载 <a href="https://hashcat.net/hashcat/#download">hashcat</a>。</li>
+<li>John the Ripper<br>
+在 <a href="https://www.openwall.com/john">官网</a> 搜索 <code>Windows binaries</code> 下载。</li>
+<li>Catpasswd Convert (可选)<br>
+下载 <a href="https://www.catpasswd.com/assets/Catpasswd-Convert.exe">特征提取工具</a>，不推荐使用<code>catpasswd.com</code>恢复密码服务。</li>
+</ul>
+<h1 id="使用">使用</h1>
+<p>建议在有独立显卡的Windows电脑上面运行工具，hashcat能够利用显卡提高恢复密码速度。</p>
+<h2 id="提取特征码">提取特征码</h2>
+<p>使用 <code>John the Ripper</code> 或者 <code>Catpasswd Convert</code> 都可以，后者有界面。<br>
+以rar为例，<code>rar2john.exe</code> 或者 <code>Catpasswd-Convert.exe</code> 可以提取到类似下面的特征码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$rar5$16$a96ee7558fdb214744397649e01e90e9$15$45a3579057c8845d696d2da2b86e4742$8$93748e7016fd8cdd
+</code></pre></td></tr></table>
+</div>
+</div><p>rar5代表rar 5.x版本，rar3代表rar 3.x版本，下面恢复密码的时候需要用到。</p>
+<h2 id="恢复密码">恢复密码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">hashcat <span class="o">[</span>options<span class="o">]</span>... hash<span class="p">|</span>hashfile<span class="p">|</span>hccapxfile <span class="o">[</span>dictionary<span class="p">|</span>mask<span class="p">|</span>directory<span class="o">]</span>
+
+<span class="c1"># -a 3 暴力破解, 0 字典攻击, 1 组合攻击</span>
+<span class="c1"># -m 12500 rar3, 13000 rar5</span>
+<span class="c1"># -1 自定义字符集1</span>
+<span class="c1"># -i 密码长度自增(不确定密码长度时使用)</span>
+<span class="c1"># -w 负载配置方式，3会提高负载和速度</span>
+<span class="c1"># --status 自动更新进度</span>
+
+.<span class="se">\h</span>ashcat.exe -a <span class="m">3</span> -m <span class="m">13000</span> -1 ?l?d --status -w <span class="m">3</span> test.rar.hash ?1?1?1?1?1?1
+</code></pre></td></tr></table>
+</div>
+</div><p>以上面的特征码为例，前缀是rar5所以指定 <code>-m 13000</code>。<code>test.rar.hash</code>是保存了特征码的文件。<br>
+<code>-1 ?l?d</code>定义字符集1为小写字母和数字，<code>?1?1?1?1?1?1</code>表示密码由6个字符集1里面的字符组成。</p>
+<p>自定义字符集可以根据自己常用的字符以及内置的字符集组合使用(具体参考<a href="https://hashcat.net/wiki/doku.php?id=mask_attack#built-in_charsets">这里</a>)。<br>
+内置字符集：</p>
+<ul>
+<li>?l = abcdefghijklmnopqrstuvwxyz</li>
+<li>?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ</li>
+<li>?d = 0123456789</li>
+<li>?s = «space»!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[]^_`{|}~</li>
+<li>?a = ?l?u?d?s</li>
+<li>?b = 0x00 - 0xff</li>
+</ul>
+<p>最多支持4个自定义字符集，通过 <code>-1</code>、<code>-2</code>、<code>-3</code>、<code>-4</code> 分别指定。<br>
+不确定密码长度可以加上<code>-i</code>选项。<code>--increment-min</code>可以指定最小长度。</p>
+<h1 id="耗时">耗时</h1>
+<p>耗时很大程度跟密码的强弱、规律性有关。显卡好的话也能提高恢复密码速度。<br>
+1个特殊字符(如!)+4位数字+4位小写字母就比9位任意字符(数字、字母、特殊字符)容易恢复得多。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-07
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/hashcat/">hashcat</a>
+          <a href="/tags/password/">password</a>
+          <a href="/tags/recovery/">recovery</a>
+          <a href="/tags/rar/">rar</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/cpp%E4%B8%AD%E7%9A%84memory_order/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">C&#43;&#43;中的memory order</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%A4%87%E4%BB%BD%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+            <span class="next-text nav-default">资源下载与备份以及相关工具使用小技巧</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

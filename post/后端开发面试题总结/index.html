@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>后端开发面试题总结 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文总结后端开发面试常见的一些题型。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="后端开发面试题总结" />
+<meta property="og:description" content="本文总结后端开发面试常见的一些题型。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" />
+<meta property="article:published_time" content="2018-03-26T16:26:58+08:00" />
+<meta property="article:modified_time" content="2021-03-16T16:26:58+08:00" />
+<meta itemprop="name" content="后端开发面试题总结">
+<meta itemprop="description" content="本文总结后端开发面试常见的一些题型。">
+<meta itemprop="datePublished" content="2018-03-26T16:26:58+08:00" />
+<meta itemprop="dateModified" content="2021-03-16T16:26:58+08:00" />
+<meta itemprop="wordCount" content="2207">
+
+
+
+<meta itemprop="keywords" content="interview," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="后端开发面试题总结"/>
+<meta name="twitter:description" content="本文总结后端开发面试常见的一些题型。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">后端开发面试题总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-26 </span>
+        <div class="post-category">
+            <a href="/categories/backend/"> backend </a>
+            </div>
+          <span class="more-meta"> 约 2207 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#常用语言">常用语言</a>
+      <ul>
+        <li><a href="#cpp">cpp</a></li>
+        <li><a href="#go">go</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据结构">数据结构</a></li>
+    <li><a href="#算法">算法</a></li>
+    <li><a href="#操作系统">操作系统</a>
+      <ul>
+        <li><a href="#进程线程协程">进程、线程、协程</a></li>
+        <li><a href="#内存">内存</a>
+          <ul>
+            <li><a href="#内存布局">内存布局</a></li>
+            <li><a href="#内存问题与定位">内存问题与定位</a></li>
+          </ul>
+        </li>
+        <li><a href="#cpu">CPU</a></li>
+        <li><a href="#进程间通信">进程间通信</a></li>
+        <li><a href="#并发与锁">并发与锁</a></li>
+      </ul>
+    </li>
+    <li><a href="#网络">网络</a>
+      <ul>
+        <li><a href="#字节序">字节序</a></li>
+        <li><a href="#协议栈">协议栈</a>
+          <ul>
+            <li><a href="#httphttps">HTTP、HTTPS</a></li>
+            <li><a href="#tcpudp">TCP、UDP</a></li>
+            <li><a href="#ip">IP</a></li>
+          </ul>
+        </li>
+        <li><a href="#socket编程">socket编程</a></li>
+        <li><a href="#io多路复用">IO多路复用</a></li>
+        <li><a href="#安全">安全</a></li>
+        <li><a href="#调优">调优</a></li>
+      </ul>
+    </li>
+    <li><a href="#工具使用">工具使用</a>
+      <ul>
+        <li><a href="#常用命令">常用命令</a></li>
+        <li><a href="#git使用">git使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库">数据库</a></li>
+    <li><a href="#web-server">web server</a></li>
+    <li><a href="#docker--k8s">docker &amp;&amp; k8s</a></li>
+    <li><a href="#智力题">智力题</a></li>
+    <li><a href="#系统设计">系统设计</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文总结后端开发面试常见的一些题型。</p>
+<h1 id="常用语言">常用语言</h1>
+<p>考察常用语言(如cpp, go, java等)的掌握程度。<br>
+比如说面向对象、闭包、多线程(协程)、多态实现、传值与传引用、字节对齐等等。<br>
+另外对比同一概念不同语言的实现可以更深入地理解编程。</p>
+<h2 id="cpp">cpp</h2>
+<ul>
+<li>内存占用(sizeof)与存储(大小端)</li>
+<li>extern &ldquo;C&quot;的作用，实现原理？</li>
+<li>inline的作用，有什么缺点？虚函数是否可以加inline？</li>
+<li>虚函数怎么实现，虚表存放在哪里？</li>
+</ul>
+<h2 id="go">go</h2>
+<p>参考文章：<a href="http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang">Go使用陷阱与易犯错误</a> 。</p>
+<ul>
+<li>常见数据类型的底层结构</li>
+<li>goroutine的调度</li>
+</ul>
+<h1 id="数据结构">数据结构</h1>
+<p>可以参考 <a href="/post/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">常用数据结构</a> 的说明。<br>
+掌握各种数据结构的优缺点与时空复杂度，能够根据需求给出较优方案(比如说字符串、定时器、LRU实现)。</p>
+<h1 id="算法">算法</h1>
+<p>可以参考 <a href="/post/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95">常见算法</a> 的说明。<br>
+个人觉得下面3种比较常考：</p>
+<ul>
+<li>分治算法</li>
+<li>排序算法<br>
+归并排序、快速排序。</li>
+<li>动态规划<br>
+最长公共子字符串、最长公共子序列、最短路径。</li>
+</ul>
+<h1 id="操作系统">操作系统</h1>
+<h2 id="进程线程协程">进程、线程、协程</h2>
+<ul>
+<li>进程是资源分配基本单位</li>
+<li>线程是系统调度基本单位，共享进程资源，少量独占资源(线程信息、栈、寄存器等)</li>
+<li>协程是用户态线程，调度由程序控制</li>
+</ul>
+<h2 id="内存">内存</h2>
+<p>可以参考 <a href="/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86">内存管理</a> 的说明。</p>
+<h3 id="内存布局">内存布局</h3>
+<p>进程的内存布局如何，malloc是否可以申请超过物理内存大小。</p>
+<h3 id="内存问题与定位">内存问题与定位</h3>
+<ul>
+<li>段错误</li>
+<li>内存溢出</li>
+<li>内存泄露</li>
+</ul>
+<h2 id="cpu">CPU</h2>
+<p>可以参考 <a href="/post/cpu%E4%BD%BF%E7%94%A8%E7%8E%87%E9%AB%98%E5%AE%9A%E4%BD%8D">CPU使用率高问题定位</a> 的说明。</p>
+<h2 id="进程间通信">进程间通信</h2>
+<p>可以参考 <a href="/post/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1">进程间通信</a> 的说明。</p>
+<h2 id="并发与锁">并发与锁</h2>
+<p>无锁、原子操作、生产者消费者模式。<br>
+死锁定位可以参考 <a href="/post/%E4%BD%BF%E7%94%A8gdb%E5%AE%9A%E4%BD%8D%E6%AD%BB%E9%94%81coredump%E9%97%AE%E9%A2%98">使用gdb定位死锁、coredump</a> 的说明。<br>
+竞态检测。</p>
+<h1 id="网络">网络</h1>
+<h2 id="字节序">字节序</h2>
+<p>了解网络序、大小端，具体参考<a href="/post/%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E5%AF%B9%E9%BD%90/#%E5%AD%97%E8%8A%82%E5%BA%8F">字节序与对齐</a>。</p>
+<h2 id="协议栈">协议栈</h2>
+<p>经典问题：</p>
+<ul>
+<li>浏览器访问URL背后发生了什么?<br>
+涉及到HTTP(HTTPS)、TCP、IP、DNS、ARP、proxy(正向代理和反向代理)、web server等等。</li>
+<li>前端页面点击没反应，后端没收到请求如何定位问题？<br>
+主要涉及浏览器开发者工具、网络连通性检查、抓包软件等。</li>
+</ul>
+<h3 id="httphttps">HTTP、HTTPS</h3>
+<p>HTTP请求的构成，GET与POST的区别。<br>
+<img src="/images/http_req.png" alt="http request"></p>
+<p>常见错误码有哪些。<br>
+HTTP首部有哪些，connection close和keep-alive的区别。<br>
+cookie与session的区别。</p>
+<p>HTTPS一般在SSL或者TLS上面传输HTTP，包括证书验证、密钥交换、对称加密通讯等步骤。<br>
+HTTPS是如何安全地交换密钥？</p>
+<h3 id="tcpudp">TCP、UDP</h3>
+<p>经典问题：</p>
+<ul>
+<li>TCP为什么是三次握手，而不是两次或四次？<br>
+关键点是TCP通过SEQ和ACK保证可靠传输，三次足已交换各自起始序列号并确认对方已收到。<br>
+两次不能确保收到，四次不够高效。详见 <a href="https://www.zhihu.com/question/24853633/answer/115173386">知乎回答</a> 。</li>
+<li>TCP为什么是四次挥手？<br>
+TCP是全双工传输，四次挥手允许双方各自选择关闭连接的时机。<br>
+实际上三次挥手也是可以的，详见 <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Connection_termination">维基百科</a> 的说明(关键词possible to terminate)。</li>
+<li>TIME-WAIT状态的作用，为什么要等2MSL？<br>
+主动关闭方收到对端FIN后发出的ACK可能丢包，导致对端重传FIN。<br>
+为了能够处理该情况，需要等待2MSL以便接收FIN并再次ACK，最终双方正确关闭连接。</li>
+<li>TCP和UDP的区别</li>
+</ul>
+<h3 id="ip">IP</h3>
+<p>IPv4与IPv6 socket如何兼容：<br>
+一种是创建2种socket同时监听，分开处理。<br>
+一种是只创建IPv6 socket并关闭<code>IPV6_V6ONLY</code>选项，IPv4连接的地址以<a href="http://en.wikipedia.org/wiki/IPv6#IPv4-mapped_IPv6_addresses">IPv4-mapped</a>形式表示。<br>
+另外<code>getaddrinfo</code>,<code>inet_pton</code>,<code>inet_ntop</code>同时支持IPv4和IPv6。</p>
+<h2 id="socket编程">socket编程</h2>
+<ul>
+<li>TCP<br>
+server: socket bind listen accept send recv close<br>
+client: socket connect send recv close</li>
+<li>UDP<br>
+server: socket bind sendto recvfrom close<br>
+client: socket sendto recvfrom close</li>
+</ul>
+<p>另外还有一些选项设置超时、缓冲区大小、非阻塞。</p>
+<h2 id="io多路复用">IO多路复用</h2>
+<ul>
+<li>select, poll, epoll的区别<br>
+select轮询fd集合、最大连接数小且不可配置、可移植性较好。<br>
+poll轮询fd集合、链表解决最大连接限制。<br>
+epoll直接处理就绪fd集合、最大连接数大且可配置、仅限linux平台。</li>
+<li>epoll的ET和LT触发的区别<br>
+ET边缘触发模式就绪事件只通知一次，高效但边角情况(漏读漏写)处理不当容易死锁。<br>
+LT水平触发模式就绪事件没处理完会持续通知，效率低一点但不容易死锁。</li>
+<li>Reactor与Proactor的区别<br>
+Reactor收到的是可读可写事件，需要程序完成读写操作后再处理业务逻辑。<br>
+Proactor收到的是读完写完事件，读写操作已经由系统(或框架)完成，程序处理业务逻辑。<br>
+大部分IO多路复用框架都是Reactor，包括libuv、Event Library(redis)、libev等。<br>
+Windows平台Boost Asio是通过IOCP实现的Proactor。</li>
+</ul>
+<h2 id="安全">安全</h2>
+<p>可以参考 <a href="/post/%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB">常见网络攻击</a> 和 <a href="/post/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80">信息安全</a>。</p>
+<h2 id="调优">调优</h2>
+<p>BBR、QUIC。</p>
+<h1 id="工具使用">工具使用</h1>
+<h2 id="常用命令">常用命令</h2>
+<p>top, lsof, netstat, tcpdump, du, df, free, kill, gdb等等。</p>
+<h2 id="git使用">git使用</h2>
+<p>具体参考 <a href="/post/git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0">Git使用笔记</a>。</p>
+<h1 id="数据库">数据库</h1>
+<p>可以参考 <a href="/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Bredis">数据库之redis</a> 和 <a href="/post/mysql%E5%9F%BA%E7%A1%80">MySQL基础</a> 的说明。</p>
+<h1 id="web-server">web server</h1>
+<p>nginx与apache。</p>
+<h1 id="docker--k8s">docker &amp;&amp; k8s</h1>
+<p>可以参考 <a href="/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0">docker使用笔记</a> 说明。</p>
+<h1 id="智力题">智力题</h1>
+<ul>
+<li>排队报数<br>
+100个人排队，按照1,2,3,4依次报数，奇数退出偶数留下。<br>
+重复上述过程直到剩下一人，那么最后留下的是谁？</li>
+<li>找毒酒<br>
+1000瓶酒中有1瓶毒酒，如何通过10只小白鼠找到毒酒？</li>
+<li>海盗分金<br>
+都是通过逆推得到结果，不过<strong>半数以上</strong>和<strong>超过半数</strong>才能通过方案的分配情况是不一样的。<br>
+以5海盗分100金币为例，半数以上通过的分配方案为(98,0,1,0,1)。<br>
+超过半数通过的分配方案为(97,0,1,2,0)或(97,0,1,0,2)。</li>
+</ul>
+<h1 id="系统设计">系统设计</h1>
+<p>排行榜、好友表、点赞系统、秒杀系统。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-16
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/interview/">interview</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AC%94%E8%AE%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">二叉树笔记</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/c&#43;&#43;%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
+            <span class="next-text nav-default">C&#43;&#43;智能指针</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

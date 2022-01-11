@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>字节序与对齐 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要介绍C/C&#43;&#43;中的字节序(含位域)和对齐。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E5%AF%B9%E9%BD%90/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="字节序与对齐" />
+<meta property="og:description" content="本文主要介绍C/C&#43;&#43;中的字节序(含位域)和对齐。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E5%AF%B9%E9%BD%90/" />
+<meta property="article:published_time" content="2017-12-22T17:12:26+08:00" />
+<meta property="article:modified_time" content="2021-02-25T17:12:26+08:00" />
+<meta itemprop="name" content="字节序与对齐">
+<meta itemprop="description" content="本文主要介绍C/C&#43;&#43;中的字节序(含位域)和对齐。">
+<meta itemprop="datePublished" content="2017-12-22T17:12:26+08:00" />
+<meta itemprop="dateModified" content="2021-02-25T17:12:26+08:00" />
+<meta itemprop="wordCount" content="1145">
+
+
+
+<meta itemprop="keywords" content="byte-order,alignment,bit-field," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="字节序与对齐"/>
+<meta name="twitter:description" content="本文主要介绍C/C&#43;&#43;中的字节序(含位域)和对齐。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">字节序与对齐</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-12-22 </span>
+        <div class="post-category">
+            <a href="/categories/note/"> note </a>
+            </div>
+          <span class="more-meta"> 约 1145 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本类型大小">基本类型大小</a></li>
+    <li><a href="#对齐">对齐</a>
+      <ul>
+        <li><a href="#默认对齐">默认对齐</a></li>
+        <li><a href="#指定对齐">指定对齐</a></li>
+      </ul>
+    </li>
+    <li><a href="#字节序">字节序</a>
+      <ul>
+        <li><a href="#转换">转换</a></li>
+        <li><a href="#位域">位域</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要介绍C/C++中的字节序(含位域)和对齐。</p>
+<h1 id="基本类型大小">基本类型大小</h1>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>32位</th>
+<th>64位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>long</strong></td>
+<td><strong>4</strong></td>
+<td><strong>8</strong></td>
+</tr>
+<tr>
+<td>long long</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>pointer</strong></td>
+<td><strong>4</strong></td>
+<td><strong>8</strong></td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>signed和unsigned只影响最高位的含义，不影响类型大小。<br>
+常见系统32位和64位基本类型大小的差异主要在long和pointer，其他是一致的。</p>
+<h1 id="对齐">对齐</h1>
+<p>出于性能或者地址合法性(如MIPS平台)的考虑，变量存放地址要求为该变量类型对齐值的倍数。<br>
+基本类型默认对齐值为类型大小，结构体默认对齐值为各个成员对齐值的最大值。<br>
+通过 <code>#pragma pack(数值)</code> 可以指定对齐值，<code>#pragma pack()</code> 恢复默认对齐值。<br>
+实际对齐值是默认对齐值和指定对齐值中较小的值。</p>
+<h2 id="默认对齐">默认对齐</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">DefSt</span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">// 1的倍数，变量地址+0~0
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>   <span class="c1">// 4的倍数，变量地址+4~7
+</span><span class="c1"></span>    <span class="kt">short</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// 2的倍数，变量地址+8~9
+</span><span class="c1"></span><span class="p">}</span> <span class="n">ds</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>  <span class="c1">// 4的倍数，变量地址+12
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="nf">structSizeDef</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;sizeof(DefSt): &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">DefSt</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 大小为12
+</span><span class="c1"></span>    
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ds[0] @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ds[0].a @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ds[0].b @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ds[0].c @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ds[1] @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>不难看出结构体大小是其对齐值的倍数(否则后续变量地址就可能不对齐)。</p>
+<h2 id="指定对齐">指定对齐</h2>
+<p>指定对齐值为1就是我们通常意义上理解的紧凑布局。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#pragma pack(1)
+</span><span class="cp"></span><span class="k">struct</span> <span class="nc">SpecSt</span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">// 变量地址+0~0
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>   <span class="c1">// 变量地址+1~4
+</span><span class="c1"></span>    <span class="kt">short</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// 变量地址+5~6
+</span><span class="c1"></span><span class="p">}</span> <span class="n">ss0</span><span class="p">,</span> <span class="n">ss1</span><span class="p">;</span>  <span class="c1">// 变量地址+7
+</span><span class="c1">// 恢复默认对齐
+</span><span class="c1"></span><span class="cp">#pragma pack()
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">structSizeSpec</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;sizeof(SpecSt): &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SpecSt</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 大小为7
+</span><span class="c1"></span>    
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ss0 @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ss0</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ss0.a @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ss0</span><span class="p">.</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ss0.b @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ss0</span><span class="p">.</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ss0.c @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ss0</span><span class="p">.</span><span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ss1 @&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ss1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>GCC编译器的话，也可以用<code>__attribute__ ((__packed__))</code>。</p>
+<h1 id="字节序">字节序</h1>
+<p>字节序就是字节存放的顺序，分为大端和小端两种字节序。<br>
+大端字节序先存放高位的字节。<br>
+小端字节序先存放低位的字节。<br>
+网络字节序就是大端字节序。<br>
+主机序就是系统的字节序，一般由CPU类型(x86, arm, mips&hellip;)决定。</p>
+<p>通过检查整型1首地址的存放内容即可知道字节序类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">byte_order</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">string</span> <span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num</span><span class="p">)</span><span class="o">?</span> <span class="s">&#34;little&#34;</span><span class="o">:</span> <span class="s">&#34;big&#34;</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Your system use &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">order</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; endian&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Linux可以通过endian.h中的宏 <code>__BYTE_ORDER</code> 判断是 <code>__LITTLE_ENDIAN</code> 还是 <code>__BIG_ENDIAN</code> 。</p>
+<h2 id="转换">转换</h2>
+<p>通过 <code>ntohs</code> 或 <code>ntohl</code> 转换网络序为主机序。<br>
+通过 <code>htons</code> 或 <code>htonl</code> 转换主机序为网络序。<br>
+<code>n</code>是network缩写，<code>h</code>是host缩写，<code>s</code>是short类型缩写，<code>l</code>是long类型缩写。</p>
+<h2 id="位域">位域</h2>
+<p>位域是指按位存储的字段，存储的顺序跟系统字节序一致。<br>
+小端先从低位开始存储，大端先从高位开始存储。<br>
+如果需要兼容不同字节序的平台，那么需要根据宏分别定义(位域定义顺序相反)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// f0, f1, f2, f3共用同一字节中的不同位
+</span><span class="c1"></span><span class="k">struct</span> <span class="nc">ModFlags</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="nl">f0</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="nl">f1</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="nl">f2</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="nl">f3</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">mf</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">bit_field_order</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">mf</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;sizeof(ModFlags): &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ModFlags</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 大小为1(字节)
+</span><span class="c1"></span>    
+    <span class="n">mf</span><span class="p">.</span><span class="n">f0</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">mf</span><span class="p">.</span><span class="n">f3</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;mf: 0x&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">hex</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 小端是 0x43
+</span><span class="c1"></span>    <span class="c1">// 大端是 0xC1
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-02-25
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/byte-order/">byte-order</a>
+          <a href="/tags/alignment/">alignment</a>
+          <a href="/tags/bit-field/">bit-field</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E5%85%A8%E6%8E%92%E5%88%97%E7%AE%97%E6%B3%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">全排列算法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E4%BD%BF%E7%94%A8gdb%E5%AE%9A%E4%BD%8D%E6%AD%BB%E9%94%81coredump%E9%97%AE%E9%A2%98/">
+            <span class="next-text nav-default">使用gdb定位死锁、coredump</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

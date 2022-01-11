@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>compile on 时聆心语</title>
+    <link>https://edward852.github.io/tags/compile/</link>
+    <description>Recent content in compile on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 29 Apr 2018 12:01:24 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/compile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>生成compile_commands.json文件</title>
+      <link>https://edward852.github.io/post/%E7%94%9F%E6%88%90compile_commands.json%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sun, 29 Apr 2018 12:01:24 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%94%9F%E6%88%90compile_commands.json%E6%96%87%E4%BB%B6/</guid>
+      <description>&lt;p&gt;&lt;code&gt;compile_commands.json&lt;/code&gt; 文件能够有效提高一些工具(比如说ccls&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, vscode&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;)的代码跳转、补全等功能。&lt;br&gt;
+因此，本文将会说明如何生成 &lt;code&gt;compile_commands.json&lt;/code&gt; 文件，特别是使用 &lt;code&gt;makefile&lt;/code&gt; 的老工程。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

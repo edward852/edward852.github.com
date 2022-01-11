@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>svn on 时聆心语</title>
+    <link>https://edward852.github.io/tags/svn/</link>
+    <description>Recent content in svn on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 Oct 2019 13:59:15 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/svn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>svn迁移git</title>
+      <link>https://edward852.github.io/post/svn%E8%BF%81%E7%A7%BBgit/</link>
+      <pubDate>Sun, 20 Oct 2019 13:59:15 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/svn%E8%BF%81%E7%A7%BBgit/</guid>
+      <description>&lt;p&gt;本文主要介绍如何把项目从svn迁移到git。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

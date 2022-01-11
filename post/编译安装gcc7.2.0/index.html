@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>编译安装GCC 7.2.0 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="服务器默认安装的GCC版本一般都比较低，而一些开源库已经开始依赖高版本GCC才有的特性。
+因此我们需要编译安装新版本的GCC，本文以7.2.0为例进行说明。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85gcc7.2.0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="编译安装GCC 7.2.0" />
+<meta property="og:description" content="服务器默认安装的GCC版本一般都比较低，而一些开源库已经开始依赖高版本GCC才有的特性。
+因此我们需要编译安装新版本的GCC，本文以7.2.0为例进行说明。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85gcc7.2.0/" />
+<meta property="article:published_time" content="2018-04-22T22:41:39+08:00" />
+<meta property="article:modified_time" content="2018-04-22T22:41:39+08:00" />
+<meta itemprop="name" content="编译安装GCC 7.2.0">
+<meta itemprop="description" content="服务器默认安装的GCC版本一般都比较低，而一些开源库已经开始依赖高版本GCC才有的特性。
+因此我们需要编译安装新版本的GCC，本文以7.2.0为例进行说明。">
+<meta itemprop="datePublished" content="2018-04-22T22:41:39+08:00" />
+<meta itemprop="dateModified" content="2018-04-22T22:41:39+08:00" />
+<meta itemprop="wordCount" content="656">
+
+
+
+<meta itemprop="keywords" content="gcc,scl," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="编译安装GCC 7.2.0"/>
+<meta name="twitter:description" content="服务器默认安装的GCC版本一般都比较低，而一些开源库已经开始依赖高版本GCC才有的特性。
+因此我们需要编译安装新版本的GCC，本文以7.2.0为例进行说明。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">编译安装GCC 7.2.0</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-04-22 </span>
+        <div class="post-category">
+            <a href="/categories/tool/"> tool </a>
+            </div>
+          <span class="more-meta"> 约 656 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#预编译版本">预编译版本</a></li>
+    <li><a href="#下载源码">下载源码</a>
+      <ul>
+        <li><a href="#gcc源码">GCC源码</a></li>
+        <li><a href="#依赖包">依赖包</a></li>
+      </ul>
+    </li>
+    <li><a href="#编译安装">编译安装</a></li>
+    <li><a href="#设置环境变量path">设置环境变量PATH</a></li>
+    <li><a href="#libstdcso">libstdc++.so</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>服务器默认安装的GCC版本一般都比较低，而一些开源库已经开始依赖高版本GCC才有的特性。<br>
+因此我们需要编译安装新版本的GCC，本文以7.2.0为例进行说明。</p>
+<h1 id="预编译版本">预编译版本</h1>
+<p>先搜索一下第三方软件仓库是否有高版本的GCC，有的话直接安装即可。<br>
+以CentOS7为例，可以通过SCL下载安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">yum install -y centos-release-scl
+yum install -y devtoolset-7-gcc-c++
+
+<span class="c1"># 临时使用新版本</span>
+scl <span class="nb">enable</span> devtoolset-7 bash
+
+<span class="c1"># 固定使用新版本，添加下述命令到 .bashrc 或 .bash_profile</span>
+<span class="nb">source</span> scl_source <span class="nb">enable</span> devtoolset-7
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="下载源码">下载源码</h1>
+<h2 id="gcc源码">GCC源码</h2>
+<p>可以在 <a href="ftp://ftp.gnu.org/gnu/gcc/gcc-7.2.0/gcc-7.2.0.tar.gz">官网</a> ，也可以在附近的镜像源下载。<br>
+我这边就在 <a href="https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-7.2.0/gcc-7.2.0.tar.gz">清华镜像源</a> 下载了。</p>
+<h2 id="依赖包">依赖包</h2>
+<p>依赖包根据编译机器的外网连通情况采用手动下载或者自动下载。</p>
+<ul>
+<li>
+<p>自动下载<br>
+如果可以访问外网，那么可以直接通过GCC源码包中内置的脚本下载。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> gcc-7.2.0
+./contrib/download_prerequisites
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>手动下载<br>
+如果不方便访问外网，那么可以在通外网的机器上先下载好依赖包。<br>
+具体依赖哪些包、什么版本，可以参考上面提到的内置脚本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> gcc-7.2.0
+<span class="c1"># 把gmp-6.1.0, mpfr-3.1.4, mpc-1.0.3, isl-0.16.1压缩包解压到该目录</span>
+ln -fs gmp-6.1.0 gmp
+ln -fs isl-0.16.1 isl
+ln -fs mpc-1.0.3 mpc
+ln -fs mpfr-3.1.4 mpfr
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="编译安装">编译安装</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">./configure --prefix<span class="o">=</span>/usr/local/gcc-7.2.0 --enable-checking<span class="o">=</span>release --enable-languages<span class="o">=</span>c,c++ --disable-multilib
+make -j<span class="k">$(</span>nproc<span class="k">)</span>
+sudo make install
+</code></pre></td></tr></table>
+</div>
+</div><p><code>--prefix</code> 指定安装的目录，这个要选择有写权限的目录，否则安装不了。<br>
+另外不建议安装在旧版本GCC的目录，避免产生不必要的影响。</p>
+<h1 id="设置环境变量path">设置环境变量PATH</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/gcc-7.2.0/bin:<span class="nv">$PATH</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>设置PATH环境变量，优先选择高版本的GCC，需要的话可以加到 <code>~/.bashrc</code> 或者 <code>~/.bash_profile</code> 里面。<br>
+这样处理可以达到不同版本GCC共存、减少影响的目的，特别是多个开发人员共用服务器的情况尤为重要。</p>
+<h1 id="libstdcso">libstdc++.so</h1>
+<p>编译目录下的 <code>libstdc++.so.6.0.24</code> 可以复制到 <code>/usr/lib64/</code> 并新建软链 <code>libstdc++.so.6</code> 指向新的so。<br>
+这样可以解决如下一类 <code>GLIBCXX</code> 找不到的问题。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">version `GLIBCXX_3.4.20&#39; not found
+version `GLIBCXX_3.4.21&#39; not found
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="参考链接">参考链接</h1>
+<ul>
+<li><a href="http://caosiyang.github.io/2016/05/04/installing-gcc">http://caosiyang.github.io/2016/05/04/installing-gcc</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-04-22
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gcc/">gcc</a>
+          <a href="/tags/scl/">scl</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E7%BC%96%E8%AF%91clang&#43;llvm/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">编译安装clang&#43;llvm</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/">
+            <span class="next-text nav-default">SSH免密登录</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

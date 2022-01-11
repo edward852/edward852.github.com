@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Searching on 时聆心语</title>
+    <link>https://edward852.github.io/tags/searching/</link>
+    <description>Recent content in Searching on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 23 Feb 2020 15:32:13 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/searching/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo添加Algolia搜索支持</title>
+      <link>https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Sun, 23 Feb 2020 15:32:13 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/</guid>
+      <description>&lt;p&gt;本文主要介绍如何在 &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; 中添加 &lt;a href=&#34;https://www.algolia.com&#34;&gt;Algolia&lt;/a&gt; 搜索支持。&lt;br&gt;
+主要以 &lt;a href=&#34;https://themes.gohugo.io/hugo-theme-even&#34;&gt;Even主题&lt;/a&gt; 为例进行说明，不过理论上只需要小的调整即可适用于其他主题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>本地日志搜索</title>
+      <link>https://edward852.github.io/post/%E6%9C%AC%E5%9C%B0%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/</link>
+      <pubDate>Sun, 24 Feb 2019 14:33:26 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E6%9C%AC%E5%9C%B0%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/</guid>
+      <description>&lt;p&gt;本文主要介绍在服务出现问题时如何通过日志快速判断是否具有某种聚集性。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

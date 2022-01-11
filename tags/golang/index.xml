@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on 时聆心语</title>
+    <link>https://edward852.github.io/tags/golang/</link>
+    <description>Recent content in golang on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 18 Mar 2021 18:31:32 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang程序性能分析</title>
+      <link>https://edward852.github.io/post/golang%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/</link>
+      <pubDate>Thu, 18 Mar 2021 18:31:32 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;p&gt;本文主要介绍如何使用golang自带的工具剖析程序性能瓶颈。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang常见陷阱与易犯错误</title>
+      <link>https://edward852.github.io/post/golang%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E4%B8%8E%E6%98%93%E7%8A%AF%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Thu, 14 Jan 2021 13:02:10 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E4%B8%8E%E6%98%93%E7%8A%AF%E9%94%99%E8%AF%AF/</guid>
+      <description>&lt;p&gt;本文介绍golang中常见陷阱和易犯错误。&lt;br&gt;
+主要内容是翻译&lt;a href=&#34;http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang&#34;&gt;Traps, Gotchas, and Common Mistakes for New Golang Devs&lt;/a&gt;博文。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang错误处理</title>
+      <link>https://edward852.github.io/post/golang_error_handling/</link>
+      <pubDate>Sat, 05 Sep 2020 16:04:21 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang_error_handling/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何处理错误。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang逃逸分析与优化</title>
+      <link>https://edward852.github.io/post/golang%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Sat, 20 Jun 2020 15:41:24 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96/</guid>
+      <description>&lt;p&gt;本文主要介绍如何分析Golang的逃逸以及优化方向。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang操作protobuf</title>
+      <link>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cprotobuf/</link>
+      <pubDate>Sun, 18 Aug 2019 23:21:41 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cprotobuf/</guid>
+      <description>&lt;p&gt;本文记录golang如何操作protobuf。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang反射的使用</title>
+      <link>https://edward852.github.io/post/golang%E5%8F%8D%E5%B0%84%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 10 Aug 2019 19:37:35 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E5%8F%8D%E5%B0%84%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;本文主要参考 &lt;code&gt;The Laws of Reflection&lt;/code&gt; &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 介绍反射的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang使用笔记</title>
+      <link>https://edward852.github.io/post/golang%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 21 Jul 2019 11:13:04 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录golang使用的一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang context包</title>
+      <link>https://edward852.github.io/post/golang_context%E5%8C%85/</link>
+      <pubDate>Sun, 05 Aug 2018 15:14:19 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang_context%E5%8C%85/</guid>
+      <description>&lt;p&gt;本文主要介绍golang context包的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang限时执行外部命令</title>
+      <link>https://edward852.github.io/post/golang%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sun, 06 May 2018 20:46:12 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何限时执行外部命令。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang操作JSON</title>
+      <link>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cjson/</link>
+      <pubDate>Sat, 05 May 2018 18:57:46 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%93%8D%E4%BD%9Cjson/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何操作JSON。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang临时文件操作</title>
+      <link>https://edward852.github.io/post/golang%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sun, 15 Apr 2018 18:52:32 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+      <description>&lt;p&gt;本文主要介绍golang中临时文件的操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang时间转换</title>
+      <link>https://edward852.github.io/post/golang%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</link>
+      <pubDate>Sat, 14 Apr 2018 16:56:48 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何转换时间以及需要注意的地方。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

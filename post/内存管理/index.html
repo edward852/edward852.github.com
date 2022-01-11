@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>内存管理 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录内存管理相关的一些笔记。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="内存管理" />
+<meta property="og:description" content="本文主要记录内存管理相关的一些笔记。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" />
+<meta property="article:published_time" content="2020-04-09T23:28:47+08:00" />
+<meta property="article:modified_time" content="2021-03-16T23:28:47+08:00" />
+<meta itemprop="name" content="内存管理">
+<meta itemprop="description" content="本文主要记录内存管理相关的一些笔记。">
+<meta itemprop="datePublished" content="2020-04-09T23:28:47+08:00" />
+<meta itemprop="dateModified" content="2021-03-16T23:28:47+08:00" />
+<meta itemprop="wordCount" content="1324">
+
+
+
+<meta itemprop="keywords" content="memory,allocator,overflow,leak,oom,gc,coredump," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="内存管理"/>
+<meta name="twitter:description" content="本文主要记录内存管理相关的一些笔记。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">内存管理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-09 </span>
+        <div class="post-category">
+            <a href="/categories/note/"> note </a>
+            </div>
+          <span class="more-meta"> 约 1324 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#布局">布局</a>
+      <ul>
+        <li><a href="#系统">系统</a>
+          <ul>
+            <li><a href="#32位系统">32位系统</a></li>
+            <li><a href="#64位系统">64位系统</a></li>
+          </ul>
+        </li>
+        <li><a href="#进程">进程</a></li>
+      </ul>
+    </li>
+    <li><a href="#分配器">分配器</a></li>
+    <li><a href="#回收策略">回收策略</a></li>
+    <li><a href="#日常使用">日常使用</a>
+      <ul>
+        <li><a href="#共享内存">共享内存</a></li>
+        <li><a href="#缓存淘汰">缓存淘汰</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#泄露与oom">泄露与OOM</a></li>
+        <li><a href="#溢出">溢出</a>
+          <ul>
+            <li><a href="#栈溢出">栈溢出</a></li>
+            <li><a href="#堆溢出">堆溢出</a></li>
+            <li><a href="#全局数据溢出">全局数据溢出</a></li>
+          </ul>
+        </li>
+        <li><a href="#访问非法地址">访问非法地址</a></li>
+        <li><a href="#访问未初始化地址">访问未初始化地址</a></li>
+      </ul>
+    </li>
+    <li><a href="#定位工具">定位工具</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录内存管理相关的一些笔记。</p>
+<h1 id="布局">布局</h1>
+<h2 id="系统">系统</h2>
+<h3 id="32位系统">32位系统</h3>
+<p><img src="https://i.loli.net/2020/04/17/jKXnRoviOJFz4es.png" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">0xFFFFFFFF
+    内核空间 1G
+0xC0000000
+...
+    栈
+    共享内存(动态库等)
+    堆
+    bss段
+    data段
+    text段
+...
+0x00000000
+</code></pre></td></tr></table>
+</div>
+</div><p>32位系统地址空间是32位，最大是4GB。<br>
+除去内核空间1GB，用户空间最大3GB。<br>
+考虑内存碎片、系统限制等因素，用户实际可申请内存大小在min(虚拟内存大小, 3GB)以内。<br>
+一般来说虚拟内存大小大于3GB，所以说最大可申请内存在3GB附近(有人实测2.8GB左右)。</p>
+<h3 id="64位系统">64位系统</h3>
+<p>64位系统地址空间是64位，但是系统可能只支持几百GB(Windows)或者几百TB(Linux)。<br>
+一般来说64位系统最大可申请内存主要取决于虚拟内存大小(物理内存+swap大小)。</p>
+<h2 id="进程">进程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;--- 高地址
+栈 (向下增长)
+共享内存(动态库等)
+堆 (向上增长)
+bss段
+data段
+rodata段
+text段
+&lt;--- 低地址
+</code></pre></td></tr></table>
+</div>
+</div><p>text段存放代码，bss段存放未初始化的全局变量，data段存放已初始化的全局变量。</p>
+<h1 id="分配器">分配器</h1>
+<ul>
+<li>jemalloc<br>
+<a href="https://github.com/jemalloc/jemalloc">https://github.com/jemalloc/jemalloc</a></li>
+<li>tcmalloc<br>
+<a href="https://github.com/google/tcmalloc">https://github.com/google/tcmalloc</a></li>
+</ul>
+<p>对于稳定性要求比较高的场合(如嵌入式、服务后台)可以采用内存池静态分配。</p>
+<h1 id="回收策略">回收策略</h1>
+<ul>
+<li>手动<br>
+通过malloc,free和new,delete等手动申请、释放内存。<br>
+优点是速度快，缺点是容易遗漏。</li>
+<li>GC自动回收<br>
+由GC(Garbage Collector)自动扫描回收不再使用的内存。<br>
+优点是不需要程序员介入，缺点是有性能开销，不适合实时的场合(有STW停顿扫描时间)。</li>
+<li>其他<br>
+引用计数回收(需要避免循环引用)、Rust检查所有权和生命周期由编译器管理内存。</li>
+</ul>
+<h1 id="日常使用">日常使用</h1>
+<h2 id="共享内存">共享内存</h2>
+<p>具体参考 <a href="/post/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%BF%E7%94%A8">共享内存使用</a> 的说明。</p>
+<h2 id="缓存淘汰">缓存淘汰</h2>
+<p>一般是被动和主动扫描结合淘汰过期缓存。具体可以参考<a href="https://redis.io/commands/expire#how-redis-expires-keys">redis</a>的做法。<br>
+主动扫描可以定时扫描部分，结合时间轮/最小堆淘汰过期缓存。<br>
+redis的实现是从存储带超时key的哈希表里面随机淘汰。</p>
+<p>不建议使用(加锁)全局扫描这种方式，无用功太多。业务高峰还会增加CPU使用率，很容易造成恶性循环。</p>
+<h1 id="常见问题">常见问题</h1>
+<h2 id="泄露与oom">泄露与OOM</h2>
+<p>当申请内存大小多于剩余可用内存时就会发生OOM(out of memory)。</p>
+<p>有可能是特殊请求导致申请过大的内存，一般需要抓包复现定位解决。<br>
+另外的可能就是内存泄露，特别是运行时间比较长才出现的情况。<br>
+具体可以参考 <a href="/post/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%AE%9A%E4%BD%8D/">内存泄露定位</a> 的说明。</p>
+<h2 id="溢出">溢出</h2>
+<h3 id="栈溢出">栈溢出</h3>
+<p>一般就是栈上的局部缓冲区(数组)发生越界访问。</p>
+<h3 id="堆溢出">堆溢出</h3>
+<p>一般就是堆上的缓冲区(数组)的越界访问。</p>
+<h3 id="全局数据溢出">全局数据溢出</h3>
+<p>一般就是data/bss段的全局缓冲区(数组)的越界访问。</p>
+<h2 id="访问非法地址">访问非法地址</h2>
+<p>一般是解引用了空指针或者野指针，触发SIGSEGV信号。<br>
+通过coredump文件或者注册SIGSEGV信号处理函数进行回溯定位。</p>
+<h2 id="访问未初始化地址">访问未初始化地址</h2>
+<p>一般是栈上分配变量没有初始化就使用。<br>
+valgrind, clang支持检查。</p>
+<h1 id="定位工具">定位工具</h1>
+<ul>
+<li>AddressSanitizer<br>
+GCC4.8以上版本可以通过AddressSanitizer定位，具体参考 <a href="/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/">AddressSanitizer使用</a> 的说明。</li>
+<li>valgrind
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">valgrind --tool<span class="o">=</span>memcheck --leak-check<span class="o">=</span>full --log-file<span class="o">=</span>valgrind.log 待定位程序 参数列表
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>gdb<br>
+GCC版本较低但不方便升级的话可以通过GDB+watch命令定位。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">gdb
+  
+<span class="c1"># 加载程序</span>
+file ./程序
+<span class="c1"># 设置参数</span>
+<span class="nb">set</span> args 参数
+  
+<span class="c1"># 全局变量</span>
+watch *<span class="o">((</span>char *<span class="o">)</span><span class="p">&amp;</span>g_var<span class="o">)</span>
+  
+<span class="c1"># 局部变量 (先断点运行到所在函数)</span>
+<span class="nb">break</span> 函数
+run
+watch var
+</code></pre></td></tr></table>
+</div>
+</div><p>定位coredump，参考 <a href="/post/%E4%BD%BF%E7%94%A8gdb%E5%AE%9A%E4%BD%8D%E6%AD%BB%E9%94%81coredump%E9%97%AE%E9%A2%98#coredump">gdb定位coredump</a> 的说明。</p>
+</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-16
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/memory/">memory</a>
+          <a href="/tags/allocator/">allocator</a>
+          <a href="/tags/overflow/">overflow</a>
+          <a href="/tags/leak/">leak</a>
+          <a href="/tags/oom/">oom</a>
+          <a href="/tags/gc/">gc</a>
+          <a href="/tags/coredump/">coredump</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">AddressSanitizer定位内存问题</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="next-text nav-default">常用数据结构</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

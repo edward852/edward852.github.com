@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hugo对Markdown支持情况测试 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要内容是测试Hugo对Markdown的支持情况，方便后续写作时查阅。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/markdown%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5%E6%B5%8B%E8%AF%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Hugo对Markdown支持情况测试" />
+<meta property="og:description" content="本文主要内容是测试Hugo对Markdown的支持情况，方便后续写作时查阅。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/markdown%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5%E6%B5%8B%E8%AF%95/" />
+<meta property="article:published_time" content="2020-02-21T15:00:28+08:00" />
+<meta property="article:modified_time" content="2022-01-11T21:17:23+08:00" />
+<meta itemprop="name" content="Hugo对Markdown支持情况测试">
+<meta itemprop="description" content="本文主要内容是测试Hugo对Markdown的支持情况，方便后续写作时查阅。">
+<meta itemprop="datePublished" content="2020-02-21T15:00:28+08:00" />
+<meta itemprop="dateModified" content="2022-01-11T21:17:23+08:00" />
+<meta itemprop="wordCount" content="1634">
+
+
+
+<meta itemprop="keywords" content="markdown,GFM,LaTex,emoji,PicGo," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo对Markdown支持情况测试"/>
+<meta name="twitter:description" content="本文主要内容是测试Hugo对Markdown的支持情况，方便后续写作时查阅。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hugo对Markdown支持情况测试</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-21 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> language </a>
+            </div>
+          <span class="more-meta"> 约 1634 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#标题">标题</a></li>
+    <li><a href="#段落">段落</a></li>
+    <li><a href="#字体样式">文本样式</a></li>
+    <li><a href="#列表">列表</a></li>
+    <li><a href="#图片">图片</a></li>
+    <li><a href="#links">链接</a></li>
+    <li><a href="#引用与代码">引用与代码</a></li>
+    <li><a href="#表格">表格</a></li>
+    <li><a href="#分隔线">分隔线</a></li>
+    <li><a href="#emoji表情">emoji表情</a></li>
+    <li><a href="#公式">公式</a></li>
+    <li><a href="#脚注footnote">脚注Footnote</a></li>
+    <li><a href="#任务列表">任务列表</a></li>
+    <li><a href="#杂项">杂项</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要内容是测试Hugo对Markdown的支持情况，方便后续写作时查阅。</p>
+<h1 id="标题">标题</h1>
+<p>在行首以井号<code>#</code>加空格指定，几个井号就代表几级标题。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="gh"># 1级标题
+</span><span class="gh"></span><span class="gu">## 2级标题
+</span><span class="gu"></span>...
+<span class="gu">###### 6级标题
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="段落">段落</h1>
+<p>段落之间以至少一行空行为分隔，也可以通过在行尾加 <strong>2个空格</strong> 强制段落内换行。</p>
+<p>段落一的第一行<br>
+段落一的第二行<br>
+&hellip;<br>
+段落一的第N行</p>
+<p>段落二的第一行</p>
+<h1 id="字体样式">文本样式</h1>
+<p>字体样式常用的有粗体、斜体、删除线等。<br>
+<code>*斜体字*</code> 对应 <em>斜体字</em><br>
+<code>**粗体字**</code> 对应 <strong>粗体字</strong><br>
+<code>~~删除线~~</code> 对应 <del>删除线</del><br>
+<code>`行内代码`</code> 对应 <code>行内代码</code></p>
+<p>还有一些样式原生不支持，但是可以通过html间接支持。<br>
+<code>&lt;u&gt;下划线&lt;/u&gt;</code> 对应 <u>下划线</u><br>
+<code>H&lt;sub&gt;2&lt;/sub&gt;O</code> 对应 H<sub>2</sub>O<br>
+<code>爆米&lt;sup&gt;TM&lt;/sup&gt;</code> 对应 爆米<sup>TM</sup><br>
+<code>&lt;span style=&quot;color: orange&quot;&gt;前景色&lt;/span&gt;</code>对应 <span style="color: orange">前景色</span><br>
+<code>&lt;span style=&quot;background: orange&quot;&gt;背景色&lt;/span&gt;</code>对应 <span style="background: orange">背景色</span></p>
+<h1 id="列表">列表</h1>
+<p>列表分为有序列表和无序列表。<br>
+以数字+ <code>.</code> 表示有序列表项：</p>
+<ol>
+<li>有序子项目1</li>
+</ol>
+<p>以 <code>-</code> 或 <code>+</code> 表示无序列表项：</p>
+<ul>
+<li>无序子项目</li>
+</ul>
+<p>可以混合使用，注意同级列表以空格对齐。</p>
+<ol>
+<li>有序子项目一
+<ul>
+<li>无序子项目 1</li>
+<li>无序子项目 2</li>
+</ul>
+</li>
+<li>有序子项目二
+<ul>
+<li>无序子项目 a</li>
+<li>无序子项目 b</li>
+</ul>
+</li>
+</ol>
+<h1 id="图片">图片</h1>
+<p>一般格式是 <code>![文字描述](链接)</code> ：<br>
+<img src="https://i.loli.net/2021/01/31/4ZHoWduI59fiqJY.png" alt="org-mode-logo"></p>
+<p>这种格式显示图片不能控制对齐和大小，需要的话可以采取raw html的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">p</span> <span class="na">align</span><span class="o">=</span><span class="s">&#34;center&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://i.loli.net/2021/01/31/4ZHoWduI59fiqJY.png&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+    <img src="https://i.loli.net/2021/01/31/4ZHoWduI59fiqJY.png" width="100" />
+</p>
+<div class="admonition tip"><p class="admonition-title">tip</p>
+<p>需要注意的是，Hugo 0.60以上版本需要设置markup.goldmark.renderer的unsafe值为true才支持</p>
+</div>
+<p>链接可以是网络URL，也可以是相对路径。<br>
+相对路径的话需要注意本地路径和(网站)部署路径可能不一致的问题。<br>
+一般还是通过工具 (如 <a href="https://github.com/Molunerfinn/PicGo">PicGo</a>) 上传到图床更方便。</p>
+<h1 id="links">链接</h1>
+<p>链接分为外部链接和内部链接，格式都是 <code>[文字描述](链接)</code> 。<br>
+外部链接就是我们常用的URL，这里不赘述。<br>
+内部链接，也叫anchor，用来引用当前文档的某个位置。<br>
+可以通过以下方式标记位置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">{#target}
+</code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>target</code> 需要取一个有意义的、文档内唯一的名字。<br>
+然后通过以下方式引用，与html的锚类似：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[文字描述](#target)
+</code></pre></td></tr></table>
+</div>
+</div><p>跳转回本章节起始位置☞ <a href="#links">back</a> 。</p>
+<h1 id="引用与代码">引用与代码</h1>
+<p>引用名人名言：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">&gt; </span><span class="ge">Stay Hungry. Stay Foolish -- Steve Jobs
+</span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Stay Hungry. Stay Foolish &ndash; Steve Jobs</p>
+</blockquote>
+<p>引用代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">```语言(可以不填，但是没有语法高亮)
+代码内容
+```
+</code></pre></td></tr></table>
+</div>
+</div><p>C代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">```c
+int sayHello()
+{
+    printf(&#34;Hello!\n&#34;); // hello everyone
+}
+```
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">sayHello</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span> <span class="c1">// hello everyone
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="表格">表格</h1>
+<p>创建表格十分简便，基本上组合使用 <code>|</code> <code>-</code> 即可。<br>
+对齐不是硬性要求，第一列 <code>|</code> 也可以省略。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">简写版本：
+key | value
+--- | ---
+long key | long测试中文
+
+美观版本：
+| key      | value       |
+|----------|-------------|
+| long key | long测试中文 |
+</code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>long key</td>
+<td>long测试中文</td>
+</tr>
+</tbody>
+</table>
+<p>另外在 <a href="https://www.spacemacs.org/">spacemacs</a> 中使用 <code>Tab</code> 和 <code>Shift Tab</code> 可以自动对齐表格和在单元格内跳转，谁用谁知道！ 😄<br>
+<img src="https://i.loli.net/2020/02/21/beFw7Af9GLijI4T.gif" alt=""></p>
+<h1 id="分隔线">分隔线</h1>
+<p>3个以上横杠 <code>-</code> 单独为一行可以显示分隔线：</p>
+<hr>
+<h1 id="emoji表情">emoji表情</h1>
+<p>支持Github的emoji表情，格式为 <code>:emoji代码:</code> ，具体可以查阅 👉 <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">这里</a> 。</p>
+<h1 id="公式">公式</h1>
+<p>比较考验排版能力的数学公式，通过LaTex表示毫无压力、逼格满满。<br>
+正文显示公式： <code>$LaTex公式$</code> $\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$<br>
+单独显示公式： <code>$$LaTex公式$$</code><br>
+$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$</p>
+<p>另外根据<a href="https://docs.mathjax.org/en/latest/input/tex/html.html#interactions-with-content-management-systems">mathjax</a>的说明，公式中的换行<code>\\</code>需要写成<code>\\\\</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+ <span class="k">\begin</span><span class="nb">{</span>split<span class="nb">}</span>
+ (a + b)<span class="nb">^</span>3
+    <span class="nb">&amp;</span>= (a + b)(a + b)<span class="nb">^</span>2            <span class="k">\\\\</span>
+    <span class="nb">&amp;</span>= (a + b)(a<span class="nb">^</span>2 + 2ab + b<span class="nb">^</span>2)    <span class="k">\\\\</span>
+    <span class="nb">&amp;</span>= a<span class="nb">^</span>3 + 3a<span class="nb">^</span>2b + 3ab<span class="nb">^</span>2 + b<span class="nb">^</span>3
+ <span class="k">\end</span><span class="nb">{</span>split<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>\begin{equation}
+\begin{split}
+(a + b)^3
+&amp;= (a + b)(a + b)^2            \\<br>
+&amp;= (a + b)(a^2 + 2ab + b^2)    \\<br>
+&amp;= a^3 + 3a^2b + 3ab^2 + b^3
+\end{split}
+\end{equation}</p>
+<div class="admonition tip"><p class="admonition-title">tip</p>
+<p>支持显示公式需要设置mathjax选项为true，支持单个$还需要设置mathjaxEnableSingleDollar为true。</p>
+</div>
+<h1 id="脚注footnote">脚注Footnote</h1>
+<p>脚注主要有数字脚注<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>和命名脚注<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。<br>
+在文章末尾行首以下面的方式可以定义脚注：<br>
+<code>[^数字]: 数字脚注内容</code><br>
+<code>[^名字]: 命名脚注内容</code><br>
+在文中通过 <code>[^数字]</code> 或者 <code>[^名字]</code> 引用即可。<br>
+不过命名脚注显示在页面上还是数字脚注的形式。。。</p>
+<h1 id="任务列表">任务列表</h1>
+<p>任务列表是在无序列表的基础上扩展的，属于GFM标准。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">- [ ] 待测试
+- [x] 已测试
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><input disabled="" type="checkbox"> 待测试</li>
+<li><input checked="" disabled="" type="checkbox"> 已测试</li>
+</ul>
+<h1 id="杂项">杂项</h1>
+<p><a href="https://github.com/olOwOlo/hugo-theme-even">Even主题</a> 本身还支持一些 <a href="https://hugo-theme-even.netlify.app/post/shortcodes/">Shortcodes</a> 以及流程图、时序图。<br>
+由于不是Markdown标准，所以这里就不测试了。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://guides.github.com/features/mastering-markdown">https://guides.github.com/features/mastering-markdown</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-01-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/markdown/">markdown</a>
+          <a href="/tags/gfm/">GFM</a>
+          <a href="/tags/latex/">LaTex</a>
+          <a href="/tags/emoji/">emoji</a>
+          <a href="/tags/picgo/">PicGo</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/hugo%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Hugo添加Algolia搜索支持</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/">
+            <span class="next-text nav-default">迁移博客到Hugo</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>常用数据结构 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录常用的一些数据结构。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="常用数据结构" />
+<meta property="og:description" content="本文主要记录常用的一些数据结构。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" />
+<meta property="article:published_time" content="2020-03-31T15:42:12+08:00" />
+<meta property="article:modified_time" content="2021-03-22T15:42:12+08:00" />
+<meta itemprop="name" content="常用数据结构">
+<meta itemprop="description" content="本文主要记录常用的一些数据结构。">
+<meta itemprop="datePublished" content="2020-03-31T15:42:12+08:00" />
+<meta itemprop="dateModified" content="2021-03-22T15:42:12+08:00" />
+<meta itemprop="wordCount" content="3858">
+
+
+
+<meta itemprop="keywords" content="array,stack,queue,list,hash,tree,heap," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="常用数据结构"/>
+<meta name="twitter:description" content="本文主要记录常用的一些数据结构。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">常用数据结构</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-31 </span>
+        <div class="post-category">
+            <a href="/categories/data-structure/"> data-structure </a>
+            </div>
+          <span class="more-meta"> 约 3858 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#源码实现">源码实现</a></li>
+    <li><a href="#数组">数组</a>
+      <ul>
+        <li><a href="#静态数组">静态数组</a></li>
+        <li><a href="#动态数组">动态数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#栈">栈</a></li>
+    <li><a href="#队列">队列</a>
+      <ul>
+        <li><a href="#fifo队列">FIFO队列</a></li>
+        <li><a href="#优先级队列">优先级队列</a></li>
+        <li><a href="#deque">双端队列deque</a></li>
+      </ul>
+    </li>
+    <li><a href="#list">链表</a>
+      <ul>
+        <li><a href="#双向链表">双向链表</a></li>
+        <li><a href="#单向链表">单向链表</a></li>
+        <li><a href="#循环链表">循环链表</a></li>
+        <li><a href="#跳跃表skiplist">跳跃表skiplist</a></li>
+      </ul>
+    </li>
+    <li><a href="#哈希表">哈希表</a>
+      <ul>
+        <li><a href="#多阶哈希表">多阶哈希表</a></li>
+        <li><a href="#bloom-filter">Bloom Filter</a></li>
+        <li><a href="#cuckoo-filter">Cuckoo Filter</a></li>
+        <li><a href="#cqf">CQF</a></li>
+      </ul>
+    </li>
+    <li><a href="#树">树</a>
+      <ul>
+        <li><a href="#大小堆">大小堆</a>
+          <ul>
+            <li><a href="#二叉堆的特性">二叉堆的特性</a></li>
+            <li><a href="#堆的存储">堆的存储</a></li>
+            <li><a href="#堆的元素插入">堆的元素插入</a></li>
+            <li><a href="#堆的元素删除">堆的元素删除</a></li>
+            <li><a href="#堆的建立">堆的建立</a></li>
+          </ul>
+        </li>
+        <li><a href="#红黑树">红黑树</a></li>
+        <li><a href="#不相交集--并查集">不相交集 / 并查集</a></li>
+        <li><a href="#fenwick-tree">Fenwick tree</a></li>
+        <li><a href="#trie树">trie树</a></li>
+        <li><a href="#赢家树输家树">赢家树,输家树</a></li>
+        <li><a href="#b树系列">B树系列</a></li>
+        <li><a href="#哈夫曼编码树">哈夫曼编码树</a></li>
+      </ul>
+    </li>
+    <li><a href="#位图bitmap">位图bitmap</a></li>
+    <li><a href="#morris-counter">Morris counter</a></li>
+    <li><a href="#环形缓冲">环形缓冲</a></li>
+    <li><a href="#双缓冲">双缓冲</a></li>
+    <li><a href="#图">图</a></li>
+    <li><a href="#组合类型">组合类型</a>
+      <ul>
+        <li><a href="#lru缓存">LRU缓存</a></li>
+        <li><a href="#lfu缓存">LFU缓存</a></li>
+        <li><a href="#定时器">定时器</a>
+          <ul>
+            <li><a href="#红黑树或最小堆">红黑树或最小堆</a></li>
+            <li><a href="#分级时间轮">分级时间轮</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录常用的一些数据结构。</p>
+<h1 id="源码实现">源码实现</h1>
+<p>可以参考开源项目的代码，比如说linux和<a href="/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Bredis/#%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0">redis</a>等。</p>
+<p>通用元素表示：<br>
+C语言中一般是通过<code>void *</code>或者像linux那样内嵌节点实现。<br>
+C++一般是通过泛型，具体参考STL容器即可。<br>
+Go一般就是interface{}。</p>
+<h1 id="数组">数组</h1>
+<h2 id="静态数组">静态数组</h2>
+<p>大小固定的数组，适合存储固定大小的数据，比如说表示月份的字符串。<br>
+底层实现只要元素个数*元素大小的内存空间即可。<br>
+在有些语言中是值语义(如Go)，直接赋值相当于内存拷贝，需要酌情使用。</p>
+<h2 id="动态数组">动态数组</h2>
+<p>可动态调整大小的数组，一般的实现在扩容时有复制旧数据的性能开销。<br>
+可以考虑使用<a href="#deque">deque</a>替代(内部是多个数据块拼接)。<br>
+底层实现一般是指针+实际大小+容量(可选)。<br>
+适合场景：任意位置读取、更新，以及在尾部插入、删除。</p>
+<h1 id="栈">栈</h1>
+<p>适合存储后进先出的数据，操作都在栈顶。在连续的内存空间即可实现栈。<br>
+常见的函数调用、参数传递、局部变量都是栈上操作。<br>
+可以用来模拟递归调用，避免栈溢出。<br>
+在深度优先搜索中也比较常用。<br>
+简单的算术运算可以通过运算数和运算符的压栈、退栈实现。</p>
+<h1 id="队列">队列</h1>
+<h2 id="fifo队列">FIFO队列</h2>
+<p>适合存储先进先出的数据。<br>
+在广度优先搜索中也比较常用。<br>
+具体实现参考STL的queue或linux的sys/queue.h文件。<br>
+基于<a href="#deque">deque</a>或者<a href="#list">链表</a>实现都是可以的。</p>
+<h2 id="优先级队列">优先级队列</h2>
+<p>按优先级出队，适合存储需要按优先级处理的数据。比如说TopN问题。<br>
+一般是通过大堆实现。具体实现参考STL的priority_queue。</p>
+<h2 id="deque">双端队列deque</h2>
+<p>前端、后端皆可快速插入、删除的队列。<br>
+可以简单理解为多个固定大小数据块拼接而成，具体参考STL的deque实现。<br>
+适合撤消历史(环形缓冲可能更适合)或者work-stealing场景使用<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 。</p>
+<h1 id="list">链表</h1>
+<p>可以使用冗余节点或双重指针简化插入、删除操作，快慢指针检查是否存在循环等。<br>
+配合哈希表使用，可以实现一些操作在O(1)的数据结构(比如说LRU, LFU缓存)。<br>
+链表节点一般有1~2个指针，用来存内存占用小的char、short的话就比较浪费空间了(考虑下<a href="#deque">deque</a>吧😏)。</p>
+<h2 id="双向链表">双向链表</h2>
+<p>可正向、反向遍历的链表，已经找到节点的情况下(有指针或迭代器)可快速删除、插入节点。</p>
+<h2 id="单向链表">单向链表</h2>
+<p>只能正向遍历的链表，比双向链表节省空间。</p>
+<h2 id="循环链表">循环链表</h2>
+<p>形成循环的链表，可以模拟环形缓冲。<br>
+STL的list内部通过循环链表实现。</p>
+<h2 id="跳跃表skiplist">跳跃表skiplist</h2>
+<p>随机化数据结构。多层链表，加快查找、插入(随机层数)、删除操作(复杂度为logN)。<br>
+相比平衡树，在内存占用(平均指针更少)、<strong>范围查找</strong>、实现难度(增删操作)等方面有优势。<br>
+具体可以参考redis的实现以及论文《Skip Lists: A Probabilistic Alternative to Balanced Trees》。<br>
+<img src="http://zhangtielei.com/assets/photos_redis/skiplist/search_path_on_skiplist.png" alt="skiplist search path"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">randomLevel()
+    level := 1
+    
+    // random()返回一个[0...1)的随机数
+    while random() &lt; p and level &lt; MaxLevel do
+        level := level + 1
+    
+    return level
+</code></pre></td></tr></table>
+</div>
+</div><p>redis的实现，p为0.25，MaxLevel为32。另外第1层为双向链表。</p>
+<h1 id="哈希表">哈希表</h1>
+<p>在冲突率不高时，查找、插入、删除可在常量时间完成。<br>
+哈希表的快速是靠空间换时间，会多耗一些内存。<br>
+在冲突率高时，需要扩容并重新哈希，建议采用类似redis那样的渐进式rehash。</p>
+<h2 id="多阶哈希表">多阶哈希表</h2>
+<p>通过多次哈希解决冲突、提高空间利用率的哈希表，可以通过一维数组模拟(可放入共享内存)。</p>
+<h2 id="bloom-filter">Bloom Filter</h2>
+<p>快速判断元素是否在集合中。<br>
+比如说垃圾邮件过滤的场景或者辅助加速查询。<br>
+优点是速度快、省空间，缺点是有小概率误报、不能删除元素。</p>
+<h2 id="cuckoo-filter">Cuckoo Filter</h2>
+<p>类似Bloom Filter，支持删除元素(不漏报)。</p>
+<ul>
+<li><a href="http://www.cs.cmu.edu/~binfan/papers/conext14_cuckoofilter.pdf">http://www.cs.cmu.edu/~binfan/papers/conext14_cuckoofilter.pdf</a></li>
+</ul>
+<h2 id="cqf">CQF</h2>
+<ul>
+<li><a href="https://github.com/splatlab/cqf">https://github.com/splatlab/cqf</a></li>
+<li><a href="https://research.vmware.com/files/attachments/0/0/0/0/0/2/9/paper.pdf">https://research.vmware.com/files/attachments/0/0/0/0/0/2/9/paper.pdf</a></li>
+</ul>
+<h1 id="树">树</h1>
+<h2 id="大小堆">大小堆</h2>
+<p>适合存储1~N个极值的数据。<br>
+适合TopN类需求或者优先级队列、定时器的场景。</p>
+<h3 id="二叉堆的特性">二叉堆的特性</h3>
+<ul>
+<li>是完全二叉树或者近似完全二叉树</li>
+<li>父节点的键值总是 &gt;=(或者 &lt;=)子节点的键值</li>
+<li>每个节点的左右子树都是二叉堆</li>
+</ul>
+<p>当父节点键值总是&gt;=子节点键值时称为最大堆，当父节点键值总是&lt;=子节点键值时称为最小堆。<br>
+大小堆就是指最大堆和最小堆，下文主要讲述最大堆。</p>
+<h3 id="堆的存储">堆的存储</h3>
+<p>由于大小堆是(近似)完全二叉树，因此可以用数组(连续内存空间)来表示。</p>
+<p><img src="/images/180208_max_heap_rep.png" alt=""></p>
+<p>对于索引为idx的节点，其父节点索引为(idx-1)/2。<br>
+对于索引为idx的节点，其左节点索引为2*idx+1，其右节点索引为2*idx+2。</p>
+<h3 id="堆的元素插入">堆的元素插入</h3>
+<p>插入元素到堆都是将其放在数组最后，可以发现从新元素的父结点到根节点是有序序列，只要将其插入到这个有序序列即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">MaxHeapFixUp</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// 父节点索引
+</span><span class="c1"></span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">0</span><span class="o">&lt;=</span><span class="n">p</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">idx</span><span class="p">]);</span>
+
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">MaxHeapPush</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">elem</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">arr</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span>
+    <span class="n">MaxHeapFixUp</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="堆的元素删除">堆的元素删除</h3>
+<p>堆只能删除堆顶元素，实际操作是把最后的元素与其交换，然后从堆顶向下调整、恢复堆。<br>
+向下调整的过程，主要是确保父节点&gt;=子节点(最大堆)，如果不满足则跟子节点较大的进行交换。<br>
+上述过程在发生交换的情况下需要递归向下进行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">MaxHeapFixDownEx</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pretendSize</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">pretendSize</span><span class="p">;</span> <span class="c1">// pretendSize &lt;= arr.size()
+</span><span class="c1"></span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 左节点索引
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>       <span class="c1">// 右节点索引
+</span><span class="c1"></span>
+        <span class="c1">// 1) no children nodes
+</span><span class="c1"></span>        <span class="c1">// 2) has left child and no right child and arr[l] &lt;= arr[idx]
+</span><span class="c1"></span>        <span class="c1">// 3) two children and arr[l] &lt;= arr[idx] &amp;&amp; arr[r] &lt;= arr[idx]
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">((</span><span class="n">l</span><span class="o">&gt;=</span><span class="n">size</span> <span class="o">||</span> <span class="n">arr</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+            <span class="o">&amp;&amp;</span>  <span class="p">(</span><span class="n">r</span><span class="o">&gt;=</span><span class="n">size</span> <span class="o">||</span> <span class="n">arr</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// at least left child exists
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="o">&lt;</span><span class="n">size</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+        <span class="p">{</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">m</span><span class="p">]);</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">MaxHeapFixDown</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">MaxHeapFixDownEx</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">idx</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">MaxHeapPop</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">front</span><span class="p">(),</span> <span class="n">arr</span><span class="p">.</span><span class="n">back</span><span class="p">());</span>
+    <span class="n">arr</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+    <span class="n">MaxHeapFixDown</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="堆的建立">堆的建立</h3>
+<p>我们知道叶子节点是二叉堆，所以堆的建立只要从最后的非叶子节点开始往前调整堆即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">MaxHeapMake</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="mi">0</span><span class="o">&lt;=</span><span class="n">idx</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MaxHeapFixDown</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">idx</span><span class="o">--</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="红黑树">红黑树</h2>
+<p>平衡树变种，简化插入、删除后调整树的操作。<br>
+在红黑树的基础上可以实现set、map等容器。<br>
+具体可以参考linux的实现版本。</p>
+<h2 id="不相交集--并查集">不相交集 / 并查集</h2>
+<p>不相交集是一种可以在接近常量的时间内查询和合并的数据结构。<br>
+可以参考boost的disjoint_sets或者《算法(第四版)》1.5章节的实现。<br>
+简化版(没有参数检查)如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">UnionFind</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">id</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sz</span><span class="p">;</span>
+    <span class="n">size_t</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">p</span><span class="o">!=</span><span class="n">id</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+        <span class="p">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">id</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">explicit</span> <span class="n">UnionFind</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span><span class="o">:</span> <span class="n">count</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">sz</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">id</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">id</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="o">*</span><span class="n">it</span> <span class="o">=</span> <span class="n">it</span><span class="o">-</span><span class="n">id</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">size_t</span> <span class="nf">size</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="nf">connected</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">q</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">find</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="n">find</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">connects</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">q</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">sz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="p">{</span>
+            <span class="n">id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+            <span class="n">sz</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">id</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="n">sz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="fenwick-tree">Fenwick tree</h2>
+<p>又叫<code>binary indexed tree</code>，适合求<code>prefix sum</code>的场景。具体参考<a href="https://en.wikipedia.org/wiki/Fenwick_tree">wiki</a>上的说明。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">fenwickTree</span> <span class="p">[]</span><span class="kt">int</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">fenwickTree</span><span class="p">)</span> <span class="nf">add</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">idx</span><span class="o">++</span> <span class="c1">// one-based
+</span><span class="c1"></span>
+	<span class="k">for</span> <span class="nx">idx</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">t</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">val</span>
+		<span class="nx">idx</span> <span class="o">+=</span> <span class="nx">idx</span> <span class="o">&amp;</span> <span class="o">-</span><span class="nx">idx</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">fenwickTree</span><span class="p">)</span> <span class="nf">sum</span><span class="p">(</span><span class="nx">idx</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+
+	<span class="nx">idx</span><span class="o">++</span> <span class="c1">// one-based
+</span><span class="c1"></span>	<span class="k">for</span> <span class="mi">0</span> <span class="p">&lt;</span> <span class="nx">idx</span> <span class="p">{</span>
+		<span class="nx">sum</span> <span class="o">+=</span> <span class="nx">t</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span>
+		<span class="nx">idx</span> <span class="o">-=</span> <span class="nx">idx</span> <span class="o">&amp;</span> <span class="o">-</span><span class="nx">idx</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">sum</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="trie树">trie树</h2>
+<p>前缀树，适合大量字符串检索、去重、前缀匹配、统计等场景。</p>
+<h2 id="赢家树输家树">赢家树,输家树</h2>
+<p>外部排序用到的数据结构，类似小堆可快速取出最小元素(速度快一点)。</p>
+<h2 id="b树系列">B树系列</h2>
+<p>有待补充&hellip;</p>
+<h2 id="哈夫曼编码树">哈夫曼编码树</h2>
+<h1 id="位图bitmap">位图bitmap</h1>
+<p>按位存储的数据结构，节省空间，适合存储类似标志位(比如说大量用户在线状态)的数据。</p>
+<h1 id="morris-counter">Morris counter</h1>
+<p>少量内存大数据量近似计数，算法参考<a href="https://en.wikipedia.org/wiki/Approximate_counting_algorithm">wiki</a>说明。<br>
+简单来说就是只存counter的指数部分，然后类似于抛counter次硬币全部正面才加1到指数部分。</p>
+<h1 id="环形缓冲">环形缓冲</h1>
+<p>环形缓冲(ringbuffer)是单读单写可无锁的数据结构，一般通过数组模拟。</p>
+<ul>
+<li>可写长度为数组长度减一，区分empty和full</li>
+<li>写入：判断是否可以写入，可以的话先写数据，然后原子修改write_index(防止torn read)</li>
+<li>读取：判断是否可以读取，可以的话先读数据，然后原子修改read_index(防止torn read)</li>
+</ul>
+<p>通过多个ringbuffer可以实现多对一的无锁通信。<br>
+这种技巧，在某T厂应用广泛。</p>
+<h1 id="双缓冲">双缓冲</h1>
+<p>空间换取并发安全的数据结构。<br>
+可以用来定时更新配置。<br>
+具体参考 <a href="/post/doublebuffer/">DoubleBuffer</a> 的说明。</p>
+<h1 id="图">图</h1>
+<p>有待补充&hellip;</p>
+<h1 id="组合类型">组合类型</h1>
+<h2 id="lru缓存">LRU缓存</h2>
+<p>LRU(Least Recently Used)底层可以通过哈希表+双向链表实现。<br>
+redis的实现是一种通过随机淘汰(K个)的近似LRU，参考<a href="https://redis.io/topics/lru-cache/#approximated-lru-algorithm">官方文档</a>说明。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// https://leetcode.com/problems/lru-cache/
+</span><span class="c1"></span>
+<span class="k">class</span> <span class="nc">LRUCache</span> <span class="p">{</span>
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">Item</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cap</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">LRUCache</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cap</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="o">==</span> <span class="n">m</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+        <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+        <span class="n">l</span><span class="p">.</span><span class="n">splice</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">l</span><span class="p">,</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">m</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">l</span><span class="p">.</span><span class="n">splice</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">l</span><span class="p">,</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">cap</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">delKey</span> <span class="o">=</span> <span class="n">l</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">key</span><span class="p">;</span>
+
+            <span class="n">m</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">delKey</span><span class="p">);</span>
+            <span class="n">l</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="n">l</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">Item</span><span class="p">{</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">});</span>
+        <span class="n">m</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="lfu缓存">LFU缓存</h2>
+<p>与LRU类似，通过双哈希表+双向链表+minFreq实现O(1)获取、插入(更新)操作。<br>
+一个哈希表按key存储节点指针(迭代器)，一个哈希表按freq存储双向链表(头部存最近访问节点)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// https://leetcode.com/problems/lfu-cache/
+</span><span class="c1"></span>
+<span class="k">class</span> <span class="nc">LFUCache</span> <span class="p">{</span>
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">freq</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">Item</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">cap</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">minFreq</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="o">&gt;</span> <span class="n">kmap</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;&gt;</span> <span class="n">fmap</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">updateFreq</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="o">&amp;</span><span class="n">it</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">oldFreq</span> <span class="o">=</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">freq</span><span class="p">;</span>
+        <span class="k">auto</span> <span class="n">newFreq</span> <span class="o">=</span> <span class="o">++</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">freq</span><span class="p">;</span>
+        <span class="k">auto</span> <span class="n">key</span> <span class="o">=</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">minFreq</span> <span class="o">==</span> <span class="n">oldFreq</span> <span class="o">&amp;&amp;</span> <span class="mi">1</span><span class="o">==</span><span class="n">fmap</span><span class="p">[</span><span class="n">minFreq</span><span class="p">].</span><span class="n">size</span><span class="p">())</span> <span class="c1">// last minFreq item
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="n">minFreq</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">fmap</span><span class="p">[</span><span class="n">newFreq</span><span class="p">].</span><span class="n">push_front</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">);</span>
+        <span class="n">fmap</span><span class="p">[</span><span class="n">oldFreq</span><span class="p">].</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>
+        <span class="n">kmap</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmap</span><span class="p">[</span><span class="n">newFreq</span><span class="p">].</span><span class="n">begin</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">LFUCache</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cap</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">minFreq</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">cap</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">auto</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">kmap</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iter</span> <span class="o">==</span> <span class="n">kmap</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+        <span class="n">updateFreq</span><span class="p">(</span><span class="n">iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">cap</span><span class="p">)</span> <span class="k">return</span> <span class="p">;</span>
+
+        <span class="k">auto</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">kmap</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iter</span> <span class="o">!=</span> <span class="n">kmap</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">updateFreq</span><span class="p">(</span><span class="n">iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">cnt</span> <span class="o">&gt;=</span> <span class="n">cap</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">auto</span> <span class="n">key</span> <span class="o">=</span> <span class="n">fmap</span><span class="p">[</span><span class="n">minFreq</span><span class="p">].</span><span class="n">back</span><span class="p">().</span><span class="n">key</span><span class="p">;</span>
+
+            <span class="n">fmap</span><span class="p">[</span><span class="n">minFreq</span><span class="p">].</span><span class="n">pop_back</span><span class="p">();</span>
+            <span class="n">kmap</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+            <span class="n">cnt</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">minFreq</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">Item</span> <span class="n">it</span><span class="p">{</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">minFreq</span><span class="p">};</span>
+        <span class="n">fmap</span><span class="p">[</span><span class="n">minFreq</span><span class="p">].</span><span class="n">push_front</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>
+        <span class="n">kmap</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmap</span><span class="p">[</span><span class="n">minFreq</span><span class="p">].</span><span class="n">begin</span><span class="p">();</span>
+        <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="定时器">定时器</h2>
+<h3 id="红黑树或最小堆">红黑树或最小堆</h3>
+<p>数量级在O(logN)，比较容易想到的实现方式。<br>
+linux高精度(纳秒级)定时器hrtimer是基于红黑树实现的。</p>
+<h3 id="分级时间轮">分级时间轮</h3>
+<p>具体参考 <a href="https://dl.acm.org/doi/10.1145/41457.37504">论文</a> 的说明，插入、删除、更新都可以在常量时间内完成。<br>
+底层实现是环形缓冲(数组)+双向链表(或哈希链表)，可以参考linux的实现(timer.c) 或者 <a href="https://github.com/wahern/timeout">这个</a>。<br>
+缺点是低精度(毫秒以上)，级联操作时间不确定。<br>
+主要适合设置超时的场景，比如说网络、IO操作的超时。</p>
+<h1 id="参考链接">参考链接</h1>
+<ul>
+<li><a href="https://github.com/amadvance/tommyds">tommyds</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://en.wikipedia.org/wiki/Double-ended_queue#Applications">https://en.wikipedia.org/wiki/Double-ended_queue#Applications</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-22
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/array/">array</a>
+          <a href="/tags/stack/">stack</a>
+          <a href="/tags/queue/">queue</a>
+          <a href="/tags/list/">list</a>
+          <a href="/tags/hash/">hash</a>
+          <a href="/tags/tree/">tree</a>
+          <a href="/tags/heap/">heap</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">内存管理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/">
+            <span class="next-text nav-default">常见算法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interview on 时聆心语</title>
+    <link>https://edward852.github.io/tags/interview/</link>
+    <description>Recent content in interview on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 26 Mar 2018 16:26:58 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>后端开发面试题总结</title>
+      <link>https://edward852.github.io/post/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Mon, 26 Mar 2018 16:26:58 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;本文总结后端开发面试常见的一些题型。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

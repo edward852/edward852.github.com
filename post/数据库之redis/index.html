@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>数据库之redis - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要介绍工作项目中经常使用的数据库—— redis 。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Bredis/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="数据库之redis" />
+<meta property="og:description" content="本文主要介绍工作项目中经常使用的数据库—— redis 。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Bredis/" />
+<meta property="article:published_time" content="2020-05-23T13:22:50+08:00" />
+<meta property="article:modified_time" content="2021-02-23T13:22:50+08:00" />
+<meta itemprop="name" content="数据库之redis">
+<meta itemprop="description" content="本文主要介绍工作项目中经常使用的数据库—— redis 。">
+<meta itemprop="datePublished" content="2020-05-23T13:22:50+08:00" />
+<meta itemprop="dateModified" content="2021-02-23T13:22:50+08:00" />
+<meta itemprop="wordCount" content="2101">
+
+
+
+<meta itemprop="keywords" content="redis,backup,distributed,lock," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据库之redis"/>
+<meta name="twitter:description" content="本文主要介绍工作项目中经常使用的数据库—— redis 。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">数据库之redis</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-05-23 </span>
+        <div class="post-category">
+            <a href="/categories/database/"> database </a>
+            </div>
+          <span class="more-meta"> 约 2101 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#开机启动">开机启动</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据类型">数据类型</a>
+      <ul>
+        <li><a href="#使用">使用</a></li>
+        <li><a href="#内部实现">内部实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#持久化备份">持久化备份</a></li>
+    <li><a href="#多线程">多线程</a></li>
+    <li><a href="#主从哨兵">主从+哨兵</a>
+      <ul>
+        <li><a href="#主从">主从</a></li>
+        <li><a href="#哨兵">哨兵</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用">应用</a>
+      <ul>
+        <li><a href="#缓存">缓存</a></li>
+        <li><a href="#排行榜">排行榜</a></li>
+        <li><a href="#计数器">计数器</a></li>
+        <li><a href="#限时场景">限时场景</a></li>
+        <li><a href="#分页与模糊搜索">分页与模糊搜索</a></li>
+        <li><a href="#相互关系存储">相互关系存储</a></li>
+        <li><a href="#最新列表">最新列表</a></li>
+        <li><a href="#大数据位操作">大数据位操作</a></li>
+        <li><a href="#简单消息队列">简单消息队列</a></li>
+        <li><a href="#秒杀类活动">秒杀类活动</a></li>
+        <li><a href="#分布式锁">分布式锁</a>
+          <ul>
+            <li><a href="#单例获取释放锁">单例获取、释放锁</a></li>
+            <li><a href="#redlock算法">Redlock算法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要介绍工作项目中经常使用的数据库—— <a href="https://redis.io/">redis</a> 。</p>
+<h1 id="安装">安装</h1>
+<p>如果需要通过<code>systemd</code>开机启动，确保安装对应开发包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget https://download.redis.io/redis-stable.tar.gz
+tar xzf redis-*.tar.gz
+<span class="nb">cd</span> redis-*
+
+<span class="c1"># yum install -y systemd-devel</span>
+make <span class="o">&amp;&amp;</span> make install
+
+<span class="c1"># 复制默认配置文件</span>
+mkdir /etc/redis
+cp redis.conf /etc/redis/
+</code></pre></td></tr></table>
+</div>
+</div><p>如果编译不通过大概率是GCC版本低，可以参考 <a href="/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85gcc7.2.0">编译安装GCC7.2.0</a> 操作。</p>
+<h1 id="配置">配置</h1>
+<p>根据需要修改配置文件。</p>
+<ul>
+<li>后台运行
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">daemonize yes
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>设置密码
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">requirepass 密码
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>远程连接
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># bind 127.0.0.1</span>
+protected-mode no
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="开机启动">开机启动</h2>
+<p>配置文件修改<code>supervised</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">supervised systemd
+</code></pre></td></tr></table>
+</div>
+</div><p>增加<code>redis-server.service</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">vi /etc/systemd/system/redis-server.service
+</code></pre></td></tr></table>
+</div>
+</div><p>内容如下，注意redis-server路径和配置文件路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Redis data structure server
+<span class="nv">Documentation</span><span class="o">=</span>https://redis.io/documentation
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/bin/redis-server /etc/redis/redis.conf
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/local/bin/redis-cli shutdown
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="c1">#TimeoutStartSec=1000</span>
+<span class="c1">#TimeoutStopSec=1000</span>
+<span class="c1">#User=root</span>
+<span class="c1">#Group=root</span>
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></td></tr></table>
+</div>
+</div><p>保存之后启动服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl daemon-reload
+systemctl start redis-server
+
+<span class="c1"># 查看状态</span>
+systemctl status redis-server
+
+<span class="c1"># 开机启动</span>
+systemctl <span class="nb">enable</span> redis-server
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="数据类型">数据类型</h1>
+<h2 id="使用">使用</h2>
+<p>具体参考官方说明 <a href="https://redis.io/topics/data-types-intro">Redis data types</a>。</p>
+<h2 id="内部实现">内部实现</h2>
+<p>可以参考张铁蕾的 <a href="http://zhangtielei.com/posts/blog-redis-dict.html">Redis内部数据结构详解</a>。<br>
+其中sds、dict和skiplist值得深入学习。</p>
+<ul>
+<li>sds<br>
+sds一般用来存储string。<br>
+sds包括header和字节数组，而header包括长度(len)、容量(alloc)和标志(flags)。<br>
+header有5种类型，sdshdr5稍微特别一点，其它类型就是长度和容量字节大小(1,2,4,8字节)不一样。<br>
+sds指针实际上指向字节数组，通过前一个字节(flags)得知header类型，进而得到长度和容量信息。<br>
+实际存储会预留一定的空间，一般是翻倍，最多预留SDS_MAX_PREALLOC(1MB)。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sds</span><span class="p">;</span> <span class="cm">/* 实际指向buf */</span>
+  
+<span class="k">struct</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">__packed__</span><span class="p">))</span> <span class="n">sdshdr5</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">flags</span><span class="p">;</span> <span class="cm">/* 3 lsb of type, and 5 msb of string length */</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[];</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">__packed__</span><span class="p">))</span> <span class="n">sdshdr8</span> <span class="p">{</span>
+    <span class="n">uint8_t</span> <span class="n">len</span><span class="p">;</span> <span class="cm">/* used */</span>
+    <span class="n">uint8_t</span> <span class="n">alloc</span><span class="p">;</span> <span class="cm">/* excluding the header and null terminator */</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">flags</span><span class="p">;</span> <span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[];</span>
+<span class="p">};</span>
+  
+<span class="k">struct</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">__packed__</span><span class="p">))</span> <span class="n">sdshdr16</span> <span class="p">{...}</span>
+<span class="k">struct</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">__packed__</span><span class="p">))</span> <span class="n">sdshdr32</span> <span class="p">{...}</span>
+<span class="k">struct</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">__packed__</span><span class="p">))</span> <span class="n">sdshdr64</span> <span class="p">{...}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/redis_sds.png" alt="redis sds"></p>
+</li>
+<li>dict<br>
+开链法哈希表实现，自动扩容时会增量重新哈希。<br>
+重新哈希操作分散在查询、插入、删除中逐步完成。<br>
+哈希表的大小总是2的幂，重新哈希时有2个哈希表，其中一个的大小是另一个的2倍。<br>
+<img src="/images/redis_dict.png" alt="redis dict"></li>
+<li>skiplist<br>
+可以参考 <a href="/post/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#%E8%B7%B3%E8%B7%83%E8%A1%A8skiplist">跳跃表skiplist</a> 的说明。</li>
+<li>ziplist<br>
+在连续内存空间上变长编码存储多个数据项的双向链表。<br>
+适合数据项较少且每项内存占用不大(64B)的场景。<br>
+ziplist: <code>&lt;zlbytes 4B&gt;&lt;zltail 4B&gt;&lt;zllen 2B&gt;&lt;entry&gt;...&lt;entry&gt;&lt;zlend 1B&gt;</code><br>
+<code>entry</code>: <code>&lt;prevlen&gt;&lt;len&gt;&lt;data&gt;</code></li>
+<li>quicklist<br>
+节点是ziplist的双向链表。提高内存使用效率，减少内存碎片。</li>
+<li>intset<br>
+在连续内存空间按统一编码(3种)有序存储整数的数据结构。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">intset</span> <span class="p">{</span>
+    <span class="n">uint32_t</span> <span class="n">encoding</span><span class="p">;</span>
+    <span class="n">uint32_t</span> <span class="n">length</span><span class="p">;</span>
+    <span class="n">int8_t</span> <span class="n">contents</span><span class="p">[];</span>
+<span class="p">}</span> <span class="n">intset</span><span class="p">;</span>
+  
+<span class="cp">#define INTSET_ENC_INT16 (sizeof(int16_t))
+</span><span class="cp">#define INTSET_ENC_INT32 (sizeof(int32_t))
+</span><span class="cp">#define INTSET_ENC_INT64 (sizeof(int64_t))
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="持久化备份">持久化备份</h1>
+<p>具体参考官方说明 <a href="https://redis.io/topics/persistence">Persistence</a>。</p>
+<ul>
+<li>RDB (Redis Database File)<br>
+fork进程在后台生成数据集快照(.rdb文件)。<br>
+可以手动或者自动触发(指定时间内发生指定写操作)。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">save 900 1 
+save 300 10
+save 60 10000
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>AOF (Append Only File) <strong>推荐</strong><br>
+追加方式记录写操作到文件，类似于MySQL的binlog。<br>
+新版本还会自动重写，减小文件大小。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">appendonly yes
+appendfsync everysec
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="多线程">多线程</h1>
+<p>命令执行仍然是单线程模型，多线程用于处理IO。</p>
+<h1 id="主从哨兵">主从+哨兵</h1>
+<h2 id="主从">主从</h2>
+<p>一般是主机可读可写，多个从机只读。<br>
+从机通过<code>slaveof</code>设置其对应的主机：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">slaveof 主机IP 端口
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="哨兵">哨兵</h2>
+<p>参考官方说明 <a href="https://redis.io/topics/sentinel">High Availability</a>。<br>
+哨兵至少3个，采用Raft算法选leader，监控主机并在其发生故障时自动切换主从。</p>
+<h1 id="应用">应用</h1>
+<h2 id="缓存">缓存</h2>
+<h2 id="排行榜">排行榜</h2>
+<p>sorted set的<code>ZADD</code>、<code>ZRANGE</code> 、<code>ZRANK</code>。</p>
+<h2 id="计数器">计数器</h2>
+<p>原子操作命令 <code>INCRBY</code> 。</p>
+<h2 id="限时场景">限时场景</h2>
+<p>通过<code>EXPIRE</code>设置键的超时时间，适合限时优惠券、验证码等场景。</p>
+<h2 id="分页与模糊搜索">分页与模糊搜索</h2>
+<p><code>ZRANGE key min max BYLEX [LIMIT offset count]</code> 。<br>
+比如说<code>ZRANGE movies - + BYLEX LIMIT 0 10</code>，<code>BYLEX</code>可以按内容的词典序排序。</p>
+<h2 id="相互关系存储">相互关系存储</h2>
+<p>比如说点赞、好友关系(共同好友)。<br>
+set的<code>SADD</code>、<code>SISMEMBER</code>、<code>SINTER</code>。</p>
+<h2 id="最新列表">最新列表</h2>
+<p>list的<code>LPUSH</code>、<code>LTRIM</code>、<code>LRANGE</code>。</p>
+<h2 id="大数据位操作">大数据位操作</h2>
+<p>参考官方说明 <a href="https://redis.io/topics/data-types-intro#bitmaps">Bitmaps</a>。<br>
+bitmap的<code>SETBIT、GETBIT、BITCOUNT</code>。<br>
+适合签到、判断是否在线等场景。</p>
+<h2 id="简单消息队列">简单消息队列</h2>
+<p>参考官方说明 <a href="https://redis.io/topics/pubsub">Pus/Sub</a> 。</p>
+<h2 id="秒杀类活动">秒杀类活动</h2>
+<p>单例的情况，使用SET命令与NX、PX选项实现。<br>
+业务逻辑复杂一点的，还可以使用 <a href="https://redis.io/commands/eval">lua脚本</a> 实现原子操作。</p>
+<p>集群的情况，不是很推荐使用分布式锁(高并发性能不高)。<br>
+削峰、限流和分库分表更为重要，最终转化为单例的情况。<br>
+削峰可以通过消息队列缓冲，在时间上分散请求。<br>
+限流可以过滤短时间内重复请求，只允许预约过的用户，限制并发请求量。<br>
+分库分表可以分地区分商品分库存等。</p>
+<h2 id="分布式锁">分布式锁</h2>
+<p>个人认为分布式锁适合低频使用的场景，比如说选主、服务发现之类的。<br>
+具体参考官方说明 <a href="https://redis.io/topics/distlock">Distributed locks</a> 。</p>
+<h3 id="单例获取释放锁">单例获取、释放锁</h3>
+<ul>
+<li>申请
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">SET 资源名称 足够唯一的随机值 NX PX 锁的自动释放时间
+</code></pre></td></tr></table>
+</div>
+</div><p>足够唯一的随机值是指所有客户端获取锁请求中唯一。<br>
+一种可能的实现是随机值、客户端ID和时间戳的组合。</p>
+</li>
+<li>释放
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kr">if</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;get&#34;</span><span class="p">,</span><span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="kr">then</span>
+  <span class="kr">return</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;del&#34;</span><span class="p">,</span><span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="kr">else</span>
+  <span class="kr">return</span> <span class="mi">0</span>
+<span class="kr">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>释放锁的时候需要键和值都匹配。</p>
+</li>
+</ul>
+<h3 id="redlock算法">Redlock算法</h3>
+<p>获取锁步骤：</p>
+<ol>
+<li>获取当前毫秒级别时间</li>
+<li>以相同键值顺序获取所有实例(N个)的锁，超时时间要小于锁的自动释放时间</li>
+<li>计算获取锁的总耗时，小于锁的自动释放时间且超过一半(N/2+1)实例获取锁成功才算真正成功</li>
+<li>真正获取锁成功后，锁的有效时间就是自动释放时间减去步骤3计算的总耗时</li>
+<li>如果没有真正获取到锁，那么需要释放所有实例的锁</li>
+</ol>
+<p>没有真正获取到锁，客户端可以延迟随机时间之后重试。<br>
+释放锁就简单的多，释放所有实例的锁即可。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-02-23
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          <a href="/tags/backup/">backup</a>
+          <a href="/tags/distributed/">distributed</a>
+          <a href="/tags/lock/">lock</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/golang%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Golang逃逸分析与优化</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E4%BD%BF%E7%94%A8perf%E5%88%86%E6%9E%90%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88/">
+            <span class="next-text nav-default">使用perf分析性能瓶颈</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

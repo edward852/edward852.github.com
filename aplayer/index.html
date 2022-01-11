@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>APlayer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <link rel="stylesheet" href="/css/APlayer.min.css">
+    <script src="/js/APlayer.min.js"></script>
+</head>
+
+<body>
+    <div id="vapp"><span>歌曲链接：</span><input v-model="audioUrl" style="width: 30%;"> <span>歌词链接：</span><input
+            v-model="lrcUrl" style="width: 30%;"><button :disabled="btnDisabled" v-on:click="playAudio">播放</button>
+        <div id="aplayer" style="max-width:480px; margin:10px auto">
+        </div>
+    </div>
+    <script>
+        function readMetaData(file) {
+            return new Promise((resolve, reject) => {
+                jsmediatags.read(file, {
+                    onSuccess: resolve,
+                    onError: reject
+                });
+            });
+        }
+
+        var app = new Vue({
+            el: '#vapp',
+            data: {
+                audioUrl: 'https://ipfs.io/ipfs/QmX8YVwFE5vKHQyXUrjds7JVR4WwS2N1DxhPaE7ffYDojC?filename=fairytale-town.mp3',
+                lrcUrl: 'https://ipfs.io/ipfs/QmNut7AgLaLXM51EFngpv9U7F5P5vfCspoj2QKZ9KDv4LK?filename=fairytale-town.lrc',
+                btnDisabled: false
+            },
+            methods: {
+                playAudio: function () {
+                    const { audioUrl, lrcUrl } = this;
+
+                    this.btnDisabled = true;
+                    jsmediatags.Config.setDisallowedXhrHeaders(['If-Modified-Since']);
+                    readMetaData(audioUrl).then(res => {
+                        var tag = res.tags;
+                        const { data, format } = tag.picture;
+                        let base64Str = "";
+
+                        for (var i = 0; i < data.length; i++) {
+                            base64Str += String.fromCharCode(data[i]);
+                        }
+
+                        // todo: dedupe
+                        ap.list.add([{
+                            name: tag.title,
+                            artist: tag.artist,
+                            url: audioUrl,
+                            lrc: lrcUrl,
+                            cover: `data:${format};base64,${window.btoa(base64Str)}`,
+                        }]);
+                        if (ap.audio.paused) {
+                            ap.play();
+                        }
+                    }).catch(err => {
+                        console.log(err);
+                    }).finally(() => {
+                        this.btnDisabled = false;
+                    });
+                }
+            }
+        });
+        var ap = new APlayer({
+            container: document.getElementById('aplayer'),
+            order: 'random',
+            listFolded: false,
+            listMaxHeight: 50,
+            lrcType: 3,
+            audio: [],
+            volume: 0.2,
+            autoplay: false,
+            mutex: true,
+        });
+    </script>
+</body>
+
+</html>

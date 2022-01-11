@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>自用VPS使用备忘录 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录自用VPS的购买与日常使用。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E8%87%AA%E7%94%A8vps%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="自用VPS使用备忘录" />
+<meta property="og:description" content="本文主要记录自用VPS的购买与日常使用。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E8%87%AA%E7%94%A8vps%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/" />
+<meta property="article:published_time" content="2020-08-03T20:07:54+08:00" />
+<meta property="article:modified_time" content="2021-12-09T20:07:54+08:00" />
+<meta itemprop="name" content="自用VPS使用备忘录">
+<meta itemprop="description" content="本文主要记录自用VPS的购买与日常使用。">
+<meta itemprop="datePublished" content="2020-08-03T20:07:54+08:00" />
+<meta itemprop="dateModified" content="2021-12-09T20:07:54+08:00" />
+<meta itemprop="wordCount" content="1153">
+
+
+
+<meta itemprop="keywords" content="vps,v2ray,aria2,rclone,OneDrive,youtube-dl," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自用VPS使用备忘录"/>
+<meta name="twitter:description" content="本文主要记录自用VPS的购买与日常使用。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">自用VPS使用备忘录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-03 </span>
+        <div class="post-category">
+            <a href="/categories/backend/"> backend </a>
+            </div>
+          <span class="more-meta"> 约 1153 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#选购">选购</a></li>
+    <li><a href="#系统">系统</a></li>
+    <li><a href="#登录">登录</a></li>
+    <li><a href="#中文">中文</a></li>
+    <li><a href="#bbr">BBR</a></li>
+    <li><a href="#搭梯子">搭梯子</a></li>
+    <li><a href="#安装aria2和rclone">安装aria2和rclone</a>
+      <ul>
+        <li><a href="#aria2">aria2</a></li>
+        <li><a href="#rclone">rclone</a></li>
+        <li><a href="#下载完自动上传网盘">下载完自动上传网盘</a></li>
+      </ul>
+    </li>
+    <li><a href="#python">python</a></li>
+    <li><a href="#ffmpeg">ffmpeg</a></li>
+    <li><a href="#youtube-dl">youtube-dl</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录自用VPS的购买与日常使用。</p>
+<h1 id="选购">选购</h1>
+<p>除了谷歌、亚马逊可以免费试用的服务器外，我购买过 <code>Vultr</code>、<code>Hostwinds</code> 以及 <code>BandwagonHOST</code> 。<br>
+目前使用的是 <code>BandwagonHOST</code> ，也就是大家都在用的搬瓦工。其他不是不稳定，就是速度不行。<br>
+机房是走CN2 GT线路的DC3，晚上偶尔还是不太稳定，不过速度还是不错的。<br>
+听说CN2 GIA线路的机房更好，不过有点贵，目前还是先将就着用吧。<br>
+后面可能试下大盘鸡，配合网盘使用看看效果如何。</p>
+<h1 id="系统">系统</h1>
+<p>选择安装较新的系统，确认支持BBR(网络稳定时速度更快)。<br>
+我一般选择Centos 8或者ubuntu18.04。</p>
+<h1 id="登录">登录</h1>
+<p>购买之后，首先配置SSH免密登录，具体看 <a href="/post/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95">这里</a> 。<br>
+配完直接用别名登录就可以了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ssh vps
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="中文">中文</h1>
+<p>安装中文语言包，不同系统命令不同。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># centos 8</span>
+yum install -y langpacks-zh_CN
+
+<span class="c1"># ubuntu 18</span>
+apt install -y language-pack-zh-hans
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="bbr">BBR</h1>
+<p>为了最大程度利用带宽，提高传输速度，需要确认开启BBR：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">sysctl net.ipv4.tcp_congestion_control
+<span class="c1"># net.ipv4.tcp_congestion_control = bbr</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>没有的话可以，通过以下命令开启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
+<span class="nb">echo</span> <span class="s2">&#34;net.ipv4.tcp_congestion_control=bbr&#34;</span> &gt;&gt; /etc/sysctl.conf
+sysctl -p
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="搭梯子">搭梯子</h1>
+<p>用的是v2ray，ss稍旧容易被封，trojan较新后面再考虑使用。<br>
+使用一键安装脚本就可以了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 安装</span>
+bash &lt;<span class="o">(</span>curl -s -L https://git.io/v2ray.sh<span class="o">)</span>
+
+<span class="c1"># 查看是否正常运行</span>
+v2ray status
+
+<span class="c1"># 查看订阅地址</span>
+v2ray url
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装aria2和rclone">安装aria2和rclone</h1>
+<p>这两个软件主要用来离线下载和同步网盘。</p>
+<h2 id="aria2">aria2</h2>
+<p>确认安装<code>jq</code>和<code>wget</code>之后，使用一键安装脚本就可以了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget -N git.io/aria2.sh <span class="o">&amp;&amp;</span> chmod +x aria2.sh <span class="o">&amp;&amp;</span> ./aria2.sh
+</code></pre></td></tr></table>
+</div>
+</div><p>有问题可以通过菜单9查看日志定位错误。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">./aria2.sh
+<span class="c1"># 输入9</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>安装之后会显示RPC端口和密钥以及AriaNg链接。<br>
+AriaNg是aria2的web操作界面，可以更方便地管理下载任务和配置。</p>
+<h2 id="rclone">rclone</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">curl https://rclone.org/install.sh <span class="p">|</span> sudo bash
+</code></pre></td></tr></table>
+</div>
+</div><p>安装比较简单，主要是配置网盘麻烦一点。<br>
+VPS一般不装图形界面，所以需要在另外一台电脑上通过 <code>rclone authorize</code> 命令获取授权token。</p>
+<h2 id="下载完自动上传网盘">下载完自动上传网盘</h2>
+<p><code>/root/.aria2c/script.conf</code>配置文件更新网盘信息。<br>
+<code>/root/.aria2c/aria2.conf</code>配置文件找到<code>on-download-complete</code>，<code>clean.sh</code>改为<code>upload.sh</code> 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">on-download-complete<span class="o">=</span>/root/.aria2c/upload.sh
+</code></pre></td></tr></table>
+</div>
+</div><p>重启aria2服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl restart aria2
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="python">python</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># ubuntu 18</span>
+apt install -y python3
+update-alternatives --install /usr/bin/python python /usr/bin/python3 <span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="ffmpeg">ffmpeg</h1>
+<p>ffmpeg用来处理视频挺方便的，比如说合并视频和音频。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># ubuntu 18</span>
+apt install -y ffmpeg
+
+<span class="c1"># 合并视频和音频</span>
+ffmpeg -i talk.mp4 -i talk.m4a -c copy talk-merged.mp4
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="youtube-dl">youtube-dl</h1>
+<p><a href="https://github.com/ytdl-org/youtube-dl">youtube-dl</a>可以下载许多<a href="https://ytdl-org.github.io/youtube-dl/supportedsites.html">视频网站</a>的资源，包括油管、优酷、P站等。<br>
+先安装 <code>python</code> 和 <code>ffmpeg</code> 两个前置依赖项。<br>
+然后按照 <a href="https://github.com/ytdl-org/youtube-dl#installation">官方说明</a> 操作即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+</code></pre></td></tr></table>
+</div>
+</div><p>下载选项很多，这里以油管为例简单示范一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看视频所有格式</span>
+youtube-dl -F video_url
+
+<span class="c1"># 下载视频</span>
+youtube-dl -f <span class="s1">&#39;bestvideo[ext=mp4]+bestaudio[ext=m4a]&#39;</span> -o <span class="s1">&#39;01.%(ext)s&#39;</span> video_url 
+
+<span class="c1"># 下载视频列表所有视频</span>
+youtube-dl -f <span class="s1">&#39;bestvideo[ext=mp4]+bestaudio[ext=m4a]&#39;</span> -o <span class="s1">&#39;playlist/%(playlist_index)s.%(ext)s&#39;</span> playlist_url
+
+<span class="c1"># 下载视频列表中指定视频</span>
+--playlist-items 1,27-30
+</code></pre></td></tr></table>
+</div>
+</div><p>使用的时候注意VPS的硬盘大小和每月流量，适度下载视频资源。<br>
+另外说一句，油管上面有不少国产电视剧的高清资源可以免费下载，遇见合适的赶紧下载同步到网盘吧。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-12-09
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/vps/">vps</a>
+          <a href="/tags/v2ray/">v2ray</a>
+          <a href="/tags/aria2/">aria2</a>
+          <a href="/tags/rclone/">rclone</a>
+          <a href="/tags/onedrive/">OneDrive</a>
+          <a href="/tags/youtube-dl/">youtube-dl</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/golang_error_handling/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Golang错误处理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8Betcd/">
+            <span class="next-text nav-default">数据库之etcd</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

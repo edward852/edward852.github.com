@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on 时聆心语</title>
+    <link>https://edward852.github.io/tags/emacs/</link>
+    <description>Recent content in emacs on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 03 Mar 2020 23:34:28 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CentOS 8编译安装emacs 26.3</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85emacs/</link>
+      <pubDate>Tue, 03 Mar 2020 23:34:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85emacs/</guid>
+      <description>&lt;p&gt;本文主要介绍如何编译、安装Emacs 26.3，以CentOS 8为例。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>通用代码编辑器spacemacs</title>
+      <link>https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/</link>
+      <pubDate>Sat, 24 Mar 2018 22:15:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/</guid>
+      <description>&lt;p&gt;自从 &lt;a href=&#34;http://spacemacs.org/&#34;&gt;spacemacs&lt;/a&gt; 横空出世之后，最好的代码编辑器已经不再是Emacs或者Vim，而是二者合一！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

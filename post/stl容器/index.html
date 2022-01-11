@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>STL容器 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录STL容器的使用笔记。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/stl%E5%AE%B9%E5%99%A8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="STL容器" />
+<meta property="og:description" content="本文主要记录STL容器的使用笔记。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/stl%E5%AE%B9%E5%99%A8/" />
+<meta property="article:published_time" content="2018-03-17T22:21:16+08:00" />
+<meta property="article:modified_time" content="2020-04-30T22:21:16+08:00" />
+<meta itemprop="name" content="STL容器">
+<meta itemprop="description" content="本文主要记录STL容器的使用笔记。">
+<meta itemprop="datePublished" content="2018-03-17T22:21:16+08:00" />
+<meta itemprop="dateModified" content="2020-04-30T22:21:16+08:00" />
+<meta itemprop="wordCount" content="1945">
+
+
+
+<meta itemprop="keywords" content="cpp,stl,container," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="STL容器"/>
+<meta name="twitter:description" content="本文主要记录STL容器的使用笔记。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">STL容器</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-17 </span>
+        <div class="post-category">
+            <a href="/categories/data-structure/"> data-structure </a>
+            <a href="/categories/language/"> language </a>
+            </div>
+          <span class="more-meta"> 约 1945 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#值语义">值语义</a></li>
+    <li><a href="#array">array</a></li>
+    <li><a href="#vector">vector</a>
+      <ul>
+        <li><a href="#vector_bool">vector&lt;bool&gt;</a></li>
+      </ul>
+    </li>
+    <li><a href="#deque">deque</a></li>
+    <li><a href="#queue">queue</a>
+      <ul>
+        <li><a href="#queue-1">queue</a></li>
+        <li><a href="#priority_queue">priority_queue</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack">stack</a></li>
+    <li><a href="#大小堆">大小堆</a></li>
+    <li><a href="#set">set</a>
+      <ul>
+        <li><a href="#set-1">set</a></li>
+        <li><a href="#multiset">multiset</a></li>
+      </ul>
+    </li>
+    <li><a href="#unordered_set">unordered_set</a>
+      <ul>
+        <li><a href="#unordered_set-1">unordered_set</a></li>
+        <li><a href="#unordered_multiset">unordered_multiset</a></li>
+      </ul>
+    </li>
+    <li><a href="#map">map</a>
+      <ul>
+        <li><a href="#map-1">map</a></li>
+        <li><a href="#multimap">multimap</a></li>
+      </ul>
+    </li>
+    <li><a href="#unordered_map">unordered_map</a></li>
+    <li><a href="#list">list</a></li>
+    <li><a href="#forward_list">forward_list</a></li>
+    <li><a href="#bitset">bitset</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录STL容器的使用笔记。</p>
+<h1 id="值语义">值语义</h1>
+<p>插入容器的元素通过copy或者move保存值，在删除的时候销毁元素、释放值。</p>
+<h1 id="array">array</h1>
+<p>静态数组，对C风格数组简单封装。<br>
+size是元素个数，不用像C那样 <code>#define DIM(a) (sizeof(a)/sizeof(a[0]))</code> 定义宏。<br>
+可以当成定长vector来使用，比C风格数组更好用。<br>
+如果元素是基本类型(非class)，那么默认是没有初始化的(除非是静态存储)。<br>
+因此需要使用初始化列表或者赋值进行初始化。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">;</span>          <span class="c1">// uninitialized:  {?,?,?}
+</span><span class="c1"></span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span> <span class="n">second</span> <span class="o">=</span> <span class="p">{};</span>    <span class="c1">// initialized as: {0,0,0}
+</span><span class="c1"></span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span> <span class="n">third</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>  <span class="c1">// initialized as: {1,2,0}
+</span><span class="c1"></span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span> <span class="n">fourth</span> <span class="o">=</span> <span class="n">third</span><span class="p">;</span> <span class="c1">// copied
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="vector">vector</h1>
+<p>动态数组。内部存储空间是连续的，不够时会realloc(有复制的性能开销)。<br>
+查询速度快，但修改(插入、删除)只有在后端才快。<br>
+如果能够预估容量，在构造函数或者<code>reserve</code>方法指定大小能够提高性能。<br>
+另外需要注意reserve只是预分配内存，并不初始化内存，直接访问可能会导致运行时错误。<br>
+删除指定元素习惯用法是<code>erase+remove</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">remove</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">num</span><span class="p">),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="vector_bool">vector&lt;bool&gt;</h2>
+<p>特殊优化的vector，按位存储数据，可以当成bitmap来使用，最大位数可动态改变。<br>
+最大位数固定的话，也可以使用 <a href="#bitset">bitset</a> 。<br>
+适合存储标志位，比如说判断数值是否设置/存在，在特定情况下比unordered_set更快、更省空间。</p>
+<h1 id="deque">deque</h1>
+<p>双端队列，可以在前后端快速插入或取出数据。<br>
+内部存储是多块定长数据块拼接的，空间不足不需要像vector那样realloc复制旧数据。<br>
+有点类似于<code>vector of vector</code>，简单来说就是数据块指针数组。<br>
+在空间不足的时候(比如说<code>push_font</code>)，可能会有数据块指针的复制(不是数据块复制)。<br>
+<img src="https://i.loli.net/2020/03/18/j38hkYeauLNzE26.png" alt=""></p>
+<h1 id="queue">queue</h1>
+<h2 id="queue-1">queue</h2>
+<p>先进先出队列。<br>
+默认通过deque实现，不需要reserve空间。<br>
+<code>pop</code>没有返回值，丢弃前端第一个元素(也就是<code>front</code>)。<br>
+如果front赋值给引用变量，在pop之后就不能使用了。要么用完再pop，要么复制一份。</p>
+<h2 id="priority_queue">priority_queue</h2>
+<p>优先队列。<br>
+默认通过vector+大堆算法操作实现，最大元素在队头(pop的时候会移到队尾)。<br>
+默认比较函数是<code>less&lt;T&gt;</code>，有点反直觉，原因大概是因为STL各种算法默认使用less(比如说sort)。<br>
+自定义比较函数时，需要注意第三个模板参数是类型名，可以参考下面的示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">cmpFunc</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">CmpFunctor</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">auto</span> <span class="n">CustCmp</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">bool</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span> <span class="p">};</span>
+<span class="c1">// 函数指针
+</span><span class="c1"></span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cmpFunc</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">qf</span><span class="p">(</span><span class="n">cmpFunc</span><span class="p">);</span>
+<span class="c1">// lamda函数
+</span><span class="c1"></span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">CustCmp</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">ql</span><span class="p">(</span><span class="n">CustCmp</span><span class="p">);</span>
+<span class="c1">// 仿函数(函数对象)
+</span><span class="c1"></span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">CmpFunctor</span><span class="o">&gt;</span> <span class="n">qo</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>相对而言仿函数的写法比较简单，而且适用于STL中各种容器和算法。</p>
+<h1 id="stack">stack</h1>
+<p>后进先出数据存储。<br>
+默认通过deque实现，不需要reserve空间。<br>
+<code>pop</code>没有返回值，丢弃栈顶元素(也就是<code>top</code>)。<br>
+如果top赋值给引用变量，在pop之后就不能使用了。要么用完再pop，要么复制一份。</p>
+<h1 id="大小堆">大小堆</h1>
+<p>不算容器类，在stl算法类中实现。<br>
+Top N类需求或者优先队列(可以使用priority_queue)、定时器比较常用。</p>
+<h1 id="set">set</h1>
+<p>基于红黑树的set，内部有序(可有序遍历)。<br>
+通常比unordered_set要慢。</p>
+<h2 id="set-1">set</h2>
+<p>存储不重复数据的集合。</p>
+<h2 id="multiset">multiset</h2>
+<p>可存储重复数据的集合。</p>
+<h1 id="unordered_set">unordered_set</h1>
+<p>基于哈希表的set，无序但比set性能更优。<br>
+另外要求值类型要有对应的hash函数。自定义hash函数可以参考下面的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">PairHasher</span> <span class="p">{</span>
+    <span class="n">hash</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">&gt;</span> <span class="n">h</span><span class="p">;</span>
+    
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">size_t</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">h</span><span class="p">(((</span><span class="kt">uint64_t</span><span class="p">)(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">32</span><span class="p">)</span> <span class="o">+</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="n">unordered_set</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">PairHasher</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>函数指针或者lamda也可以，不过写法比较麻烦，所以还是尽量用仿函数。</p>
+<h2 id="unordered_set-1">unordered_set</h2>
+<h2 id="unordered_multiset">unordered_multiset</h2>
+<h1 id="map">map</h1>
+<p>基于红黑树的map，内部有序(可有序遍历)。存储键值型数据。<br>
+通常比unordered_map要慢。<br>
+值类型是pair，first为键，second为值。</p>
+<h2 id="map-1">map</h2>
+<p>存储不重复键值型数据。<br>
+有重载<code>[]</code>运算符。</p>
+<h2 id="multimap">multimap</h2>
+<p>可存储重复键值型数据。<br>
+没有重载<code>[]</code>运算符，需要键值make_pair后insert。</p>
+<h1 id="unordered_map">unordered_map</h1>
+<p>基于哈希表的map，无序但比map性能更优。<br>
+另外要求key的类型要有对应的hash函数，自定义hash函数建议使用仿函数方式。</p>
+<h1 id="list">list</h1>
+<p>双向链表。<br>
+在有节点迭代器时插入、删除操作比较快。<br>
+缺点是不能根据位置直接访问，需要遍历才行。<br>
+与哈希表配合使用，可以实现一些操作在O(1)的数据结构(比如说LRU，LFU)。<br>
+最后元素的迭代器可以通过end()自减获得。<br>
+通过 <code>splice</code> 可以实现链表(不同或同一链表皆可)节点的转移。<br>
+STL内部实现一般是循环链表，通过一个代表end的内部节点管理。<br>
+链表迭代器可以简单理解为拥有指向节点指针的对象。</p>
+<h1 id="forward_list">forward_list</h1>
+<p>单向链表。<br>
+类似双向链表，只能正向遍历，比list节约空间。</p>
+<h1 id="bitset">bitset</h1>
+<p>bitmap，按位(bit)存储数据，节省空间，特别适合标志位存储。<br>
+bitset最大位数是编译时确定的，如果需要动态大小可以使用 <a href="#vector_bool">vector&lt;bool&gt;</a>。<br>
+另外bitset局部变量是分配在栈上，大小指定太大会导致栈溢出，需要通过new分配在堆上。</p>
+<h1 id="参考资料">参考资料</h1>
+<ul>
+<li>《STL源码剖析》 by 侯捷</li>
+<li><a href="https://github.com/electronicarts/EASTL">EASTL</a></li>
+<li><a href="http://www.cplusplus.com/reference/stl/">cpp reference</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-30
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cpp/">cpp</a>
+          <a href="/tags/stl/">stl</a>
+          <a href="/tags/container/">container</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/stl%E7%AE%97%E6%B3%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">STL算法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/c&#43;&#43;11%E7%AC%94%E8%AE%B0/">
+            <span class="next-text nav-default">C&#43;&#43;11笔记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

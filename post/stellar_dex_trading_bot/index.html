@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Stellar DEX交易机器人 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要讲述一个玩具性质的Stellar DEX交易机器人的实现思路。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/stellar_dex_trading_bot/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Stellar DEX交易机器人" />
+<meta property="og:description" content="本文主要讲述一个玩具性质的Stellar DEX交易机器人的实现思路。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/stellar_dex_trading_bot/" />
+<meta property="article:published_time" content="2021-03-03T21:20:08+08:00" />
+<meta property="article:modified_time" content="2021-03-31T21:20:08+08:00" />
+<meta itemprop="name" content="Stellar DEX交易机器人">
+<meta itemprop="description" content="本文主要讲述一个玩具性质的Stellar DEX交易机器人的实现思路。">
+<meta itemprop="datePublished" content="2021-03-03T21:20:08+08:00" />
+<meta itemprop="dateModified" content="2021-03-31T21:20:08+08:00" />
+<meta itemprop="wordCount" content="1289">
+
+
+
+<meta itemprop="keywords" content="stellar,xlm,dex,bot," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Stellar DEX交易机器人"/>
+<meta name="twitter:description" content="本文主要讲述一个玩具性质的Stellar DEX交易机器人的实现思路。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Stellar DEX交易机器人</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-03 </span>
+        <div class="post-category">
+            <a href="/categories/fun/"> fun </a>
+            <a href="/categories/cryptocurrency/"> cryptocurrency </a>
+            </div>
+          <span class="more-meta"> 约 1289 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#参考文档">参考文档</a></li>
+    <li><a href="#交易策略">交易策略</a></li>
+    <li><a href="#实现">实现</a>
+      <ul>
+        <li><a href="#私钥安全">私钥安全</a></li>
+        <li><a href="#趋势判断">趋势判断</a></li>
+        <li><a href="#定期均衡">定期均衡</a></li>
+        <li><a href="#追跌杀涨">追跌杀涨</a></li>
+        <li><a href="#止损">止损</a></li>
+        <li><a href="#杂项">杂项</a></li>
+      </ul>
+    </li>
+    <li><a href="#后记">后记</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要讲述一个玩具性质的Stellar DEX交易机器人的实现思路。</p>
+<h1 id="背景">背景</h1>
+<p>只是一个不开源、玩具性质、大概率亏钱的交易机器人实现思路😂。<br>
+Stellar官方有一个免费、开源的 <a href="https://github.com/stellar/kelp">Kelp</a> 做市机器人，有需要的可以自行收藏、使用。</p>
+<p>为什么选择Stellar DEX？</p>
+<ul>
+<li>自己控制资产<br>
+私钥自己保管，交易记录都在分布式账簿上(防篡改)。<br>
+中心化交易所(如币安)只是记录在数据库，跑路或者被黑客盗窃(已经发生过)将会血本无归。</li>
+<li>费用低<br>
+基本上不超过1分钱，与交易额无关。<br>
+中心化交易所都是千分之几的费率，与交易额正相关。</li>
+<li>速度快<br>
+秒级别的交易速度，比起比特币小时级别(6个确认)快多了。<br>
+不过还是比中心化交易所慢一些，毕竟后者只是更新内部数据库而已。</li>
+</ul>
+<p>Stellar DEX缺点：流动性不高，大部分时间都是机器人在操作(机器人间的PK😂)。</p>
+<h1 id="参考文档">参考文档</h1>
+<p>Stellar官方<a href="https://developers.stellar.org/docs">说明文档</a>以及<a href="https://developers.stellar.org/api">API文档</a>。
+SDK在<a href="https://developers.stellar.org/docs/software-and-sdks">这里</a>，其中Go SDK参考<a href="https://pkg.go.dev/github.com/stellar/go/clients/horizonclient">Horizonclient</a>和<a href="https://pkg.go.dev/github.com/stellar/go/txnbuild">txnbuild</a>。</p>
+<h1 id="交易策略">交易策略</h1>
+<p>简单来说就是定期调整+追跌杀涨的反套路交易策略。<br>
+想法来源于香农投资手法，定期均衡资产(股票和现金)，在股价上涨时卖出、下跌时买入。<br>
+听说香农投资手法由于交易费较贵在现实股市不太可行，还不如买指数基金。<br>
+Stellar网络本身使用费用基本可以忽略不记，所以尝试使用该策略(变种)在DEX上面自动交易。</p>
+<hr>
+<p>0310更新: 定期均衡本身不产生亏损或盈利，效果是涨和跌的幅度折半。<br>
+不过均衡资产适合作为机器人持续运转的原点。</p>
+<h1 id="实现">实现</h1>
+<h2 id="私钥安全">私钥安全</h2>
+<p>因为加密货币由私钥保管，所以代码和配置中不能明文保存。<br>
+私钥经过加密、转换后分开几部分保存。<br>
+另外可执行文件去掉调试信息和符号表。</p>
+<h2 id="趋势判断">趋势判断</h2>
+<p>通过多个周期MA判断，有一定的滞后性。</p>
+<hr>
+<p>0310更新: 目前没使用该指标。</p>
+<h2 id="定期均衡">定期均衡</h2>
+<p><del>上升期降低加密货币占比，下降期提高加密货币占比，其余时候1:1分配。</del><br>
+目前DEX流动性不足，恒定1:1。</p>
+<h2 id="追跌杀涨">追跌杀涨</h2>
+<p>涨得多卖出，跌得多买入，提前根据收市价设置多级买单和卖单。</p>
+<hr>
+<p>0310更新: 采用长周期MA偏离幅度和中周期MA回踩作为买卖点，适用性待观察。</p>
+<hr>
+<p>0317更新：长周期MA偏离幅度作为介入点效果挺好。不过中周期MA回踩稍微有点滞后(也会更新)。<br>
+改为基于介入点持仓成本达到一定幅度盈利再度介入(买入或卖出)。</p>
+<h2 id="止损">止损</h2>
+<p>0317更新：设置止损点，应对介入之后持续上升、持续下降情况。</p>
+<h2 id="杂项">杂项</h2>
+<ul>
+<li>交易额控制<br>
+买单和卖单控制交易额，避免引起不必要的波动。</li>
+<li>总额限制<br>
+交易机器人帐号总额达到一定程度会转账部分盈利到硬件钱包(梦想还是要有的💰)。</li>
+<li>开机启动<br>
+7x24小时自动交易的工具人</li>
+</ul>
+<h1 id="后记">后记</h1>
+<p>这个交易机器人大概率是亏钱的，不过还是交由时间和币市来验证吧~<br>
+后面不定期更新，看看实际效果。</p>
+<ul>
+<li>[210303] 开始交易 <code>USDC/XLM</code></li>
+<li>[210310] 记录数据: 0.430269, 3221.942763, 1381.207066。追跌杀涨逻辑调整。</li>
+<li>[210317] 记录数据: 0.393697, 3419.185749, 1346.608882。追跌杀涨逻辑微调。</li>
+<li>[210324] 记录数据: 0.394846, 3487.346077, 1380.455513。</li>
+<li>[210331] 记录数据: 0.393264, 3509.151102, 1380.022412。</li>
+</ul>
+<p>上周刚说完追跌杀涨还没打脸，第二天就暴跌13%触发了止损亏了2.5%。<br>
+当然这种暴跌行情止损挺正常，谁知道会不会继续暴跌？<br>
+后面又慢慢恢复，追跌杀涨成功了几次，今天看来基本维持上周的收益率。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-31
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/stellar/">stellar</a>
+          <a href="/tags/xlm/">xlm</a>
+          <a href="/tags/dex/">dex</a>
+          <a href="/tags/bot/">bot</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/golang%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Golang程序性能分析</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2%E7%AC%94%E8%AE%B0/">
+            <span class="next-text nav-default">投资理财笔记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

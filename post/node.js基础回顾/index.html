@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Node.js基础 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="认识 Node.js 是在一个偶然的机会，当时搭建页面框架需要压缩页面，用到了Node.js模块 html-minifier 。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/node.js%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Node.js基础" />
+<meta property="og:description" content="认识 Node.js 是在一个偶然的机会，当时搭建页面框架需要压缩页面，用到了Node.js模块
+html-minifier 。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/node.js%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/" />
+<meta property="article:published_time" content="2017-09-18T14:16:28+08:00" />
+<meta property="article:modified_time" content="2020-02-28T14:05:28+08:00" />
+<meta itemprop="name" content="Node.js基础">
+<meta itemprop="description" content="认识 Node.js 是在一个偶然的机会，当时搭建页面框架需要压缩页面，用到了Node.js模块
+html-minifier 。">
+<meta itemprop="datePublished" content="2017-09-18T14:16:28+08:00" />
+<meta itemprop="dateModified" content="2020-02-28T14:05:28+08:00" />
+<meta itemprop="wordCount" content="1304">
+
+
+
+<meta itemprop="keywords" content="node.js,npm," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Node.js基础"/>
+<meta name="twitter:description" content="认识 Node.js 是在一个偶然的机会，当时搭建页面框架需要压缩页面，用到了Node.js模块
+html-minifier 。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Node.js基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-09-18 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> language </a>
+            </div>
+          <span class="more-meta"> 约 1304 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#node安装">node安装</a></li>
+    <li><a href="#npm与cnpm">npm与cnpm</a></li>
+    <li><a href="#node版本管理">Node版本管理</a></li>
+    <li><a href="#离线安装模块">离线安装模块</a></li>
+    <li><a href="#hello-world">Hello World</a></li>
+    <li><a href="#小结">小结</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>认识 <a href="https://nodejs.org">Node.js</a> 是在一个偶然的机会，当时搭建页面框架需要压缩页面，用到了Node.js模块
+<a href="https://www.npmjs.com/package/html-minifier">html-minifier</a> 。</p>
+<p>要使用html-minifier首先要安装Node.js，然后再通过npm安装。</p>
+<h1 id="node安装">node安装</h1>
+<p>不同平台安装Node.js都比较简单，到 <a href="https://nodejs.org/en/download">官网下载页</a> 下载相应版本即可。<br>
+macOS建议下载、安装 <code>.pkg</code> 格式的安装包。<br>
+linux把压缩包直接解压到 <code>/usr/local</code> 即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">tar -C /usr/local/ --strip-components<span class="o">=</span><span class="m">1</span> -xf node-*.tar.xz
+</code></pre></td></tr></table>
+</div>
+</div><p>Node.js我个人的使用感受是Windows上比较慢、问题较多，而Linux和Mac上比较快、问题较少。</p>
+<h1 id="npm与cnpm">npm与cnpm</h1>
+<p>npm是Node.js的包管理器，主要用来安装模块。不过国内用过的人都知道，npm下载非常的慢！<br>
+幸运的是我们有国内的镜像源，也就是<a href="http://npm.taobao.org/"> 淘宝NPM镜像</a>
+, 通过它可以大大加快模块安装的速度。<br>
+使用方法一是设置npm的registry为https://registry.npm.taobao.org
+，设置命令是npm set registry。<br>
+使用方法二是安装cnpm：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ npm install -g cnpm --registry<span class="o">=</span>https://registry.npm.taobao.org
+</code></pre></td></tr></table>
+</div>
+</div><p>后续就可以通过cnpm像npm一样的安装模块了。个人比较推荐第二种方法。</p>
+<h1 id="node版本管理">Node版本管理</h1>
+<p>Node.js版本更新很快，记得我最早使用的是0.10.21版本，现在最新都已经到了8.5.0版本。<br>
+更新或者管理node版本，可以通过n模块实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-{.bash" data-lang="{.bash">$ npm install -g n
+</code></pre></td></tr></table>
+</div>
+</div><p>常用的就是n latest或者n lts命令了。没有特别需求的话，建议安装lts(Long
+Term Support)版本，不用频繁更新。</p>
+<h1 id="离线安装模块">离线安装模块</h1>
+<p>正如国内被墙一样，公司内一般也会限制访问外部网站，所以经常出现安装模块失败的情况，根源都在于某些url访问不了。<br>
+申请访问权限手续麻烦是一方面，另一方面是我们不清楚模块安装的过程都要访问哪些url，来回多次申请肯定是不现实的。<br>
+还好已经有现成的模块可以解决这个问题，就是
+<a href="https://www.npmjs.com/package/npmbox">npmbox</a> 。<br>
+npmbox其实有个鸡生蛋还是蛋生鸡的问题，就是离线安装模块需要用到npmbox，而npmbox本身也需要安装，也需要访问许多外网地址&hellip;<br>
+npmbox解决这个问题的方法还是挺巧妙的，就是在能访问外网的电脑上(比如说你自己家里的电脑)先把npmbox需要的资源都先下载好弄成压缩包，然后再转到公司网络内(作为研发人员这种权限都有吧)，最后解压、作为npm的cache文件夹安装npmbox。<br>
+说到这里，可能有人会问，公司内怎么安装Node.js？如果外网访问权限高当然是直接安装就好了，只有传入文件的权限，那么就只能通过下载安装包进行安装了。<br>
+下载、安装完npmbox后，安装其他模块的基本流程也是差不多的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-{.bash" data-lang="{.bash">$ npmunbox xxxModule.npmbox
+</code></pre></td></tr></table>
+</div>
+</div><p>其中xxxModule.npmbox就是在外网通过npmbox下载、生成的压缩包，可以在内网离线安装。</p>
+<h1 id="hello-world">Hello World</h1>
+<p>Node.js官方文档上有Hello World的
+<a href="https://nodejs.org/api/synopsis.html#synopsis_example">example</a>
+，是一个简单的Web服务器返回Hello
+World页面的例子，展示了Node.js的简洁与强大。<br>
+我这里也简单的举个例子，首先新建一个example.js文件，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">console.log(&#39;Hello World!&#39;);
+</code></pre></td></tr></table>
+</div>
+</div><p>然后执行命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-{.bash" data-lang="{.bash">$ node example.js
+</code></pre></td></tr></table>
+</div>
+</div><p>一个超简单的hello world就出来啦。</p>
+<h1 id="小结">小结</h1>
+<p>本文主要是解决搭建Node.js开发环境可能遇到的一些比较基础的问题，深入的掌握还需要通过查看
+<a href="https://nodejs.org/api/">api文档</a> 和实践来解决。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-02-28
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/node.js/">node.js</a>
+          <a href="/tags/npm/">npm</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/node.js%E8%B0%83%E8%AF%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Node.js调试</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/foxmail%E5%8A%A0davmail%E8%AE%BF%E9%97%AEexchange%E9%82%AE%E7%AE%B1/">
+            <span class="next-text nav-default">Foxmail&#43;DavMail访问Exchange邮箱</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

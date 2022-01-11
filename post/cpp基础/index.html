@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43;基础 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要参考 Learn X in Y minutes上的教程介绍C&#43;&#43;相关的基础知识。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/cpp%E5%9F%BA%E7%A1%80/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="C&#43;&#43;基础" />
+<meta property="og:description" content="本文主要参考 Learn X in Y minutes上的教程介绍C&#43;&#43;相关的基础知识。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/cpp%E5%9F%BA%E7%A1%80/" />
+<meta property="article:published_time" content="2018-03-06T16:19:28+08:00" />
+<meta property="article:modified_time" content="2020-03-21T16:19:28+08:00" />
+<meta itemprop="name" content="C&#43;&#43;基础">
+<meta itemprop="description" content="本文主要参考 Learn X in Y minutes上的教程介绍C&#43;&#43;相关的基础知识。">
+<meta itemprop="datePublished" content="2018-03-06T16:19:28+08:00" />
+<meta itemprop="dateModified" content="2020-03-21T16:19:28+08:00" />
+<meta itemprop="wordCount" content="5761">
+
+
+
+<meta itemprop="keywords" content="cpp," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;基础"/>
+<meta name="twitter:description" content="本文主要参考 Learn X in Y minutes上的教程介绍C&#43;&#43;相关的基础知识。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C&#43;&#43;基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-06 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> language </a>
+            </div>
+          <span class="more-meta"> 约 5761 字 </span>
+          <span class="more-meta"> 预计阅读 12 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#头文件">头文件</a></li>
+    <li><a href="#命名空间">命名空间</a></li>
+    <li><a href="#输入输出">输入/输出</a></li>
+    <li><a href="#字符串">字符串</a>
+      <ul>
+        <li><a href="#string">string</a></li>
+        <li><a href="#wstring">wstring</a></li>
+        <li><a href="#stringstream">stringstream</a></li>
+      </ul>
+    </li>
+    <li><a href="#引用">引用</a></li>
+    <li><a href="#类与面向对象编程">类与面向对象编程</a>
+      <ul>
+        <li><a href="#初始化与运算符重载">初始化与运算符重载</a></li>
+        <li><a href="#继承">继承</a></li>
+        <li><a href="#静态成员变量">静态成员变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#模板">模板</a></li>
+    <li><a href="#异常处理">异常处理</a>
+      <ul>
+        <li><a href="#try-catch">try catch</a></li>
+        <li><a href="#goto-或-do-while0">goto 或 do while(0)</a></li>
+      </ul>
+    </li>
+    <li><a href="#raii">RAII</a></li>
+    <li><a href="#单例模式">单例模式</a></li>
+    <li><a href="#杂项misc">杂项Misc</a>
+      <ul>
+        <li><a href="#函数重载">函数重载</a></li>
+        <li><a href="#参数默认值设置">参数默认值设置</a></li>
+        <li><a href="#空指针">空指针</a></li>
+        <li><a href="#严格原型">严格原型</a></li>
+        <li><a href="#extern-c">extern &ldquo;C&rdquo;</a></li>
+      </ul>
+    </li>
+    <li><a href="#stl">STL</a>
+      <ul>
+        <li><a href="#容器">容器</a></li>
+        <li><a href="#算法">算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要参考 <a href="https://learnxinyminutes.com/docs/c%2B%2B/">Learn X in Y minutes</a>上的教程介绍C++相关的基础知识。</p>
+<p>相对于C语言，C++具有以下特点：</p>
+<ul>
+<li>支持数据的抽象与封装</li>
+<li>支持面向对象编程</li>
+<li>支持泛型编程</li>
+</ul>
+<h1 id="头文件">头文件</h1>
+<p>C语言的标准库头文件可以在C++中使用，方法是加上&quot;c&quot;前缀、去掉.h后缀。<br>
+C++标准库的头文件使用时也不需要指定后缀，比如说iostream。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="命名空间">命名空间</h1>
+<p>C++引入了命名空间(namespace)概念，为变量、函数、类等提供隔离的作用域，防止命名冲突。<br>
+通过namespace关键字可以定义命名空间(允许嵌套)。\</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">namespace</span> <span class="n">MyMod</span> <span class="p">{</span>
+    <span class="k">namespace</span> <span class="n">MySubMod</span> <span class="p">{</span>
+        <span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;This is MyMod::MySubMod::foo</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="c1">// end nested namespace MySubMod
+</span><span class="c1"></span><span class="p">}</span> <span class="c1">// end namespace MyMod
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;This is global foo</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">MyMod</span><span class="o">::</span><span class="n">MySubMod</span><span class="o">::</span><span class="n">foo</span><span class="p">();</span>
+
+    <span class="o">::</span><span class="n">foo</span><span class="p">();</span> <span class="c1">// using global namespace
+</span><span class="c1"></span>    <span class="n">foo</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过using
+namespace可以引入指定命名空间内所有symbol，比如说std命名空间。\</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>又或者只引入某个symbol：\</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="输入输出">输入/输出</h1>
+<p>C++使用&quot;流&quot;来输入输出。<br>
+通过<code>&lt;&lt;</code>输入数据到流中。<br>
+通过<code>&gt;&gt;</code>从流中输出数据。<br>
+cin、cout、和cerr分别对应stdin(标准输入)、stdout(标准输出)和stderr(标准错误)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt; // 引入输入/输出流的头文件uint64_t在32位使用%llu，在64位使用%lu打印</span><span class="cp">
+</span><span class="cp"></span><span class="n">C99还可以使用PRIu64打印uint64</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> <span class="c1">// 引入std命名空间中的符号，包括cin、cout等
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">myInt</span><span class="p">;</span>
+
+   <span class="c1">// 在标准输出中显示
+</span><span class="c1"></span>   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Enter your favorite number:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+   <span class="c1">// 从标准输入取值
+</span><span class="c1"></span>   <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">myInt</span><span class="p">;</span>
+   <span class="c1">// 显示“Your favorite number is &lt;myInt&gt;”
+</span><span class="c1"></span>   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Your favorite number is &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">myInt</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果需要实现类似于printf这样控制宽度、精度、对齐、进制(base)的效果，有两种选择：</p>
+<ul>
+<li>引入cstdio头文件使用printf函数</li>
+<li>通过 <a href="http://www.cplusplus.com/reference/ios/ios_base/"><code>ios_base类</code></a> 进行设置</li>
+</ul>
+<p>uint64_t打印在32位平台使用%llu，在64位平台使用%lu。<br>
+支持C99标准的话可以使用PRIu64打印。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">uint64_t</span> <span class="n">u64</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;u64: %&#34;</span><span class="n">PRIu64</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">u64</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="字符串">字符串</h1>
+<h2 id="string">string</h2>
+<p>C++中的字符串是string类，提供比char *更好的封装与功能。<br>
+可以使用+或者+=拼接字符串(通过运算符重载实现)。<br>
+<code>to_string</code> 可以将常见类型转换为string类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> <span class="c1">// std::string
+</span><span class="c1"></span>
+<span class="n">string</span> <span class="n">strHello</span> <span class="o">=</span> <span class="s">&#34;Hello&#34;</span><span class="p">;</span>
+<span class="n">string</span> <span class="n">strWorld</span> <span class="o">=</span> <span class="s">&#34; World&#34;</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">strHello</span> <span class="o">+</span> <span class="n">strWorld</span><span class="p">;</span> <span class="c1">// &#34;Hello World&#34;
+</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">strHello</span> <span class="o">+</span> <span class="s">&#34; You&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="wstring">wstring</h2>
+<p>对于非英文字符串应该使用wstring存储，比如说中文。<br>
+string虽然也可以存储，但实际上是以char作为字符单元，类似计算长度、反转等操作结果并不正确。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">wcout</span><span class="p">.</span><span class="n">imbue</span><span class="p">(</span><span class="n">locale</span><span class="p">(</span><span class="s">&#34;zh_CN.UTF-8&#34;</span><span class="p">));</span>
+
+    <span class="n">wstring</span> <span class="n">zhHello</span> <span class="o">=</span> <span class="sa">L</span><span class="s">&#34;你好吗？&#34;</span><span class="p">;</span>
+
+    <span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="n">zhHello</span> <span class="o">&lt;&lt;</span> <span class="sa">L</span><span class="s">&#34; 长度： &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">to_wstring</span><span class="p">(</span><span class="n">zhHello</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 显示 &#34;你好吗？ 长度： 4&#34;
+</span><span class="c1"></span>
+    <span class="n">reverse</span><span class="p">(</span><span class="n">zhHello</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">zhHello</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="n">zhHello</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 显示 &#34;？吗好你&#34;
+</span><span class="c1"></span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="stringstream">stringstream</h2>
+<p>如果有比较多的拼接操作，那么可以考虑使用stringstream提高效率。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+<span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Your age is &#34;</span> <span class="o">&lt;&lt;</span> <span class="mi">28</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意清除内容不是<code>.clear()</code> 而是 <code>.str(&quot;&quot;)</code> 。</p>
+<h1 id="引用">引用</h1>
+<p>C++提供引用来设置变量别名，本质上是特殊的指针，初始化后不能重新赋值。<br>
+使用引用时的语法与原变量相同：不需要通过*解引用。<br>
+常量引用不允许改变变量的值。\</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="n">foo</span> <span class="o">=</span> <span class="s">&#34;I am foo&#34;</span><span class="p">;</span>
+<span class="n">string</span> <span class="n">bar</span> <span class="o">=</span> <span class="s">&#34;I am bar&#34;</span><span class="p">;</span>
+
+<span class="n">string</span><span class="o">&amp;</span> <span class="n">fooRef</span> <span class="o">=</span> <span class="n">foo</span><span class="p">;</span> <span class="c1">// 建立了一个对foo的引用。
+</span><span class="c1"></span><span class="n">fooRef</span> <span class="o">+=</span> <span class="s">&#34;. Hi!&#34;</span><span class="p">;</span> <span class="c1">// 通过引用来修改foo的值
+</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fooRef</span><span class="p">;</span> <span class="c1">// &#34;I am foo. Hi!&#34;
+</span><span class="c1"></span>
+<span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">barRef</span> <span class="o">=</span> <span class="n">bar</span><span class="p">;</span> <span class="c1">// 建立指向bar的常量引用。
+</span><span class="c1">// 和C语言中一样，（指针和引用）声明为常量时，对应的值不能被修改。
+</span><span class="c1"></span><span class="n">barRef</span> <span class="o">+=</span> <span class="s">&#34;. Hi!&#34;</span><span class="p">;</span> <span class="c1">// 这是错误的，不能修改一个常量引用的值。
+</span></code></pre></td></tr></table>
+</div>
+</div><p>对于临时对象的常量引用会使其生命周期延长到当前作用域。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">tempObjectFun</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="n">string</span> <span class="n">retVal</span> <span class="o">=</span> <span class="n">tempObjectFun</span><span class="p">();</span>
+
+<span class="c1">// 第二行代码实际上做了以下操作：
+</span><span class="c1">//   - tempObjectFun返回一个string对象
+</span><span class="c1">//   - 以返回的对象为参数调用构造函数生成新的string对象
+</span><span class="c1">//   - 销毁返回的对象
+</span><span class="c1">// 返回的对象就是临时对象。
+</span><span class="c1">// 临时对象在函数返回对象的时候创建，在表达式求值结束时销毁(编译器可能会优化)
+</span><span class="c1"></span><span class="n">foo</span><span class="p">(</span><span class="n">bar</span><span class="p">(</span><span class="n">tempObjectFun</span><span class="p">()))</span>
+
+<span class="c1">// 假设foo和bar都存在，tempObjectFun返回的对象传递给了bar并在foo调用前销毁
+</span><span class="c1">// 在表达式求值结束时销毁临时对象的原则有一个例外的情况：
+</span><span class="c1">// 当临时对象绑定到常量引用时，该临时对象的生命周期会延长到当前作用域。
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="n">constReferenceTempObjectFun</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// constRef绑定了返回的临时对象，该对象在本函数范围内仍然有效。
+</span><span class="c1"></span>  <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">constRef</span> <span class="o">=</span> <span class="n">tempObjectFun</span><span class="p">();</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>另外还有右值引用，因为超出本文范围，建议自行了解。</p>
+<h1 id="类与面向对象编程">类与面向对象编程</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="c1">// 声明一个类。
+</span><span class="c1">// 类通常在头文件（.h或.hpp）中声明。
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Dog</span> <span class="p">{</span>
+    <span class="c1">// 成员变量和成员函数默认情况下是私有（private）的。
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>
+
+<span class="c1">// 在这个标签之后，所有声明都是公有（public）的，
+</span><span class="c1">// 直到重新指定“private:”（私有继承）或“protected:”（保护继承）为止
+</span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+
+    <span class="c1">// 默认的构造器
+</span><span class="c1"></span>    <span class="n">Dog</span><span class="p">();</span>
+
+    <span class="c1">// 这里是成员函数声明的一个例子。
+</span><span class="c1"></span>    <span class="c1">// 可以注意到，我们在此处使用了std::string，而不是using namespace std
+</span><span class="c1"></span>    <span class="c1">// 语句using namespace绝不应当出现在头文件当中。
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">setName</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">dogsName</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">setWeight</span><span class="p">(</span><span class="kt">int</span> <span class="n">dogsWeight</span><span class="p">);</span>
+
+    <span class="c1">// 如果一个函数不对对象的状态进行修改，
+</span><span class="c1"></span>    <span class="c1">// 应当在声明中加上const。
+</span><span class="c1"></span>    <span class="c1">// 这样，你就可以对一个以常量方式引用的对象执行该操作。
+</span><span class="c1"></span>    <span class="c1">// 同时可以注意到，当父类的成员函数需要被子类重写时，
+</span><span class="c1"></span>    <span class="c1">// 父类中的函数必须被显式声明为虚函数（virtual）。
+</span><span class="c1"></span>    <span class="c1">// 考虑到性能方面的因素，函数默认情况下不会被声明为虚函数。
+</span><span class="c1"></span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="c1">// 函数也可以在class body内部定义。
+</span><span class="c1"></span>    <span class="c1">// 这样定义的函数会自动成为内联函数。
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">bark</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; barks!</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">}</span>
+
+    <span class="c1">// 除了构造器以外，C++还提供了析构器。
+</span><span class="c1"></span>    <span class="c1">// 当一个对象被删除或者脱离其定义域时，它的析构函数会被调用。
+</span><span class="c1"></span>    <span class="c1">// 这使得RAII这样的强大范式（参见下文）成为可能。
+</span><span class="c1"></span>    <span class="c1">// 为了衍生出子类来，基类的析构函数必须定义为虚函数。
+</span><span class="c1"></span>    <span class="c1">// 如果没有定义为虚函数，那么通过基类引用或者指针销毁时，衍生类的析构函数并不会被调用。
+</span><span class="c1"></span>    <span class="k">virtual</span> <span class="o">~</span><span class="n">Dog</span><span class="p">();</span>
+
+<span class="p">};</span> <span class="c1">// 在类的定义之后，要加一个分号
+</span><span class="c1"></span>
+<span class="c1">// 类的成员函数通常在.cpp文件中实现。
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">Dog</span><span class="o">::</span><span class="n">Dog</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;A dog has been constructed</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 复杂对象（例如字符串）应当以引用的形式传递，
+</span><span class="c1">// 对于不需要修改的对象，最好使用常量引用。
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">Dog</span><span class="o">::</span><span class="n">setName</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">dogsName</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">dogsName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Dog</span><span class="o">::</span><span class="n">setWeight</span><span class="p">(</span><span class="kt">int</span> <span class="n">dogsWeight</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">dogsWeight</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 虚函数的virtual关键字只需要在声明时使用，不需要在定义时重复
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">Dog</span><span class="o">::</span><span class="n">print</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Dog is &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; and weighs &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">weight</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;kg</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Dog</span><span class="o">::~</span><span class="n">Dog</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Goodbye &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Dog</span> <span class="n">myDog</span><span class="p">;</span> <span class="c1">// 此时显示“A dog has been constructed”
+</span><span class="c1"></span>    <span class="n">myDog</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="s">&#34;Barkley&#34;</span><span class="p">);</span>
+    <span class="n">myDog</span><span class="p">.</span><span class="n">setWeight</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">myDog</span><span class="p">.</span><span class="n">print</span><span class="p">();</span> <span class="c1">// 显示“Dog is Barkley and weighs 10 kg”
+</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// 显示“Goodbye Barkley”
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="初始化与运算符重载">初始化与运算符重载</h2>
+<p>变量可以直接赋初值，也可以在初始化列表中根据外部参数赋值。<br>
+另外C++允许运算符重载，也就是改变运算符（比如说+，*）对于对象的行为。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="c1">// 可以以这样的方式为成员变量设置默认值。
+</span><span class="c1"></span>    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// 定义一个默认的构造器。
+</span><span class="c1"></span>    <span class="c1">// 除了将Point初始化为(0, 0)以外，这个函数什么都不做。
+</span><span class="c1"></span>    <span class="n">Point</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+
+    <span class="c1">// 下面使用的语法称为初始化列表，
+</span><span class="c1"></span>    <span class="c1">// 这是初始化类中成员变量的正确方式。
+</span><span class="c1"></span>    <span class="n">Point</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">x</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+        <span class="n">y</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="p">{</span> <span class="cm">/* 除了初始化成员变量外，什么都不做 */</span> <span class="p">}</span>
+
+    <span class="c1">// 重载 + 运算符
+</span><span class="c1"></span>    <span class="n">Point</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="c1">// 重载 += 运算符
+</span><span class="c1"></span>    <span class="n">Point</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+
+    <span class="c1">// 增加 - 和 -= 运算符也是有意义的，但这里不再赘述。
+</span><span class="c1"></span><span class="p">};</span>
+
+<span class="n">Point</span> <span class="n">Point</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="c1">// 创建一个新的点，
+</span><span class="c1"></span>    <span class="c1">// 其横纵坐标分别为这个点与另一点在对应方向上的坐标之和。
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nf">Point</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">rhs</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">rhs</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Point</span><span class="o">&amp;</span> <span class="n">Point</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="n">Point</span> <span class="n">up</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">Point</span> <span class="n">right</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    <span class="c1">// 这里使用了Point类型的运算符“+”
+</span><span class="c1"></span>    <span class="c1">// 调用up（Point类型）的“+”方法，并以right作为函数的参数
+</span><span class="c1"></span>    <span class="n">Point</span> <span class="n">result</span> <span class="o">=</span> <span class="n">up</span> <span class="o">+</span> <span class="n">right</span><span class="p">;</span>
+    <span class="c1">// 显示“Result is upright (1,1)”
+</span><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Result is upright (&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;,&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="继承">继承</h2>
+<p>继承可以复用已有代码，可以分为单继承、多继承、虚拟继承。<br>
+利用多态可以提高灵活性、增加可维护性。<br>
+除了继承外，合理使用组合也是不错的选择。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 这个类继承了Dog类中的公有（public）和保护（protected）内容，
+</span><span class="c1">// 私有（private）内容实际上也继承了，但是只能通过public或者protected方法进行访问
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">OwnedDog</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Dog</span> <span class="p">{</span>
+
+    <span class="kt">void</span> <span class="nf">setOwner</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">dogsOwner</span><span class="p">)</span>
+
+    <span class="c1">// 重写OwnedDogs类的print方法。
+</span><span class="c1"></span>    <span class="c1">// 如果你不熟悉子类多态的话，可以参考这个页面中的概述：
+</span><span class="c1"></span>    <span class="c1">// http://zh.wikipedia.org/wiki/%E5%AD%90%E7%B1%BB%E5%9E%8B
+</span><span class="c1"></span>
+    <span class="c1">// override关键字是可选的，它确保你所重写的是基类中的方法。
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">owner</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 与此同时，在对应的.cpp文件里：
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="n">OwnedDog</span><span class="o">::</span><span class="n">setOwner</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">dogsOwner</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="n">dogsOwner</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">OwnedDog</span><span class="o">::</span><span class="n">print</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="n">Dog</span><span class="o">::</span><span class="n">print</span><span class="p">();</span> <span class="c1">// 调用基类Dog中的print方法
+</span><span class="c1"></span>    <span class="c1">// &#34;Dog is &lt;name&gt; and weights &lt;weight&gt;&#34;
+</span><span class="c1"></span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Dog is owned by &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">owner</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="c1">// &#34;Dog is owned by &lt;owner&gt;&#34;
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="静态成员变量">静态成员变量</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// .h
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">IpUtils</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">IPV6_ADDR_SIZE</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">IPV4_ADDR_SIZE</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+
+<span class="c1">// .cpp
+</span><span class="c1"></span><span class="k">const</span> <span class="n">size_t</span> <span class="n">IpUtils</span><span class="o">::</span><span class="n">IPV6_ADDR_SIZE</span><span class="p">;</span>
+<span class="k">const</span> <span class="n">size_t</span> <span class="n">IpUtils</span><span class="o">::</span><span class="n">IPV4_ADDR_SIZE</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="模板">模板</h1>
+<p>C++模板主要用于泛型编程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Box</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="c1">// In this class, T can be used as any other type.
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// During compilation, the compiler actually generates copies of each template
+</span><span class="c1">// with parameters substituted, so the full definition of the class must be
+</span><span class="c1">// present at each invocation. This is why you will see template classes defined
+</span><span class="c1">// entirely in header files.
+</span><span class="c1"></span>
+<span class="c1">// To instantiate a template class on the stack:
+</span><span class="c1"></span><span class="n">Box</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">intBox</span><span class="p">;</span>
+
+<span class="c1">// and you can use it as you would expect:
+</span><span class="c1"></span><span class="n">intBox</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+
+<span class="c1">// You can, of course, nest templates:
+</span><span class="c1"></span><span class="n">Box</span><span class="o">&lt;</span><span class="n">Box</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">boxOfBox</span><span class="p">;</span>
+<span class="n">boxOfBox</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">intBox</span><span class="p">);</span>
+
+<span class="c1">// Until C++11, you had to place a space between the two &#39;&gt;&#39;s, otherwise &#39;&gt;&gt;&#39;
+</span><span class="c1">// would be parsed as the right shift operator.
+</span><span class="c1"></span>
+<span class="c1">// You will sometimes see
+</span><span class="c1">//   template&lt;typename T&gt;
+</span><span class="c1">// instead. The &#39;class&#39; keyword and &#39;typename&#39; keywords are _mostly_
+</span><span class="c1">// interchangeable in this case. For the full explanation, see
+</span><span class="c1">//   http://en.wikipedia.org/wiki/Typename
+</span><span class="c1">// (yes, that keyword has its own Wikipedia page).
+</span><span class="c1"></span>
+<span class="c1">// Similarly, a template function:
+</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">barkThreeTimes</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">input</span><span class="p">.</span><span class="n">bark</span><span class="p">();</span>
+    <span class="n">input</span><span class="p">.</span><span class="n">bark</span><span class="p">();</span>
+    <span class="n">input</span><span class="p">.</span><span class="n">bark</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Notice that nothing is specified about the type parameters here. The compiler
+</span><span class="c1">// will generate and then type-check every invocation of the template, so the
+</span><span class="c1">// above function works with any type &#39;T&#39; that has a const &#39;bark&#39; method!
+</span><span class="c1"></span>
+<span class="n">Dog</span> <span class="n">fluffy</span><span class="p">;</span>
+<span class="n">fluffy</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="s">&#34;Fluffy&#34;</span><span class="p">)</span>
+<span class="n">barkThreeTimes</span><span class="p">(</span><span class="n">fluffy</span><span class="p">);</span> <span class="c1">// Prints &#34;Fluffy barks&#34; three times.
+</span><span class="c1"></span>
+<span class="c1">// Template parameters don&#39;t have to be classes:
+</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">Y</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">printMessage</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Learn C++ in &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">Y</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; minutes!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// And you can explicitly specialize templates for more efficient code. Of
+</span><span class="c1">// course, most real-world uses of specialization are not as trivial as this.
+</span><span class="c1">// Note that you still need to declare the function (or class) as a template
+</span><span class="c1">// even if you explicitly specified all parameters.
+</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">void</span> <span class="n">printMessage</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Learn C++ faster in only 10 minutes!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">printMessage</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">&gt;</span><span class="p">();</span>  <span class="c1">// Prints &#34;Learn C++ in 20 minutes!&#34;
+</span><span class="c1"></span><span class="n">printMessage</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;</span><span class="p">();</span>  <span class="c1">// Prints &#34;Learn C++ faster in only 10 minutes!&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="异常处理">异常处理</h1>
+<h2 id="try-catch">try catch</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 在try代码块中拋出的异常可以被随后的catch捕获。
+</span><span class="c1"></span><span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// 不要用 new关键字在堆上为异常分配空间。
+</span><span class="c1"></span>    <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="p">(</span><span class="s">&#34;A problem occurred&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 如果拋出的异常是一个对象，可以用常量引用来捕获它
+</span><span class="c1"></span><span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">ex</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">();</span>
+<span class="c1">// 捕获尚未被catch处理的所有错误
+</span><span class="c1"></span><span class="p">}</span>
+<span class="k">catch</span> <span class="p">(...)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Unknown exception caught&#34;</span><span class="p">;</span>
+    <span class="k">throw</span><span class="p">;</span> <span class="c1">// 重新拋出异常
+</span><span class="c1"></span><span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>try catch不能捕获SEGV错误，需要注册相应信号处理器。</p>
+<h2 id="goto-或-do-while0">goto 或 do while(0)</h2>
+<p>C风格处理出错情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">do</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="err">出错</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="err">设置</span><span class="n">flag</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="err">错误处理</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="raii">RAII</h1>
+<p>RAII指的是&quot;资源获取就是初始化&quot;（Resource Allocation Is
+Initialization）。<br>
+RAII是C++中最强大的编程范式之一。<br>
+简单来说，就是在构造函数中申请资源，在析构函数中释放资源。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">doSomethingWithAFile</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 首先，让我们假设一切都会顺利进行。
+</span><span class="c1"></span>
+    <span class="n">FILE</span><span class="o">*</span> <span class="n">fh</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span> <span class="c1">// 以只读模式打开文件
+</span><span class="c1"></span>
+    <span class="n">doSomethingWithTheFile</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span>
+    <span class="n">doSomethingElseWithIt</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> <span class="c1">// 关闭文件句柄
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// 不幸的是，随着错误处理机制的引入，事情会变得复杂。
+</span><span class="c1">// 假设fopen函数有可能执行失败，
+</span><span class="c1">// 而doSomethingWithTheFile和doSomethingElseWithIt会在失败时返回错误代码。
+</span><span class="c1">// （虽然异常是C++中处理错误的推荐方式，
+</span><span class="c1">// 但是某些程序员，尤其是有C语言背景的，并不认可异常捕获机制的作用）。
+</span><span class="c1">// 现在，我们必须检查每个函数调用是否成功执行，并在问题发生的时候关闭文件句柄。
+</span><span class="c1"></span><span class="kt">bool</span> <span class="nf">doSomethingWithAFile</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FILE</span><span class="o">*</span> <span class="n">fh</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span> <span class="c1">// 以只读模式打开文件
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">fh</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="c1">// 当执行失败是，返回的指针是nullptr
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 向调用者汇报错误
+</span><span class="c1"></span>
+    <span class="c1">// 假设每个函数会在执行失败时返回false
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">doSomethingWithTheFile</span><span class="p">(</span><span class="n">fh</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> <span class="c1">// 关闭文件句柄，避免造成内存泄漏。
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 反馈错误
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">doSomethingElseWithIt</span><span class="p">(</span><span class="n">fh</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> <span class="c1">// 关闭文件句柄
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 反馈错误
+</span><span class="c1"></span>    <span class="p">}</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> <span class="c1">// 关闭文件句柄
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 指示函数已成功执行
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// C语言的程序员通常会借助goto语句简化上面的代码：
+</span><span class="c1"></span><span class="kt">bool</span> <span class="nf">doSomethingWithAFile</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FILE</span><span class="o">*</span> <span class="n">fh</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">fh</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">doSomethingWithTheFile</span><span class="p">(</span><span class="n">fh</span><span class="p">))</span>
+        <span class="k">goto</span> <span class="n">failure</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">doSomethingElseWithIt</span><span class="p">(</span><span class="n">fh</span><span class="p">))</span>
+        <span class="k">goto</span> <span class="n">failure</span><span class="p">;</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> <span class="c1">// 关闭文件
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 执行成功
+</span><span class="c1"></span>
+<span class="nl">failure</span><span class="p">:</span>
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 反馈错误
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// 如果用异常捕获机制来指示错误的话，
+</span><span class="c1">// 代码会变得清晰一些，但是仍然有优化的余地。
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">doSomethingWithAFile</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FILE</span><span class="o">*</span> <span class="n">fh</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span> <span class="c1">// 以只读模式打开文件
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">fh</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="p">(</span><span class="s">&#34;Could not open the file.&#34;</span><span class="p">);</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">doSomethingWithTheFile</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span>
+        <span class="n">doSomethingElseWithIt</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{</span>
+        <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> <span class="c1">// 保证出错的时候文件被正确关闭
+</span><span class="c1"></span>        <span class="k">throw</span><span class="p">;</span> <span class="c1">// 之后，重新抛出这个异常
+</span><span class="c1"></span>    <span class="p">}</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> <span class="c1">// 关闭文件
+</span><span class="c1"></span>    <span class="c1">// 所有工作顺利完成
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// 相比之下，使用C++中的文件流类（fstream）时，
+</span><span class="c1">// fstream会利用自己的析构器来关闭文件句柄。
+</span><span class="c1">// 只要离开了某一对象的定义域，它的析构函数就会被自动调用。
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">doSomethingWithAFile</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">filename</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ifstream是输入文件流（input file stream）的简称
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">fh</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span> <span class="c1">// 打开一个文件
+</span><span class="c1"></span>
+    <span class="c1">// 对文件进行一些操作
+</span><span class="c1"></span>    <span class="n">doSomethingWithTheFile</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span>
+    <span class="n">doSomethingElseWithIt</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span>
+
+<span class="p">}</span> <span class="c1">// 文件已经被析构器自动关闭
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="单例模式">单例模式</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// works for c++11(or later standard) only!
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">SingletonCfg</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">static</span> <span class="n">SingletonCfg</span><span class="o">&amp;</span> <span class="n">getInst</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// c++11(or later standard) ensure thread-safe static local initialization
+</span><span class="c1"></span>        <span class="k">static</span> <span class="n">SingletonCfg</span> <span class="n">s</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">display</span><span class="p">();</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">SingletonCfg</span><span class="p">();</span>
+    <span class="n">SingletonCfg</span><span class="p">(</span><span class="k">const</span> <span class="n">SingletonCfg</span> <span class="o">&amp;</span><span class="p">);</span>             <span class="c1">// do not implement
+</span><span class="c1"></span>    <span class="n">SingletonCfg</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">SingletonCfg</span> <span class="o">&amp;</span><span class="p">);</span>  <span class="c1">// do not implement
+</span><span class="c1"></span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="杂项misc">杂项Misc</h1>
+<h2 id="函数重载">函数重载</h2>
+<p>C++支持函数重载，也就是可以定义一组名称相同而参数不同的函数。<br>
+实现上类似于根据函数名+参数类型生成新的函数名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">myString</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;String %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">myString</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">myInt</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;My int is %d&#34;</span><span class="p">,</span> <span class="n">myInt</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span>
+    <span class="n">print</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参数默认值设置">参数默认值设置</h2>
+<p>可以为函数的参数指定默认值，在调用者没有提供相应参数时按照默认值调用。<br>
+具有默认值的参数必须放在所有的常规参数之后。<br>
+一般在声明的时候指定默认值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">doSomethingWithInts</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">invalidDeclaration</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// 这是错误的！
+</span><span class="c1"></span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">doSomethingWithInts</span><span class="p">();</span>      <span class="c1">// a = 1,  b = 4
+</span><span class="c1"></span>    <span class="n">doSomethingWithInts</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>    <span class="c1">// a = 20, b = 4
+</span><span class="c1"></span>    <span class="n">doSomethingWithInts</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// a = 20, b = 5
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="空指针">空指针</h2>
+<p>在C++中使用nullptr代替C语言中的NULL。</p>
+<h2 id="严格原型">严格原型</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// C++的函数原型与函数定义是严格匹配的
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">func</span><span class="p">();</span> <span class="c1">// 这个函数不能接受任何参数
+</span><span class="c1"></span>
+<span class="c1">// 而在C语言中
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">func</span><span class="p">();</span> <span class="c1">// 这个函数能接受任意数量的参数
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="extern-c">extern &ldquo;C&rdquo;</h2>
+<p>可以实现C与C++混合编程。</p>
+<p>C++支持函数重载，底层实现函数名带有参数信息，而C不支持重载。<br>
+加上 <code>extern &quot;C&quot;</code> 编译器才能把C与C++代码链接在一起。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifdef __cplusplus
+</span><span class="cp"></span><span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span>
+<span class="cp">#endif
+</span><span class="cp"></span>
+<span class="c1">// 正式定义。。。
+</span><span class="c1"></span>
+<span class="cp">#ifdef __cplusplus
+</span><span class="cp"></span><span class="p">}</span>
+<span class="cp">#endif
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="stl">STL</h1>
+<h2 id="容器">容器</h2>
+<p>具体参考 <a href="/post/stl%E5%AE%B9%E5%99%A8">STL容器</a> 。</p>
+<h2 id="算法">算法</h2>
+<p>具体参考 <a href="/post/stl%E7%AE%97%E6%B3%95/">STL算法</a> 。</p>
+<h1 id="参考链接">参考链接</h1>
+<ul>
+<li><a href="http://www.cplusplus.com/reference/">C++ Reference</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-21
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cpp/">cpp</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/c&#43;&#43;11%E7%AC%94%E8%AE%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">C&#43;&#43;11笔记</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+            <span class="next-text nav-default">常见排序算法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

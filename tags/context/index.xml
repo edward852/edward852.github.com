@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>context on 时聆心语</title>
+    <link>https://edward852.github.io/tags/context/</link>
+    <description>Recent content in context on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 05 Aug 2018 15:14:19 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/context/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang context包</title>
+      <link>https://edward852.github.io/post/golang_context%E5%8C%85/</link>
+      <pubDate>Sun, 05 Aug 2018 15:14:19 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang_context%E5%8C%85/</guid>
+      <description>&lt;p&gt;本文主要介绍golang context包的使用。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

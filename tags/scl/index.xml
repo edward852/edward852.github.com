@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scl on 时聆心语</title>
+    <link>https://edward852.github.io/tags/scl/</link>
+    <description>Recent content in scl on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 22 Apr 2018 22:41:39 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/scl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译安装GCC 7.2.0</title>
+      <link>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85gcc7.2.0/</link>
+      <pubDate>Sun, 22 Apr 2018 22:41:39 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85gcc7.2.0/</guid>
+      <description>&lt;p&gt;服务器默认安装的GCC版本一般都比较低，而一些开源库已经开始依赖高版本GCC才有的特性。&lt;br&gt;
+因此我们需要编译安装新版本的GCC，本文以7.2.0为例进行说明。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

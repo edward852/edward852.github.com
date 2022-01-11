@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Golang常见陷阱与易犯错误 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文介绍golang中常见陷阱和易犯错误。
+主要内容是翻译Traps, Gotchas, and Common Mistakes for New Golang Devs博文。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/golang%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E4%B8%8E%E6%98%93%E7%8A%AF%E9%94%99%E8%AF%AF/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Golang常见陷阱与易犯错误" />
+<meta property="og:description" content="本文介绍golang中常见陷阱和易犯错误。
+主要内容是翻译Traps, Gotchas, and Common Mistakes for New Golang Devs博文。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/golang%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E4%B8%8E%E6%98%93%E7%8A%AF%E9%94%99%E8%AF%AF/" />
+<meta property="article:published_time" content="2021-01-14T13:02:10+08:00" />
+<meta property="article:modified_time" content="2021-03-14T13:02:10+08:00" />
+<meta itemprop="name" content="Golang常见陷阱与易犯错误">
+<meta itemprop="description" content="本文介绍golang中常见陷阱和易犯错误。
+主要内容是翻译Traps, Gotchas, and Common Mistakes for New Golang Devs博文。">
+<meta itemprop="datePublished" content="2021-01-14T13:02:10+08:00" />
+<meta itemprop="dateModified" content="2021-03-14T13:02:10+08:00" />
+<meta itemprop="wordCount" content="4608">
+
+
+
+<meta itemprop="keywords" content="golang," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang常见陷阱与易犯错误"/>
+<meta name="twitter:description" content="本文介绍golang中常见陷阱和易犯错误。
+主要内容是翻译Traps, Gotchas, and Common Mistakes for New Golang Devs博文。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Golang常见陷阱与易犯错误</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-14 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> language </a>
+            </div>
+          <span class="more-meta"> 约 4608 字 </span>
+          <span class="more-meta"> 预计阅读 10 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#初级">初级</a></li>
+    <li><a href="#中级">中级</a></li>
+    <li><a href="#高级">高级</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文介绍golang中常见陷阱和易犯错误。<br>
+主要内容是翻译<a href="http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang">Traps, Gotchas, and Common Mistakes for New Golang Devs</a>博文。</p>
+<h1 id="初级">初级</h1>
+<ul>
+<li>左花括号不能单独放一行</li>
+<li>存在未使用变量<br>
+有未使用变量导致编译不通过，注释、删除掉或者赋值给 <code>_</code> 即可。</li>
+<li>未使用import<br>
+IDE配置好即可解决，或者用<code>goimports</code>工具。</li>
+<li>变量简短声明(<code>:=</code>)只能在函数内使用</li>
+<li>变量简短声明(<code>:=</code>)同一block不能单独重复声明已经存在的变量
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">one</span> <span class="o">:=</span> <span class="mi">0</span>
+<span class="nx">one</span> <span class="o">:=</span> <span class="mi">1</span>        <span class="c1">// error
+</span><span class="c1"></span><span class="nx">one</span><span class="p">,</span> <span class="nx">two</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span> <span class="c1">// ok
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>变量简短声明(<code>:=</code>)不能作用于结构体字段
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">info</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="kt">int</span>
+<span class="p">}</span>
+  
+<span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">work</span><span class="p">()</span> <span class="c1">//error
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>变量Shadowing<br>
+使用<code>:=</code>可能不小心屏蔽了外层同名变量，导致意外的结果。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span> <span class="o">:=</span> <span class="mi">1</span>
+<span class="p">{</span>
+    <span class="nx">x</span> <span class="o">:=</span> <span class="mi">2</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">//prints 2
+</span><span class="c1"></span><span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>     <span class="c1">//prints 1
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>不能使用nil初始化未指定类型的变量
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="kc">nil</span> <span class="c1">//error
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>直接使用nil的slice和map<br>
+一般make之后再使用。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">s</span> <span class="p">[]</span><span class="kt">int</span>
+<span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// ok
+</span><span class="c1"></span>  
+<span class="kd">var</span> <span class="nx">m</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+<span class="nx">m</span><span class="p">[</span><span class="s">&#34;one&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>    <span class="c1">// error
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>map容量<br>
+make map时可以指定容量，不过不能对其调用cap。</li>
+<li>字符串不能赋值为nil
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">s1</span> <span class="kt">string</span> <span class="p">=</span> <span class="kc">nil</span> <span class="c1">// error
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">s2</span> <span class="kt">string</span>       <span class="c1">// ok, defaults to &#34;&#34; 
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>数组类型函数参数<br>
+(静态)数组作为函数参数是值拷贝，函数内的修改不作用于原来的数组。要修改可以用slice或指针。</li>
+<li>range遍历slice或map<br>
+range遍历slice或map时遍历变量第一个是索引，第二个才是数据(值拷贝)。</li>
+<li>slice和数组是一维的<br>
+动态多维数组可以模拟，但是使用上不是很方便。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span> <span class="o">:=</span> <span class="mi">2</span>
+<span class="nx">y</span> <span class="o">:=</span> <span class="mi">4</span>
+
+<span class="nx">table</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">int</span><span class="p">,</span><span class="nx">x</span><span class="p">)</span>
+<span class="k">for</span> <span class="nx">i</span><span class="o">:=</span> <span class="k">range</span> <span class="nx">table</span> <span class="p">{</span>
+    <span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>读取map中不存在的键值<br>
+不返回nil而是默认零值。判断键是否存在需要检查第二个返回值。</li>
+<li>字符串是只读的<br>
+不能更新字符串中的字符，需要转换成字节slice才能操作。</li>
+<li>字符串和字节slice间的转换<br>
+转换是完整的拷贝，而不是其它语言中的强制类型转换。</li>
+<li>字符串索引访问<br>
+返回的是字节而不是字符(可能是多个字节)。<br>
+需要访问字符的话可以用<code>for range</code>语句或者<code>utf8</code>包。</li>
+<li>字符串并不总是UTF-8编码<br>
+字符串字面量是UTF-8编码，字符串变量可以是任意编码(如UTF-16)。</li>
+<li>字符串长度<br>
+len函数返回的是字节数而不是字符数。字符数可以通过对应编码包的接口获取。</li>
+<li>多行slice、数组、map字面量遗漏逗号
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="c1">//error
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>log.Fatal和log.Panic不仅输出日志，还会终止程序</li>
+<li>大部分内置数据类型操作并不是并发安全的<br>
+需要channel或者sync包确保并发安全。</li>
+<li>range遍历字符串<br>
+索引是每个字符第一个字节的索引。默认按照UTF-8编码解析。</li>
+<li>range遍历map<br>
+遍历顺序并不固定。</li>
+<li>switch语句fall through<br>
+case分支默认break而不是fall through。<br>
+需要fall through可以使用fallthrough或写在同一case。</li>
+<li>自增、自减<br>
+是语句而不是表达式，没有值，不能用于表达式中。</li>
+<li>取反、异或运算符都是<code>^</code></li>
+<li>运算符优先级差异<br>
+不确定就加括号。</li>
+<li>未导出结构体字段不会编码<br>
+小写字段不会编码。</li>
+<li>程序退出时仍有活跃协程<br>
+可以通过channel、WaitGroup(不能复制！)等手段等待其它协程都结束才退出。</li>
+<li>发送数据到已关闭channel会panic</li>
+<li>使用nil的channel<br>
+对nil的channel进行收、发操作会导致阻塞、死锁。<br>
+配合select使用可以实现开启、关闭特定case分支的效果。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">inch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+<span class="nx">outch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+
+<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">in</span> <span class="o">&lt;-</span> <span class="kd">chan</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">inch</span>
+    <span class="kd">var</span> <span class="nx">out</span> <span class="kd">chan</span> <span class="o">&lt;-</span> <span class="kt">int</span>
+    <span class="kd">var</span> <span class="nx">val</span> <span class="kt">int</span>
+      
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">val</span><span class="p">:</span>
+            <span class="nx">out</span> <span class="p">=</span> <span class="kc">nil</span>
+            <span class="nx">in</span> <span class="p">=</span> <span class="nx">inch</span>
+        <span class="k">case</span> <span class="nx">val</span> <span class="p">=</span> <span class="o">&lt;-</span> <span class="nx">in</span><span class="p">:</span>
+            <span class="nx">out</span> <span class="p">=</span> <span class="nx">outch</span>
+            <span class="nx">in</span> <span class="p">=</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}()</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>传值接收者方法不会修改接收者的值<br>
+需要传指针才可以修改。引用类型的数据结构(如slice, map)本质上就是传指针。</li>
+</ul>
+<h1 id="中级">中级</h1>
+<ul>
+<li>关闭HTTP Response Body
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;https://golang.org&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">resp</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="c1">// error handling
+</span><span class="c1"></span>    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>关闭HTTP连接
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="s">&#34;https://golang.org&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="c1">// 处理出错情况
+</span><span class="c1"></span>    <span class="k">return</span>
+<span class="p">}</span>
+  
+<span class="nx">req</span><span class="p">.</span><span class="nx">Close</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="c1">// 或者这样处理：
+</span><span class="c1">//req.Header.Add(&#34;Connection&#34;, &#34;close&#34;)
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>官方JSON编码器会自动添加<code>\n</code>符</li>
+<li>官方JSON包默认会转义特殊HTML字符</li>
+<li>官方JSON反序列化(unmarshal)数字默认类型为<code>float64</code>，包括整数</li>
+<li>官方JSON字符串值不能有十六进制或者非UTF-8编码转义序列</li>
+<li>比较结构体、数组、slice和map<br>
+相同类型且元素或所有字段本身可比较的数组或结构体才能用<code>==</code>比较，slice、map不能比较。<br>
+不能<code>==</code>比较则使用helper函数(如<code>reflect.DeepEqual</code>,<code>bytes.Equals</code>,<code>strings.EqualFold</code>)比较。</li>
+<li>从panic恢复<br>
+在defer的函数里<strong>直接调用</strong>recover才能从panic恢复。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">doRecover</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;recovered =&gt;&#34;</span><span class="p">,</span> <span class="nb">recover</span><span class="p">())</span> <span class="c1">//prints: recovered =&gt; &lt;nil&gt;
+</span><span class="c1"></span><span class="p">}</span>
+  
+<span class="kd">func</span> <span class="nf">submit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">doRecover</span><span class="p">()</span> <span class="c1">//panic is not recovered
+</span><span class="c1"></span>    <span class="p">}()</span>
+      
+    <span class="c1">// ...
+</span><span class="c1"></span>    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>range语句中更新、引用slice，数组，map的元素值<br>
+循环变量只是元素的值拷贝，对其取地址、更新都不会符合编码预期。<br>
+通过索引运算符才能正确取地址、更新元素值。元素直接存指针也可以(增加GC负担)。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>
+<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+    <span class="nx">v</span> <span class="o">*=</span> <span class="mi">10</span> <span class="c1">// original item is not changed
+</span><span class="c1"></span>    <span class="c1">//data[i] *= 10
+</span><span class="c1"></span><span class="p">}</span>
+  
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;data:&#34;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="c1">//prints data: [1 2 3]
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>slice中隐藏的数据<br>
+对slice切片返回的新slice会共享其底层数组，可能导致错误的内存使用(读取原slice其它内容)。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">raw</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<span class="nb">copy</span><span class="p">(</span><span class="nx">raw</span><span class="p">,</span> <span class="s">&#34;public secret&#34;</span><span class="p">)</span>
+<span class="nx">field</span> <span class="o">:=</span> <span class="nx">raw</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;field:&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;all:&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">field</span><span class="p">[:</span><span class="nb">cap</span><span class="p">(</span><span class="nx">field</span><span class="p">)]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过copy需要的数据来避免上述情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">getField</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span> <span class="p">{</span>
+    <span class="nx">raw</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="nx">res</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+      
+    <span class="nb">copy</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nx">raw</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span>
+      
+    <span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>slice数据污染<br>
+对slice切片返回的新slice会共享其底层数组，可能导致错误的内存使用(修改原slice内容)。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">path</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;AAAA/BBBBBBBBB&#34;</span><span class="p">)</span>
+<span class="nx">sepIndex</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">IndexByte</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span><span class="p">)</span>
+<span class="nx">dir1</span> <span class="o">:=</span> <span class="nx">path</span><span class="p">[:</span><span class="nx">sepIndex</span><span class="p">]</span>
+<span class="nx">dir2</span> <span class="o">:=</span> <span class="nx">path</span><span class="p">[</span><span class="nx">sepIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+	
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;dir1 =&gt;&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">dir1</span><span class="p">))</span> <span class="c1">// prints: dir1 =&gt; AAAA
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;dir2 =&gt;&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">dir2</span><span class="p">))</span> <span class="c1">// prints: dir2 =&gt; BBBBBBBBB
+</span><span class="c1"></span>
+<span class="nx">dir1</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">dir1</span><span class="p">,</span> <span class="s">&#34;suffix&#34;</span><span class="o">...</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;dir2 =&gt;&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">dir2</span><span class="p">))</span> <span class="c1">// prints: dir2 =&gt; uffixBBBB
+</span></code></pre></td></tr></table>
+</div>
+</div><p>可以采取拷贝副本的方法解决，也可以通过切片操作的第3个参数控制容量。<br>
+<code>dir1 := path[:sepIndex:sepIndex]</code>写超过容量会触发分配新的缓冲区而不是部分覆盖<code>dir2</code>。</p>
+</li>
+<li>过期的slice<br>
+多个slice共享同一底层数组，发生扩容时会导致其它slice指向旧的数据。</li>
+<li>类型声明和方法<br>
+基于已有类型(非接口类型)声明新类型，新类型不能调用原有类型的方法。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myMutex</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+  
+<span class="kd">var</span> <span class="nx">mtx</span> <span class="nx">myMutex</span>
+<span class="nx">mtx</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span> <span class="c1">// error
+</span></code></pre></td></tr></table>
+</div>
+</div><p>可以通过匿名字段嵌入的方式得到(不是继承，是组合！)原类型的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myLocker</span> <span class="kd">struct</span> <span class="p">{</span>  
+    <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+<span class="p">}</span>
+  
+<span class="kd">var</span> <span class="nx">lock</span> <span class="nx">myLocker</span>
+<span class="nx">lock</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span> <span class="c1">//ok
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>跳出<code>for switch</code>和<code>for select</code>代码块<br>
+通过label跳出外部循环。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">loop</span><span class="p">:</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="kc">true</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;breaking out...&#34;</span><span class="p">)</span>
+            <span class="k">break</span> <span class="nx">loop</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+  
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;out!&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>for循环中的迭代变量和闭包<br>
+每轮循环都是同一迭代变量，赋予新的值。<br>
+闭包捕获同一变量，很可能不符合编程预期。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;one&#34;</span><span class="p">,</span> <span class="s">&#34;two&#34;</span><span class="p">,</span> <span class="s">&#34;three&#34;</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+    <span class="p">}()</span>
+<span class="p">}</span>
+  
+<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+<span class="c1">// goroutines print: three, three, three
+</span></code></pre></td></tr></table>
+</div>
+</div><p>解决方法一：赋值给循环体内新变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+    <span class="nx">vcopy</span> <span class="o">:=</span> <span class="nx">v</span>
+      
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">vcopy</span><span class="p">)</span>
+    <span class="p">}()</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>解决方法二：迭代变量作为参数传递给闭包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">in</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">in</span><span class="p">)</span>
+    <span class="p">}(</span><span class="nx">v</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>比较隐蔽的情况(接收者本质就是参数)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">field</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+<span class="p">}</span>
+  
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">field</span><span class="p">)</span> <span class="nb">print</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}</span>
+  
+<span class="nx">data1</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">field</span><span class="p">{</span> <span class="p">{</span><span class="s">&#34;one&#34;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#34;two&#34;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#34;three&#34;</span><span class="p">}</span> <span class="p">}</span>  <span class="c1">// values
+</span><span class="c1"></span><span class="nx">data2</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="nx">field</span><span class="p">{</span> <span class="p">{</span><span class="s">&#34;one&#34;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#34;two&#34;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#34;three&#34;</span><span class="p">}</span> <span class="p">}</span> <span class="c1">// pointers
+</span><span class="c1"></span>  
+<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data1</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nx">v</span><span class="p">.</span><span class="nb">print</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+  
+<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data2</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nx">v</span><span class="p">.</span><span class="nb">print</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>defer函数参数求值时机<br>
+defer语句求值时，defer函数的参数就会求值(而不是函数运行时)。</li>
+<li>defer函数执行时机和顺序<br>
+defer函数在所在函数即将结束返回时执行，有多个defer函数则以后进先出顺序执行。<br>
+在for循环体中defer释放资源操作不是合适的做法，应该包装到函数内或者用完直接释放资源。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">target</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">targets</span> <span class="p">{</span>
+      <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+          <span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span>
+          <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+              <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;bad target:&#34;</span><span class="p">,</span><span class="nx">target</span><span class="p">,</span><span class="s">&#34;error:&#34;</span><span class="p">,</span><span class="nx">err</span><span class="p">)</span>
+              <span class="k">return</span>
+          <span class="p">}</span>
+            
+          <span class="k">defer</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span> <span class="c1">//ok
+</span><span class="c1"></span>          <span class="c1">//do something with the file...
+</span><span class="c1"></span>      <span class="p">}()</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>类型断言失败<br>
+类型断言失败返回对应断言类型的零值。再加上变量shadowing就会产生更迷惑的效果。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{}</span> <span class="p">=</span> <span class="s">&#34;confusing&#34;</span>
+  
+<span class="k">if</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">.(</span><span class="kt">int</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;[is an int] value =&gt;&#34;</span><span class="p">,</span><span class="nx">data</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;[not an int] value =&gt;&#34;</span><span class="p">,</span><span class="nx">data</span><span class="p">)</span> 
+    <span class="c1">//prints: [not an int] value =&gt; 0 (not &#34;confusing&#34;)
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>阻塞的协程与资源泄露<br>
+从数据库集群拉取最先返回的结果，可行但是有bug的实现如下：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">First</span><span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">replicas</span> <span class="o">...</span><span class="nx">Search</span><span class="p">)</span> <span class="nx">Result</span> <span class="p">{</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">Result</span><span class="p">)</span>
+    <span class="nx">searchReplica</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span> <span class="nx">c</span> <span class="o">&lt;-</span> <span class="nx">replicas</span><span class="p">[</span><span class="nx">i</span><span class="p">](</span><span class="nx">query</span><span class="p">)</span> <span class="p">}</span>
+      
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">replicas</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nf">searchReplica</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+      
+    <span class="k">return</span> <span class="o">&lt;-</span><span class="nx">c</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由于channel无缓冲，所以最快的协程正常退出，其他都永久阻塞在返回结果那一步，造成资源泄露。<br>
+解决方法一：创建有足够缓冲的channel：<code>c := make(chan Result, len(replicas))</code><br>
+解决方法二：<code>selece</code>+<code>default</code>+1格缓冲的channel：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">First</span><span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">replicas</span> <span class="o">...</span><span class="nx">Search</span><span class="p">)</span> <span class="nx">Result</span> <span class="p">{</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">Result</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">searchReplica</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">c</span> <span class="o">&lt;-</span> <span class="nx">replicas</span><span class="p">[</span><span class="nx">i</span><span class="p">](</span><span class="nx">query</span><span class="p">):</span>
+        <span class="k">default</span><span class="p">:</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+      
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">replicas</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nf">searchReplica</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+      
+    <span class="k">return</span> <span class="o">&lt;-</span><span class="nx">c</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>解决方法三：关闭channel通知协程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">First</span><span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">replicas</span> <span class="o">...</span><span class="nx">Search</span><span class="p">)</span> <span class="nx">Result</span> <span class="p">{</span>  
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">Result</span><span class="p">)</span>
+    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+    <span class="k">defer</span> <span class="nb">close</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+    <span class="nx">searchReplica</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">c</span> <span class="o">&lt;-</span> <span class="nx">replicas</span><span class="p">[</span><span class="nx">i</span><span class="p">](</span><span class="nx">query</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">done</span><span class="p">:</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+      
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">replicas</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nf">searchReplica</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+      
+    <span class="k">return</span> <span class="o">&lt;-</span><span class="nx">c</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>不同的0字节变量分配相同的地址</li>
+<li>首次使用iota并不总是从0开始<br>
+iota是const定义块内当前行的索引，不是第一行就不是0。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">const</span> <span class="p">(</span>
+    <span class="nx">azero</span> <span class="p">=</span> <span class="kc">iota</span>
+    <span class="nx">aone</span>  <span class="p">=</span> <span class="kc">iota</span>
+<span class="p">)</span>
+<span class="kd">const</span> <span class="p">(</span>
+    <span class="nx">info</span>  <span class="p">=</span> <span class="s">&#34;processing&#34;</span>
+    <span class="nx">bzero</span> <span class="p">=</span> <span class="kc">iota</span>
+    <span class="nx">bone</span>  <span class="p">=</span> <span class="kc">iota</span>
+<span class="p">)</span>
+  
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">azero</span><span class="p">,</span> <span class="nx">aone</span><span class="p">)</span> <span class="c1">//prints: 0 1
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">bzero</span><span class="p">,</span> <span class="nx">bone</span><span class="p">)</span> <span class="c1">//prints: 1 2
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="高级">高级</h1>
+<ul>
+<li>
+<p>值实例调用指针接收者方法<br>
+只要值本身是可取地址，就可以调用指针接收者方法。<br>
+map的元素不可取地址，接口引用的变量也是不可取地址的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">data</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">data</span><span class="p">)</span> <span class="nb">print</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;name:&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">type</span> <span class="nx">printer</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nb">print</span><span class="p">()</span>
+<span class="p">}</span>
+  
+<span class="nx">d1</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">{</span><span class="s">&#34;one&#34;</span><span class="p">}</span>
+<span class="nx">d1</span><span class="p">.</span><span class="nb">print</span><span class="p">()</span> <span class="c1">// 合法
+</span><span class="c1"></span>  
+<span class="kd">var</span> <span class="nx">in</span> <span class="nx">printer</span> <span class="p">=</span> <span class="nx">data</span><span class="p">{</span><span class="s">&#34;two&#34;</span><span class="p">}</span> <span class="c1">// 错误。 *data实现了printer接口，但是data没有
+</span><span class="c1"></span><span class="nx">in</span><span class="p">.</span><span class="nb">print</span><span class="p">()</span>
+  
+<span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">data</span> <span class="p">{</span> <span class="s">&#34;x&#34;</span><span class="p">:</span> <span class="nx">data</span><span class="p">{</span><span class="s">&#34;three&#34;</span><span class="p">}</span> <span class="p">}</span>
+<span class="nx">m</span><span class="p">[</span><span class="s">&#34;x&#34;</span><span class="p">].</span><span class="nb">print</span><span class="p">()</span> <span class="c1">// 错误，map的元素不可取地址
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>更新map的值类型元素<br>
+如果map的元素是结构体(非指针类型)，那么不能单独更新结构体的字段值。<br>
+这是因为map的元素不可取址。<br>
+不过令人迷惑的是slice支持这样的操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">data</span> <span class="kd">struct</span> <span class="p">{</span>  
+    <span class="nx">name</span> <span class="kt">string</span>
+<span class="p">}</span>
+<span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">data</span><span class="p">{</span> <span class="s">&#34;x&#34;</span><span class="p">:{</span><span class="s">&#34;one&#34;</span><span class="p">}</span> <span class="p">}</span>
+<span class="nx">m</span><span class="p">[</span><span class="s">&#34;x&#34;</span><span class="p">].</span><span class="nx">name</span> <span class="p">=</span> <span class="s">&#34;two&#34;</span> <span class="c1">// error
+</span><span class="c1"></span>  
+<span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">data</span><span class="p">{</span> <span class="p">{</span><span class="s">&#34;one&#34;</span><span class="p">}</span> <span class="p">}</span>
+<span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span> <span class="p">=</span> <span class="s">&#34;two&#34;</span> <span class="c1">// ok
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>    <span class="c1">// prints: [{two}]
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>nil接口和nil接口值<br>
+接口变量为nil当且仅当其type和value字段都为nil。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">data</span> <span class="o">*</span><span class="kt">byte</span>
+<span class="kd">var</span> <span class="nx">in</span> <span class="kd">interface</span><span class="p">{}</span>
+  
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">data</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="c1">// prints: &lt;nil&gt; true
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">in</span><span class="p">,</span> <span class="nx">in</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>     <span class="c1">// prints: &lt;nil&gt; true
+</span><span class="c1"></span>  
+<span class="nx">in</span> <span class="p">=</span> <span class="nx">data</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">in</span><span class="p">,</span> <span class="nx">in</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>     <span class="c1">// prints: &lt;nil&gt; false
+</span><span class="c1">// &#39;data&#39; is &#39;nil&#39;, but &#39;in&#39; is not &#39;nil&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>返回接口类型的函数尤其需要注意这种情况，明确地<code>return nil</code>。</p>
+</li>
+<li>
+<p>栈和堆变量<br>
+跟C++不同，变量分配在堆上和栈上不由关键字决定。<br>
+Go会根据变量内存占用大小以及逃逸分析(可以参考<a href="/post/golang%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96">这里</a>)决定将变量分配到哪。</p>
+</li>
+<li>
+<p>GOMAXPROCS, Concurrency和Parallelism<br>
+具体参考<a href="https://golang.org/pkg/runtime">runtime</a>的说明以及Go的调度模型。</p>
+<blockquote>
+<p>The GOMAXPROCS variable limits the number of operating system threads that can execute user-level Go code simultaneously. There is no limit to the number of threads that can be blocked in system calls on behalf of Go code; those do not count against the GOMAXPROCS limit.</p>
+</blockquote>
+</li>
+<li>
+<p>读写操作(指令)重排<br>
+Go编译器会在保证协程内(不包括协程间)最终结果的前提下重排读写指令(现代CPU也会指令重排)。<br>
+比如说u1内b并不依赖a，所以可能先执行<code>b = 2</code>然后再执行<code>a = 1</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span>
+  
+<span class="kd">func</span> <span class="nf">u1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="p">=</span> <span class="mi">1</span>
+    <span class="nx">b</span> <span class="p">=</span> <span class="mi">2</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">u2</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="p">=</span> <span class="mi">3</span>
+    <span class="nx">b</span> <span class="p">=</span> <span class="mi">4</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">p</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="nb">println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+  
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nf">u1</span><span class="p">()</span>
+    <span class="k">go</span> <span class="nf">u2</span><span class="p">()</span>
+    <span class="k">go</span> <span class="nf">p</span><span class="p">()</span>
+      
+    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>抢占式调度<br>
+在老版本Go(单线程)中如果有协程死循环而且没有触发(显式或隐式)调度的代码，那么程序就会死锁。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">runtime</span><span class="p">.</span><span class="nf">GOMAXPROCS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 设置成1新版本Go下面的代码才会死锁
+</span><span class="c1"></span>  
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">done</span> <span class="o">:=</span> <span class="kc">false</span>
+      
+    <span class="k">go</span> <span class="kd">func</span><span class="p">(){</span>
+      <span class="nx">done</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="p">}()</span>
+      
+    <span class="k">for</span> <span class="p">!</span><span class="nx">done</span> <span class="p">{</span>
+        <span class="c1">// 空或者没有触发调度的代码
+</span><span class="c1"></span>        
+        <span class="c1">//time.Sleep(time.Second)
+</span><span class="c1"></span>        <span class="c1">//runtime.Gosched()
+</span><span class="c1"></span>    <span class="p">}</span>
+      
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;done!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>解决方法是for循环里面显式调用<code>runtime.Gosched()</code>或者其他阻塞操作(如<code>time.Sleep</code>)。<br>
+当然新版本的Go和现代CPU默认情况下并不需要特别处理也不会死锁。</p>
+</li>
+<li>
+<p>import &ldquo;C&quot;和import块<br>
+需要imort C包才能使用cgo，不能和其他包混在一起写。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="cm">/*
+</span><span class="cm">#include &lt;stdlib.h&gt;
+</span><span class="cm">*/</span>
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;C&#34;</span>
+<span class="p">)</span>
+  
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;unsafe&#34;</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>import &ldquo;C&quot;和cgo注释之间不能有空行</p>
+</li>
+<li>
+<p>不能调用C语言变参函数<br>
+需要改为定参函数。</p>
+</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-14
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/golang/">golang</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BB%8Etravis%E8%BF%81%E7%A7%BB%E5%88%B0github_actions/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">博客自动部署从Travis CI迁移到GitHub Actions</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/cpp%E4%B8%AD%E7%9A%84memory_order/">
+            <span class="next-text nav-default">C&#43;&#43;中的memory order</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

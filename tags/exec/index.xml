@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>exec on 时聆心语</title>
+    <link>https://edward852.github.io/tags/exec/</link>
+    <description>Recent content in exec on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 06 May 2018 20:46:12 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/exec/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang限时执行外部命令</title>
+      <link>https://edward852.github.io/post/golang%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sun, 06 May 2018 20:46:12 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/golang%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;p&gt;本文主要介绍golang如何限时执行外部命令。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

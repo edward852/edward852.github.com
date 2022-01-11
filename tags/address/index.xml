@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>address on 时聆心语</title>
+    <link>https://edward852.github.io/tags/address/</link>
+    <description>Recent content in address on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Apr 2020 23:51:59 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/address/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AddressSanitizer定位内存问题</title>
+      <link>https://edward852.github.io/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 16 Apr 2020 23:51:59 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/addresssanitizer%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;本文主要介绍如何通过&lt;code&gt;AddressSanitizer&lt;/code&gt;定位各类内存问题(溢出、泄露&amp;hellip;)。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

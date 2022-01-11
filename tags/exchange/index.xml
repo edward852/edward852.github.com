@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>exchange on 时聆心语</title>
+    <link>https://edward852.github.io/tags/exchange/</link>
+    <description>Recent content in exchange on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 15 Sep 2018 22:50:45 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/exchange/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>信息安全基础</title>
+      <link>https://edward852.github.io/post/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Sat, 15 Sep 2018 22:50:45 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;本文主要介绍信息安全的基础知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Foxmail&#43;DavMail访问Exchange邮箱</title>
+      <link>https://edward852.github.io/post/foxmail%E5%8A%A0davmail%E8%AE%BF%E9%97%AEexchange%E9%82%AE%E7%AE%B1/</link>
+      <pubDate>Thu, 07 Sep 2017 21:17:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/foxmail%E5%8A%A0davmail%E8%AE%BF%E9%97%AEexchange%E9%82%AE%E7%AE%B1/</guid>
+      <description>&lt;p&gt;由于公司邮箱服务器改用Exchange，而Outlook实在太卡、Foxmail报RPC错误，所以只能寻找替代方案。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

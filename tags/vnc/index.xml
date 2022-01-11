@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vnc on 时聆心语</title>
+    <link>https://edward852.github.io/tags/vnc/</link>
+    <description>Recent content in vnc on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 10 Nov 2018 20:20:41 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/vnc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开发机环境搭建记录</title>
+      <link>https://edward852.github.io/post/%E5%BC%80%E5%8F%91%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Sat, 10 Nov 2018 20:20:41 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E5%BC%80%E5%8F%91%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;本文主要记录开发机环境搭建的流水。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>通过vnc控制linux开发机</title>
+      <link>https://edward852.github.io/post/%E9%80%9A%E8%BF%87vnc%E6%8E%A7%E5%88%B6linux%E5%BC%80%E5%8F%91%E6%9C%BA/</link>
+      <pubDate>Sat, 20 Oct 2018 16:32:58 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/%E9%80%9A%E8%BF%87vnc%E6%8E%A7%E5%88%B6linux%E5%BC%80%E5%8F%91%E6%9C%BA/</guid>
+      <description>&lt;p&gt;本文主要介绍如何通过 &lt;code&gt;vnc&lt;/code&gt; 控制linux开发机。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

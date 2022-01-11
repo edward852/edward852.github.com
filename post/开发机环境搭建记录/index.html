@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>开发机环境搭建记录 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录开发机环境搭建的流水。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E5%BC%80%E5%8F%91%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="开发机环境搭建记录" />
+<meta property="og:description" content="本文主要记录开发机环境搭建的流水。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E5%BC%80%E5%8F%91%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" />
+<meta property="article:published_time" content="2018-11-10T20:20:41+08:00" />
+<meta property="article:modified_time" content="2020-04-20T20:20:41+08:00" />
+<meta itemprop="name" content="开发机环境搭建记录">
+<meta itemprop="description" content="本文主要记录开发机环境搭建的流水。">
+<meta itemprop="datePublished" content="2018-11-10T20:20:41+08:00" />
+<meta itemprop="dateModified" content="2020-04-20T20:20:41+08:00" />
+<meta itemprop="wordCount" content="1093">
+
+
+
+<meta itemprop="keywords" content="dev,env,proxy,vnc,samba," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="开发机环境搭建记录"/>
+<meta name="twitter:description" content="本文主要记录开发机环境搭建的流水。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">开发机环境搭建记录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-10 </span>
+        <div class="post-category">
+            <a href="/categories/tool/"> tool </a>
+            </div>
+          <span class="more-meta"> 约 1093 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#创建用户">创建用户</a></li>
+    <li><a href="#时区">时区</a></li>
+    <li><a href="#国内镜像源">国内镜像源</a></li>
+    <li><a href="#中文支持">中文支持</a></li>
+    <li><a href="#dot-files">dot files</a></li>
+    <li><a href="#字体">字体</a></li>
+    <li><a href="#代理">代理</a></li>
+    <li><a href="#基本开发工具">基本开发工具</a></li>
+    <li><a href="#vnc">vnc</a></li>
+    <li><a href="#samba">samba</a></li>
+    <li><a href="#ssh免密登录">SSH免密登录</a></li>
+    <li><a href="#ide">IDE</a></li>
+    <li><a href="#docker">docker</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录开发机环境搭建的流水。</p>
+<h1 id="创建用户">创建用户</h1>
+<p>创建普通用户<code>edward</code>, 避免以<code>root</code>身份误操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">useradd edward -d /data/home/edward -m
+passwd edward
+</code></pre></td></tr></table>
+</div>
+</div><p>用户的home目录需要确保空间足够。</p>
+<h1 id="时区">时区</h1>
+<p>调整时区为东8区。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># CentOS, ubuntu</span>
+ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="国内镜像源">国内镜像源</h1>
+<p>更换软件镜像源为国内镜像源。<br>
+如果不能访问外网的话就使用公司内的镜像源。</p>
+<p>以 <a href="https://developer.aliyun.com/mirror/">阿里镜像源</a> 为例，CentOS 7如下操作:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+
+sed -i <span class="s1">&#39;s#mirrors.*.com#mirrors.aliyun.com#g&#39;</span> /etc/yum.repos.d/CentOS-Base.repo
+sed -i <span class="s1">&#39;s#mirrors.*.com#mirrors.aliyun.com#g&#39;</span> /etc/yum.repos.d/epel.repo
+
+yum makecache
+</code></pre></td></tr></table>
+</div>
+</div><p>Ubuntu 18.04如下操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">cat &gt; /etc/apt/sources.list <span class="s">&lt;&lt; EOF
+</span><span class="s">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+</span><span class="s">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+</span><span class="s">
+</span><span class="s">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+</span><span class="s">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+</span><span class="s">
+</span><span class="s">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+</span><span class="s">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+</span><span class="s">
+</span><span class="s">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+</span><span class="s">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+</span><span class="s">
+</span><span class="s">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+</span><span class="s">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="中文支持">中文支持</h1>
+<p>安装系统语言支持包、输入法(fcitx, ibus皆可)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># CentOS</span>
+yum groupinstall -y <span class="s2">&#34;Chinese support&#34;</span>
+yum install -y fcitx-pinyin
+
+<span class="c1"># ubuntu</span>
+sudo apt-get install -y language-pack-zh-hans
+<span class="c1"># 配置默认语言，选择 zh_CN.utf8</span>
+sudo dpkg-reconfigure locales
+<span class="c1"># 桌面消失处理</span>
+rm -fr ~/.cache/sessions/
+
+sudo apt-get install -y fcitx-googlepinyin
+
+<span class="c1"># fcitx没有自启动的话</span>
+cp /usr/share/applications/fcitx.desktop ~/.config/autostart/fcitx.desktop
+</code></pre></td></tr></table>
+</div>
+</div><p>设置<code>XMODIFIERS</code>,<code>GTK_IM_MODULE</code>,<code>QT_IM_MODULE</code>环境变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">GTK_IM_MODULE</span><span class="o">=</span>fcitx
+<span class="nb">export</span> <span class="nv">QT_IM_MODULE</span><span class="o">=</span>fcitx
+<span class="nb">export</span> <span class="nv">XMODIFIERS</span><span class="o">=</span>@im<span class="o">=</span>fcitx
+</code></pre></td></tr></table>
+</div>
+</div><p>一般放到<code>/etc/profile</code>就生效，不行的话试一下<code>~/.pam_environment</code>,<code>~/.xinitrc</code>,<code>~/.vnc/xstartup</code>。<br>
+还有问题可以通过<code>fcitx-diagnose</code>定位有问题的地方。</p>
+<h1 id="dot-files">dot files</h1>
+<ul>
+<li>~/.bash_profile</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[[</span> -r ~/.bashrc <span class="o">]]</span> <span class="o">&amp;&amp;</span> . ~/.bashrc
+
+<span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -hl --color&#39;</span>
+
+<span class="nb">export</span> <span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&#34;zh_CN.utf8&#34;</span> 
+<span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$LC_ALL</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="字体">字体</h1>
+<p>安装适合程序员的字体，比如说 <code>Source Code Pro</code> 。<br>
+偷懒一点可以通过yum安装:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">yum install -y adobe-source-code-pro-fonts
+</code></pre></td></tr></table>
+</div>
+</div><p>如果想安装最新的 <code>Source Code Pro</code> 或者其他字体：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">字体复制到 /usr/share/fonts/ 目录
+fc-cache -v
+</code></pre></td></tr></table>
+</div>
+</div><p>推荐字体:</p>
+<ul>
+<li><a href="https://github.com/adobe-fonts/source-code-pro/releases">Source Code Pro</a></li>
+<li><a href="https://github.com/adobe-fonts/source-han-sans/releases">思源黑体</a></li>
+<li><a href="https://github.com/tonsky/FiraCode/releases">Fira Code</a></li>
+<li><a href="https://github.com/be5invis/Sarasa-Gothic/releases">更纱字体</a></li>
+<li><a href="https://www.jetbrains.com/lp/mono">JetBrains Mono</a></li>
+<li>&hellip;</li>
+</ul>
+<h1 id="代理">代理</h1>
+<p>有些公司需要通过设置代理才能访问外网。<br>
+可以在 <code>/etc/profile</code> 设置代理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">http_proxy</span><span class="o">=</span>dev-proxy.oa.com:8080
+<span class="nv">https_proxy</span><span class="o">=</span>dev-proxy.oa.com:8080
+<span class="nv">no_proxy</span><span class="o">=</span><span class="s2">&#34;localhost,*.oa.com&#34;</span>
+
+<span class="nb">export</span> http_proxy https_proxy no_proxy
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="基本开发工具">基本开发工具</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># CentOS</span>
+yum groupinstall -y <span class="s2">&#34;Development Tools&#34;</span>
+
+<span class="c1"># ubuntu</span>
+sudo apt-get install -y build-essential
+</code></pre></td></tr></table>
+</div>
+</div><p>git，cmake, golang, llvm, ccls, emacs, vscode, perf等按需(编译)安装。</p>
+<h1 id="vnc">vnc</h1>
+<p>具体可以参考 <a href="/post/%E9%80%9A%E8%BF%87vnc%E6%8E%A7%E5%88%B6linux%E5%BC%80%E5%8F%91%E6%9C%BA/">通过vnc控制linux开发机</a> 的说明。<br>
+通过 <a href="https://github.com/novnc/noVNC">noVNC</a> 还可以在家通过浏览器远程控制开发机。</p>
+<h1 id="samba">samba</h1>
+<p>samba主要作用是方便文件的同步。<br>
+具体可以参考 <a href="/post/centos%E9%85%8D%E7%BD%AEsamba/">CentOS配置samba</a> 的说明。</p>
+<h1 id="ssh免密登录">SSH免密登录</h1>
+<p>具体可以参考 <a href="/post/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/">SSH免密登录</a> 的说明。<br>
+不过使用终端软件(xshell, PuTTY等)也是可以的。</p>
+<h1 id="ide">IDE</h1>
+<p>主要使用vscode、spacemacs、vim，偶尔用用JetBrains系列。<br>
+先记录，后续有空再补充。</p>
+<ul>
+<li>vscode<br>
+主力写代码。<br>
+通过 <a href="https://code.visualstudio.com/docs/remote/remote-overview">vscode remote</a> 可以在家远程开发。</li>
+<li>spacemacs<br>
+目前主要用来写博文，具体可以参考 <a href="/post/%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8spacemacs/">通用代码编辑器Spacemacs</a> 。</li>
+<li>vim<br>
+主要用来看服务器的日志，按键还是比较简短、方便的。</li>
+<li>JetBrains系列<br>
+小项目还可以，比较耗内存、响应稍慢、要收费，不适合大项目。</li>
+</ul>
+<h1 id="docker">docker</h1>
+<p>具体参考 <a href="/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">Docker使用</a> 的说明。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-20
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/dev/">dev</a>
+          <a href="/tags/env/">env</a>
+          <a href="/tags/proxy/">proxy</a>
+          <a href="/tags/vnc/">vnc</a>
+          <a href="/tags/samba/">samba</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/ide%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BDchecklist/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">IDE基本功能checklist</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E9%80%9A%E8%BF%87vnc%E6%8E%A7%E5%88%B6linux%E5%BC%80%E5%8F%91%E6%9C%BA/">
+            <span class="next-text nav-default">通过vnc控制linux开发机</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

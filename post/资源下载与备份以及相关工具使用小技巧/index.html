@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>资源下载与备份以及相关工具使用小技巧 - 时聆心语</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="时聆心语" /><meta name="description" content="本文主要记录如何更快地下载我们需要的资源并做好备份。
+" /><meta name="keywords" content="edward852, hugo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://edward852.github.io/post/%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%A4%87%E4%BB%BD%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<link href="/sass/main.min.e184957356f80479d91487165b1ca92ce1295cf008350e4ebbff07daafec3c5e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="资源下载与备份以及相关工具使用小技巧" />
+<meta property="og:description" content="本文主要记录如何更快地下载我们需要的资源并做好备份。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edward852.github.io/post/%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%A4%87%E4%BB%BD%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" />
+<meta property="article:published_time" content="2020-10-08T23:08:45+08:00" />
+<meta property="article:modified_time" content="2021-03-31T23:08:45+08:00" />
+<meta itemprop="name" content="资源下载与备份以及相关工具使用小技巧">
+<meta itemprop="description" content="本文主要记录如何更快地下载我们需要的资源并做好备份。">
+<meta itemprop="datePublished" content="2020-10-08T23:08:45+08:00" />
+<meta itemprop="dateModified" content="2021-03-31T23:08:45+08:00" />
+<meta itemprop="wordCount" content="1510">
+
+
+
+<meta itemprop="keywords" content="aria2,rclone,backup,download,plex,emby,vlc,video,team drive,autorclone,colab,ipfs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="资源下载与备份以及相关工具使用小技巧"/>
+<meta name="twitter:description" content="本文主要记录如何更快地下载我们需要的资源并做好备份。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">「L」</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="mob-docsearch-input" placeholder="Search" />
+    </li><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">「L」</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu"><li style="display:inline-block;margin-right:10px;">
+      <input type="search" class="docsearch-input" placeholder="Search" />
+    </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">资源下载与备份以及相关工具使用小技巧</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-08 </span>
+        <div class="post-category">
+            <a href="/categories/tool/"> tool </a>
+            <a href="/categories/trick/"> trick </a>
+            </div>
+          <span class="more-meta"> 约 1510 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#下载">下载</a>
+      <ul>
+        <li><a href="#资源网站">资源网站</a></li>
+        <li><a href="#正规资源">正规资源</a></li>
+        <li><a href="#非正规资源">非正规资源</a>
+          <ul>
+            <li><a href="#国外网盘">国外网盘</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#备份">备份</a>
+      <ul>
+        <li><a href="#国内网盘">国内网盘</a></li>
+        <li><a href="#onedrive">OneDrive</a></li>
+        <li><a href="#谷歌team-drive">谷歌Team Drive</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文主要记录如何更快地下载我们需要的资源并做好备份。</p>
+<h1 id="下载">下载</h1>
+<h2 id="资源网站">资源网站</h2>
+<p>链接可能失效(先确认科学上网)，搜关键字即可。</p>
+<ul>
+<li><a href="https://yyets.dmesg.app">人人影视</a></li>
+<li><a href="https://www.rarbgtor.org">rarbg</a></li>
+<li><a href="https://eztv.re">eztv</a></li>
+<li><a href="https://nyaa.si">nyaa</a></li>
+<li><a href="https://share.dmhy.org">动漫花园</a></li>
+<li><a href="http://zmk.pw">字幕库</a></li>
+<li><a href="https://assrt.net">伪射手</a></li>
+<li><a href="https://www.liuli.cat">琉璃神社</a></li>
+<li><a href="https://newacg.moe">新次元</a></li>
+</ul>
+<p>视频资源可以下载后挂字幕观看。</p>
+<h2 id="正规资源">正规资源</h2>
+<p>正规的资源可以通过网盘的转存(秒传)、离线下载以及下载工具(如迅雷)快速地下载。<br>
+当然要想速度更快就需要开通会员了。</p>
+<h2 id="非正规资源">非正规资源</h2>
+<p>非正规资源下载大概率不能使用上面的方法，很容易遭遇封锁不让下载。<br>
+目前推荐使用 <code>aria2</code> 或者 <code>youtube-dl</code> 两种下载工具，有其他好用的工具大家也可以在下面留言。<br>
+工具的安装和使用这里就不赘述了，网上很多。这里分享些小技巧：</p>
+<ul>
+<li>VPS硬盘空间不够怎么办<br>
+以磁力链为例，aria可以选择下载哪些文件。AriaNg上面先暂停任务就可以在文件列表里选择了。</li>
+<li>浏览器可以下载，aria下载不了？<br>
+常见于HTTP下载，一般是缺少必要的HTTP首部信息(比如说cookie)。<br>
+这个需要一点前端调试技巧来获取这些信息，篇幅有限就不具体展开了。<br>
+获取必要信息后就可以在aria中HTTP设置的 <strong>自定义请求头</strong> 填好，然后创建下载任务。<br>
+举例来说，UC网盘的资源就可以使用这个技巧快速下载。</li>
+</ul>
+<p>另外建议在VPS上面安装、使用这些工具，带宽更大而且方便后续的备份操作。</p>
+<h3 id="国外网盘">国外网盘</h3>
+<p>这里主要指的是那些不充会员就有各种限制的国外网盘。<br>
+可以通过网盘中转站(如<code>VVLoad</code>, <code>木薯牛</code>, <code>帮你下</code>等)代为下载，之后获取不限速的链接进行下载。<br>
+虽然中转站是收费的(1GB1元左右)，不过免除了注册、充值多个网盘会员的开销。有需要的可以尝试。</p>
+<h1 id="备份">备份</h1>
+<p>备份可以同步到硬盘(或NAS)和网盘。前者比较简单不多说。<br>
+百度云盘不是很推荐，一方面是有被和谐的风险，一方面是限速。一定要用的话就存带密码的压缩文件。<br>
+推荐使用 <code>OneDrive</code> 和 <code>Google Drive</code> ，不限速、不随便封锁资源(特别是不分享的情况下)。<br>
+容量方面，OneDrive有家庭版、教育版E3以及开发者E5等。Google Drive也有教育版、无限容量版。<br>
+褥羊毛的教程很多，这里也不赘述。<br>
+备份资源到网盘，可以使用 <code>rclone</code> 工具，命令使用 <code>rclone move</code> 或者 <code>rclone copy</code> 都可以。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">rclone move src:path dst:path -P
+<span class="c1"># 后台同步</span>
+nohup rclone sync gdrive:/root onedrive:/root <span class="p">&amp;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>另外与aria2配合使用就可以实现下载完自动同步到网盘的效果。网上的一键安装脚本就带有这个功能。<br>
+rclone还可以挂载网盘到本地文件系统，配合使用 <code>Plex</code>、<code>Emby</code>、<code>VLC</code>任意软件就可以播放网盘的视频。<br>
+轻松实现个人媒体中心，再也不用担心硬盘空间不够了~ 😍</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">rclone cmount <span class="se">\
+</span><span class="se"></span>	--read-only <span class="se">\
+</span><span class="se"></span>	--disable About <span class="se">\
+</span><span class="se"></span>	--buffer-size 32M <span class="se">\
+</span><span class="se"></span>	--dir-cache-time 6h <span class="se">\
+</span><span class="se"></span>	--vfs-read-chunk-size 8M <span class="se">\
+</span><span class="se"></span>	--vfs-read-chunk-size-limit 128M <span class="se">\
+</span><span class="se"></span>	onedrive: ~/onedrv
+
+<span class="c1"># --disable About 选项是Mac系统用的，其他系统可以不加</span>
+
+rclone mount <span class="se">\
+</span><span class="se"></span>	--daemon <span class="se">\
+</span><span class="se"></span>	--buffer-size 32M <span class="se">\
+</span><span class="se"></span>	--vfs-cache-mode full <span class="se">\
+</span><span class="se"></span>	--vfs-cache-max-size 10G <span class="se">\
+</span><span class="se"></span>	--vfs-read-chunk-size 8M <span class="se">\
+</span><span class="se"></span>	--vfs-read-chunk-size-limit 128M <span class="se">\
+</span><span class="se"></span>	gdrive: ~/gdrv
+
+fusermount -u ~/gdrv
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的数值仅供参考，可以根据自己的情况适当调整。</p>
+<h2 id="国内网盘">国内网盘</h2>
+<p>像百度云盘、阿里云盘、天翼云、和彩云等等做个备份网盘还是可以的。<br>
+国内网盘不建议作为主力网盘，审查、限速、不定期回收容量等等都是硬伤。</p>
+<h2 id="onedrive">OneDrive</h2>
+<p>开发者E5挺好申请，结合<code>AutoApiSecret</code>保持E5开发活跃、提高续期概率(每3个月)。<br>
+OneDrive国内也可以下载，节省科学上网流量。</p>
+<h2 id="谷歌team-drive">谷歌Team Drive</h2>
+<p>无限容量、不限速的免费网盘，结合<a href="https://github.com/xyou365/AutoRclone">AutoRclone</a>多重备份、再叠加新秀<a href="https://ipfs.io">IPFS</a>分布式存储，真香！<br>
+网上很多免费申请的地址都挂了，这里发个小福利——<a href="https://penglai.ga">蓬莱岛</a>，目前已经撸了8个Team Drive😎。<br>
+AutoRclone利用多个谷歌服务帐号(大数据量)同步多个Team Drive，一般同步2个翻车的概率就比较低了。<br>
+另外谷歌的<a href="https://colab.research.google.com">colab</a>可以白嫖(相当于免费的VPS)，用来AutoRclone效果更佳~<br>
+IPFS不是永久存储(收费的filecoin白嫖党不考虑)，不过把ipfs数据存到Team Drive可变相实现永久存储😎。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">时聆心语</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-31
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/images/qrcode.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/aria2/">aria2</a>
+          <a href="/tags/rclone/">rclone</a>
+          <a href="/tags/backup/">backup</a>
+          <a href="/tags/download/">download</a>
+          <a href="/tags/plex/">plex</a>
+          <a href="/tags/emby/">emby</a>
+          <a href="/tags/vlc/">vlc</a>
+          <a href="/tags/video/">video</a>
+          <a href="/tags/team-drive/">team drive</a>
+          <a href="/tags/autorclone/">autorclone</a>
+          <a href="/tags/colab/">colab</a>
+          <a href="/tags/ipfs/">ipfs</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E4%BD%BF%E7%94%A8hashcat%E6%81%A2%E5%A4%8D%E5%AF%86%E7%A0%81/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用hashcat恢复密码</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/golang_error_handling/">
+            <span class="next-text nav-default">Golang错误处理</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="edward852/blog-skeleton-v3"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:edward852@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/edward852" class="iconfont icon-github" title="github"></a>
+  <a href="https://edward852.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2011 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>时聆心语</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158726365-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="/js/iframeResizer.contentWindow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script>
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.docsearch-input',
+       debug: false,
+   });
+   docsearch({
+       apiKey: "f0ec02ae89536c4ed404b8c52ca8e11b",
+       indexName: "blog",
+       appId: "Q02X4MC3P9",
+       inputSelector: '.mob-docsearch-input',
+       debug: false,
+   });
+  </script>
+</body>
+</html>

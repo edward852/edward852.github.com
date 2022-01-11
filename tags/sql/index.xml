@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql on 时聆心语</title>
+    <link>https://edward852.github.io/tags/sql/</link>
+    <description>Recent content in sql on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 13 Oct 2017 14:54:28 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL基础</title>
+      <link>https://edward852.github.io/post/mysql%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 13 Oct 2017 14:54:28 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/mysql%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;MySQL是最流行的关系型数据库管理系统，本文主要介绍MySQL的基本知识。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

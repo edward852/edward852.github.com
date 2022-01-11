@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on 时聆心语</title>
+    <link>https://edward852.github.io/tags/docker/</link>
+    <description>Recent content in docker on 时聆心语</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 09 Jan 2020 11:05:00 +0800</lastBuildDate><atom:link href="https://edward852.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker使用笔记</title>
+      <link>https://edward852.github.io/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 09 Jan 2020 11:05:00 +0800</pubDate>
+      
+      <guid>https://edward852.github.io/post/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文主要记录docker使用过程中一些笔记。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
